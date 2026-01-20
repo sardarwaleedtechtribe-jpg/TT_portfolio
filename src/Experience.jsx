@@ -4,17 +4,13 @@ import LogoModel from "./model/LogoModel.jsx";
 import Text from "./text/text.jsx";
 
 export default function Experience() {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
+    return (
+        <>
+            <ambientLight intensity={0.5} />
 
-      <Light />
+            <Light />
 
-      <Text />
-
-
-
-
-    </>
-  );
+            <Text />
+        </>
+    );
 }

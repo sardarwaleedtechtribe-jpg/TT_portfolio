@@ -8,8 +8,8 @@ import { useEffect } from 'react'
 
 function CameraController() {
   const { position, rotation } = useControls("Camera", {
-    position: { value: [0, 0, 10], step: 0.01 },
-    rotation: { value: [0, 0, 0], step: 0.01 },
+    position: { value: [-6.8, -2.5, 0.0], step: 0.01 },
+    rotation: { value: [0, -1.50, 0], step: 0.01 },
   });
 
   const { camera } = useThree();
@@ -36,8 +36,8 @@ root.render(
             fov: 45,
             near: 0.1,
             far: 200,
-            position: [-6.5, -2.5, 0],
-            rotation: [2, 1, 3]
+            position: [-6.8, -2.5, 0.0],
+            rotation: [0, -1.5, 0]
         } }
     >
         <CameraController />
