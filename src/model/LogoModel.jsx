@@ -1,8 +1,8 @@
 import { useGLTF, Center } from "@react-three/drei";
-import { useMemo } from "react";
+import { useMemo, forwardRef } from "react";
 import * as THREE from "three";
 
-export default function LogoModel(props) {
+const LogoModel = forwardRef((props, ref) => {
   const { scene } = useGLTF("/logo/t.glb");
 
   useMemo(() => {
@@ -20,14 +20,16 @@ export default function LogoModel(props) {
   }, [scene]);
 
   return (
-    <group {...props}>
+    <group ref={ref} {...props}>
       <Center>
         <primitive
           object={scene}
           rotation={[0, Math.PI / 2, 0]}
-          scale={[7, 3.8, 4]}
+        // scale={[0.7, 3./8, 4]}
         />
       </Center>
     </group>
   );
-}
+});
+
+export default LogoModel;

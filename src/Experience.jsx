@@ -1,16 +1,14 @@
-import { Text3D, Center } from "@react-three/drei";
-import Light from "./light/light.jsx";
-import LogoModel from "./model/LogoModel.jsx";
-import Text from "./text/text.jsx";
+import { ScrollControls, Scroll } from "@react-three/drei";
+import Section1 from "./hero/Section1.jsx";
+import CameraController from "./CameraController.jsx";
 
 export default function Experience() {
     return (
         <>
-            <ambientLight intensity={0.5} />
-
-            <Light />
-
-            <Text />
+            <ScrollControls pages={2.5} damping={0.2}>
+                <CameraController />
+                <Section1 />
+            </ScrollControls>
         </>
     );
 }
