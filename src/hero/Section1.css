@@ -1,0 +1,195 @@
+.about-header {
+  padding: 3rem 2.5rem;
+  background: transparent;
+  color: #000;
+  width: 100vw;
+  height: 120vh;
+  box-sizing: border-box;
+}
+
+.about-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.divider {
+  margin: 0.75rem 0 2rem;
+  border: none;
+  border-top: 1px solid #dcdcdc;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: -3rem;
+}
+
+.about-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+
+
+.about-description {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20rem;
+  gap: 2.5rem;
+}
+
+.about-description p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #333;
+  margin: 0;
+}
+
+.about-button {
+  padding: 1rem 2rem;
+  background: rgb(20, 20, 20);
+  color: #fff;
+  border: none;
+  border-radius: 0rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-group:hover .about-button {
+  background: rgb(46, 46, 51);
+}
+
+/* Button text animation styles */
+.button-text {
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-text.default {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.button-text.hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 100%));
+  opacity: 0;
+  white-space: nowrap;
+}
+
+/* Hover state animations */
+.button-group:hover .button-text.default {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.button-group:hover .button-text.hover {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.arrow-button {
+  padding: 0.5rem 1.2rem;
+  /* Adjusted to fit arrow size */
+  background: rgb(20, 20, 20);
+  color: #fff;
+  border: none;
+  border-radius: 0rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  height: calc(1rem + 2rem + 0.2rem);
+  /* Match the about-button height */
+  min-width: calc(1rem + 2rem + 0.4rem);
+  /* Set according to arrow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-group:hover .arrow-button {
+  background: rgb(46, 46, 51);
+  /* transform: translateY(-2px); */
+  /* box-shadow: 0 10px 20px rgba(0,0,0,0.1); */
+}
+
+/* Arrow text animation styles */
+.arrow-text {
+  display: inline-block;
+  font-weight: 900;
+  -webkit-text-stroke: 0.5px currentColor;
+  /* No transition by default - arrow snaps back on exit */
+}
+
+.arrow-text.default {
+  transform: translate(0, -2px);
+  opacity: 1;
+}
+
+.arrow-text.hover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50% - 100%), calc(-50% - 2px));
+  opacity: 0;
+}
+
+/* Add transition only when hovering for smooth entry animation */
+.button-group:hover .arrow-text {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover state animations - horizontal */
+.button-group:hover .arrow-text.default {
+  transform: translate(100%, -2px);
+  opacity: 0;
+}
+
+.button-group:hover .arrow-text.hover {
+  transform: translate(-50%, calc(-50% - 2px));
+  opacity: 1;
+}
+
+/* Arrow button specific hover effect */
+.arrow-button:hover .arrow-text.default {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 375ms, opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+  transform: translate(10px, -2px);
+}
+
+.arrow-button:hover .arrow-text.hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 375ms, opacity 0.125s cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+}
+
+/* Align both buttons horizontally */
+.button-group {
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+  margin-top: 2rem;
+  /* Moved down a bit */
+}

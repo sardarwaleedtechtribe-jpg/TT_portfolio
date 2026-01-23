@@ -1,12 +1,13 @@
 import Light from "../light/light.jsx";
 import Text from "../text/text.jsx";
+import Product from "../Product.jsx";
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { useScroll, Scroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
-import "./Section2.css";
+import "./Section1.css";
 
 export default function Section1() {
     const scroll = useScroll()
@@ -68,10 +69,23 @@ export default function Section1() {
                                 <p>
                                     Now that digital has become a part of our daily lives, what is sought after is an experience that moves the heart. We combine design that connects with the user's emotions with smooth-moving technology, achieving both ease of use and a sense of immersion. We create new precedents that no one has ever seen before, without compromising on a single pixel.
                                 </p>
-                                <button className="about-button">Learn more about us</button>
+                                <div className="button-group">
+                                    <button className="about-button">
+                                        <span className="button-text default">Learn more about us</span>
+                                        <span className="button-text hover">Learn more about us</span>
+                                    </button>
+                                    <button className="arrow-button">
+                                        <span className="arrow-text default">→</span>
+                                        <span className="arrow-text hover">→</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </section>
+
+                    <div style={{ marginTop: '-15vh' }}>
+                        <Product />
+                    </div>
 
                 </div>
             </Scroll>

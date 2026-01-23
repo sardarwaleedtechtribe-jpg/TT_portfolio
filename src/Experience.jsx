@@ -5,7 +5,7 @@ import CameraController from "./CameraController.jsx";
 export default function Experience() {
     return (
         <>
-            <ScrollControls pages={2.5} damping={0.2}>
+            <ScrollControls pages={2.75} damping={0.2}>
                 <CameraController />
                 <Section1 />
             </ScrollControls>
