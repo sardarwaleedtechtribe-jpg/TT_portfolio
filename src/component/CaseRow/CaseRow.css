@@ -1,0 +1,187 @@
+.case-row {
+  width: 100%;
+  height: 13vh;
+  min-height: 56px;
+
+  display: grid;
+  grid-template-columns: 1.4fr 2fr auto auto;
+  align-items: center;
+
+  padding: 10px 65px;
+  /* margin: 8px 0; */
+  box-sizing: border-box;
+  margin-top: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(7, 0, 0, 1);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+  background: #fff;
+  transition: background 0.3s ease;
+
+  position: relative;
+  /* Added to anchor the video preview */
+  overflow: visible;
+  /* Ensure the video preview is not clipped */
+}
+
+.case-row+.case-row {
+  border-top: none;
+}
+
+/* LEFT */
+.case-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  grid-column: 1;
+}
+
+.company {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.title-container {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.title-text {
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.title-text.default {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.title-text.hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.case-row:hover .title-text.default {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.case-row:hover .title-text.hover {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* CENTER */
+.case-center {
+  font-size: 13px;
+  opacity: 0.85;
+  grid-column: 2;
+  margin-left: -8px;
+  display: flex;
+  align-items: center;
+}
+
+/* RIGHT */
+.case-right-most {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: red;
+}
+
+.year {
+  font-size: 13px;
+}
+
+.year-container {
+  grid-column: 3;
+  margin-left: -260px;
+  margin-top: -12px;
+}
+
+.arrow-container {
+  grid-column: 4;
+  margin-left: -70px;
+  margin-top: -12px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.arrow {
+  font-size: 18px;
+  position: absolute;
+  /* Remove transition from here so it doesn't animate on leave */
+}
+
+.arrow.default {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.arrow.hover {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* HOVER */
+.case-row:hover {
+  background: #eeebeb;
+}
+
+.case-row:hover .arrow {
+  /* Apply transition ONLY on hover, so it animates IN but snaps OUT */
+  transition: all 0.94s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.case-row:hover .arrow.default {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.case-row:hover .arrow.hover {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* VIDEO PREVIEW */
+.video-preview {
+  position: absolute;
+  width: 400px;
+  height: 230px;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+  border-radius: 0px;
+  left: 70%;
+  top: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.video-preview.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.video-preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -13,8 +13,7 @@ export default function Product() {
 
   // The range where the video should stick to the top
   const startOffset = 0.386;
-  const endOffset = 0.497;
-  // 0.694;
+  const endOffset = 0.492;
 
   const videos = [
     {
@@ -25,15 +24,14 @@ export default function Product() {
       src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096427/v3_flhapf.mp4",
       alt: "Product showcase video 2"
     },
-
-    {
-      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096178/v1_oyqnnx.mp4",
-      alt: "Product showcase video 4"
-    },
     {
       src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1768346483/v1_2_online-video-cutter.com_v1ojdt.mp4",
       alt: "Product showcase video 3"
     },
+    {
+      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096178/v1_oyqnnx.mp4",
+      alt: "Product showcase video 4"
+    }
   ];
 
   useFrame(() => {
@@ -66,26 +64,27 @@ export default function Product() {
 
     // Rollover logic
     const totalRange = endOffset - startOffset;
-    const segmentLength = totalRange / 4; // 4 segments now
+    const segmentLength = totalRange / 4;
 
     // Video 2
     const v2Start = startOffset;
     const v2End = startOffset + segmentLength;
     const v2Progress = Math.min(Math.max((scrollOffset - v2Start) / (v2End - v2Start), 0), 1);
-    const v2Top = 57 - (v2Progress * (57 * 0.8));
+    const v2Top = 85 - (v2Progress * 74);
 
     // Video 3
     const v3Start = v2End;
     const v3End = v2End + segmentLength;
     const v3Progress = Math.min(Math.max((scrollOffset - v3Start) / (v3End - v3Start), 0), 1);
-    const v3Top = 57 - (v3Progress * (57 - 22.8)); // 22.8 is 57 * 0.4
+    const v3Top = 85 - (v3Progress * 63);
 
     // Video 4 (Coverage Video)
     const v4Start = v3End;
     const v4End = v3End + segmentLength;
     const v4Progress = Math.min(Math.max((scrollOffset - v4Start) / (v4End - v4Start), 0), 1);
-    // Starts below and slides up to 0 to cover everything
-    const v4Top = 100 - (v4Progress * 100);
+
+    const v4TopStart = 85;
+    const v4Top = v4TopStart - (v4Progress * 85);
 
     // Update container positions
     if (containerRefs.current[1]) {
@@ -101,39 +100,18 @@ export default function Product() {
     }
   });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const video = entry.target;
-            video.play().catch(err => { });
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
-    setVideosLoaded([false, false, false, false]);
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section className="about-header">
       <div className="about-meta">
         <span className="dot" />
-        <span className="label">Products</span>
+        <span className="label">Works</span>
       </div>
 
       <hr className="divider" />
 
       <div className="about-main">
-        <h1 className="title">Products</h1>
+        <h1 className="title">Production Achievements</h1>
       </div>
 
       <div ref={stackRef} className="product-videos-stack">
@@ -144,14 +122,24 @@ export default function Product() {
             className={`product-video-container product-video-container${index + 1}`}
             style={{ '--video-index': index }}
           >
+            <div className="product-video-label">
+              <span className="square-dot" />
+              <span className="number">{`0${index + 1}`}</span>
+            </div>
             <video
               ref={(el) => (videoRefs.current[index] = el)}
               src={video.src}
               loop
               muted
               playsInline
-              autoPlay
               aria-label={video.alt}
+              onMouseEnter={(e) => {
+                e.currentTarget.play().catch(() => { });
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.pause();
+                e.currentTarget.currentTime = 0;
+              }}
               onLoadedData={() => {
                 const newLoaded = [...videosLoaded];
                 newLoaded[index] = true;

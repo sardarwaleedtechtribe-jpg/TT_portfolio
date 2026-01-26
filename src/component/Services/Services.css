@@ -1,0 +1,28 @@
+/* Services section uses the same base styles as About/Product for consistency */
+
+.services-list {
+    margin-top: 5rem;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.service-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    margin: 0;
+}

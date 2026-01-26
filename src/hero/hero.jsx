@@ -1,16 +1,19 @@
-import Light from "../light/light.jsx";
-import Text from "../text/text.jsx";
-import Product from "../Product.jsx";
+import Light from "../component/3dText/light/light.jsx";
+import Text from "../component/3dText/text/text.jsx";
+import Product from "../component/vSilder/Product.jsx";
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { useScroll, Scroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
-import Button from "../Button/Button.jsx";
-import "./Section1.css";
+import About from "../component/About/About.jsx";
+import "./hero.css";
+import CaseList from "../component/CaseRow/CaseList.jsx";
+import Button from "../component/Button/Button.jsx";
+// import Services from "../component/Services/Services.jsx";
 
-export default function Section1() {
+export default function Hero() {
     const scroll = useScroll()
     const ambientRef = useRef()
     const floorRef = useRef()
@@ -20,12 +23,8 @@ export default function Section1() {
     const baseColor = new THREE.Color("#565555")
     const targetColor = new THREE.Color("#ffffff")
 
-    const [scrollOffset, setScrollOffset] = useState(0)
-
     useFrame((state) => {
         const offset = scroll.offset
-        setScrollOffset(offset)
-        console.log("Scroll Offset:", offset.toFixed(3))
         const multiplier = 1 - offset
 
         setIntensityMultiplier(multiplier)
@@ -43,10 +42,7 @@ export default function Section1() {
     return (
         <>
             <EffectComposer>
-                <Noise
-                    opacity={noiseOpacity}
-                    blendFunction={BlendFunction.OVERLAY}
-                />
+                <Noise opacity={noiseOpacity} blendFunction={BlendFunction.OVERLAY} />
             </EffectComposer>
             <ambientLight ref={ambientRef} intensity={0.5} />
             <Light intensityMultiplier={intensityMultiplier} />
@@ -56,33 +52,14 @@ export default function Section1() {
                 <planeGeometry args={[100, 100]} />
                 <meshBasicMaterial ref={floorRef} color="#565555" />
             </mesh>
-
-
             <Scroll html>
                 <div style={{ position: 'absolute', top: '135vh', width: '100vw' }}>
-                    <section className="about-header" style={{ background: 'transparent' }}>
-                        <div className="about-meta">
-                            <span className="dot" />
-                            <span className="label">About Us</span>
-                        </div>
-
-                        <hr className="divider" />
-
-                        <div className="about-main">
-                            <h1 className="title">About Us</h1>
-                            <div className="about-description">
-                                <p>
-                                    Now that digital has become a part of our daily lives, what is sought after is an experience that moves the heart. We combine design that connects with the user's emotions with smooth-moving technology, achieving both ease of use and a sense of immersion. We create new precedents that no one has ever seen before, without compromising on a single pixel.
-                                </p>
-                                <Button text="Learn more about us" />
-                            </div>
-                        </div>
-                    </section>
-
-                    <div style={{ marginTop: '-15vh' }}>
-                        <Product />
+                    <About />
+                    <div style={{ marginTop: '-15vh' }}><Product /></div>
+                    <div className="case-row-container">
+                        <CaseList />
                     </div>
-
+                    <Button text="See more production achievements" />
                 </div>
             </Scroll>
         </>

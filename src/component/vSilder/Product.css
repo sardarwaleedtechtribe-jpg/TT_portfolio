@@ -11,7 +11,7 @@
 
 .product-video-container {
   width: 100%;
-  height: 57vh;
+  height: 85vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -31,17 +31,45 @@
 
 .product-video-container2 {
   z-index: 2;
-  top: calc(82vh - 10vh);
+  top: calc(62vh - 10vh);
+  height: 75vh;
 }
 
 .product-video-container3 {
   z-index: 3;
-  top: calc(164vh - 20vh);
+  top: calc(65vh - 20vh);
+  height: 65vh;
 }
 
 .product-video-container4 {
   z-index: 4;
-  height: 81vh;
+  height: 90vh;
+}
+
+.product-video-label {
+  position: absolute;
+  top: 2rem;
+  left: 2.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #ffffff;
+  /* mix-blend-mode: difference; */
+}
+
+.square-dot {
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  display: block;
+}
+
+.product-video-label .number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-family: inherit;
 }
 
 @media (max-width: 768px) {
