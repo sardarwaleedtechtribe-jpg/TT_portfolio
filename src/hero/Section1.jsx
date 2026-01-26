@@ -7,6 +7,7 @@ import { useScroll, Scroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
+import Button from "../Button/Button.jsx";
 import "./Section1.css";
 
 export default function Section1() {
@@ -19,8 +20,11 @@ export default function Section1() {
     const baseColor = new THREE.Color("#565555")
     const targetColor = new THREE.Color("#ffffff")
 
+    const [scrollOffset, setScrollOffset] = useState(0)
+
     useFrame((state) => {
         const offset = scroll.offset
+        setScrollOffset(offset)
         console.log("Scroll Offset:", offset.toFixed(3))
         const multiplier = 1 - offset
 
@@ -53,8 +57,9 @@ export default function Section1() {
                 <meshBasicMaterial ref={floorRef} color="#565555" />
             </mesh>
 
+
             <Scroll html>
-                <div style={{ position: 'absolute', top: '140vh', width: '100vw' }}>
+                <div style={{ position: 'absolute', top: '135vh', width: '100vw' }}>
                     <section className="about-header" style={{ background: 'transparent' }}>
                         <div className="about-meta">
                             <span className="dot" />
@@ -69,16 +74,7 @@ export default function Section1() {
                                 <p>
                                     Now that digital has become a part of our daily lives, what is sought after is an experience that moves the heart. We combine design that connects with the user's emotions with smooth-moving technology, achieving both ease of use and a sense of immersion. We create new precedents that no one has ever seen before, without compromising on a single pixel.
                                 </p>
-                                <div className="button-group">
-                                    <button className="about-button">
-                                        <span className="button-text default">Learn more about us</span>
-                                        <span className="button-text hover">Learn more about us</span>
-                                    </button>
-                                    <button className="arrow-button">
-                                        <span className="arrow-text default">→</span>
-                                        <span className="arrow-text hover">→</span>
-                                    </button>
-                                </div>
+                                <Button text="Learn more about us" />
                             </div>
                         </div>
                     </section>

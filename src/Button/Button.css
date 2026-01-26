@@ -1,0 +1,111 @@
+/* Button group and animation styles */
+.button-group {
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.about-button {
+    padding: 1rem 2rem;
+    background: rgb(20, 20, 20);
+    color: #fff;
+    border: none;
+    border-radius: 0rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.button-group:hover .about-button {
+    background: rgb(46, 46, 51);
+}
+
+.button-text {
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-text.default {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.button-text.hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 100%));
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.button-group:hover .button-text.default {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.button-group:hover .button-text.hover {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.arrow-button {
+    padding: 0.5rem 1.2rem;
+    background: rgb(20, 20, 20);
+    color: #fff;
+    border: none;
+    border-radius: 0rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    height: 3.2rem;
+    min-width: 3.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-group:hover .arrow-button {
+    background: rgb(46, 46, 51);
+}
+
+.arrow-text {
+    display: inline-block;
+    font-weight: 900;
+    -webkit-text-stroke: 0.5px currentColor;
+}
+
+.arrow-text.default {
+    transform: translate(0, -2px);
+    opacity: 1;
+}
+
+.arrow-text.hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(calc(-50% - 100%), calc(-50% - 2px));
+    opacity: 0;
+}
+
+.button-group:hover .arrow-text {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-group:hover .arrow-text.default {
+    transform: translate(100%, -2px);
+    opacity: 0;
+}
+
+.button-group:hover .arrow-text.hover {
+    transform: translate(-50%, calc(-50% - 2px));
+    opacity: 1;
+}
