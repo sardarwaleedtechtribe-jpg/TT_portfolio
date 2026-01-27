@@ -3,6 +3,7 @@ import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import Button from '../Button/Button.jsx';
 import './Services.css';
+import ArrowButton from '../Button/ArrowButton.jsx';
 
 const SERVICES = ['Brand Design', 'UX Design', 'Web Development', '3D Motion'];
 
@@ -82,11 +83,29 @@ const Services = () => {
             </div>
 
             <hr className="services-divider" />
-
+            {/* top right */}
             <div className="services-main">
                 <h1 id="services-title" className="title">Services</h1>
             </div>
+            {/* Center box */}
+            <div className="services-center-box">
+                <div className="center-box-meta">
+                    <span className="center-box-dot" aria-hidden="true" />
+                    <span className="center-box-label">Branding</span>
+                </div>
 
+                <div className="center-box-title-wrapper">
+                    <h2 className="center-box-title">Brand Strategy</h2>
+                </div>
+
+                <p className="center-box-description">
+                    Clarify the brand's core values from target audience and market analysis. Based on the vision born from this, we build personalities, experiences, and stories.
+                </p>
+                <div className="center-box-arrow">
+                    <ArrowButton />
+                </div>
+            </div>
+            {/* left footer */}
             <div className="services-footer">
                 <hr ref={lineLoaderRef} className="services-line-loader" />
                 <ul className="services-tag-list">
@@ -98,7 +117,7 @@ const Services = () => {
                     ))}
                 </ul>
             </div>
-
+            {/* right footerButton */}
             <div className="services-right-content">
                 <Button text="Explore our services" />
             </div>

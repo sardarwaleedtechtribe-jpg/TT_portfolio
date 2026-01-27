@@ -174,3 +174,75 @@
 .services-right-content .button-group:hover .arrow-button {
     background: #ffffff;
 }
+
+.services-center-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    width: 280px;
+    height: 390px;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    border-radius: 0;
+}
+
+.center-box-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 1rem;
+    margin-top: -1rem;
+    margin-left: -1rem;
+}
+
+.center-box-dot {
+    width: 4px;
+    height: 4px;
+    background: #000;
+    border-radius: 0;
+}
+
+.center-box-title-wrapper {
+    margin-bottom: 2rem;
+    padding-top: 35px;
+}
+
+.center-box-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.center-box-description {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: #333;
+    margin: 0;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    word-spacing: 0.15em;
+}
+
+.center-box-arrow {
+    margin-top: auto;
+    margin-left: auto;
+}
+
+.center-box-arrow .arrow-button {
+    padding: 0.5rem 0.5rem;
+    min-width: 2.24rem;
+    height: 2.24rem;
+    font-size: 0.75rem;
+}

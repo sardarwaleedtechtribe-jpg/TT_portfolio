@@ -1,5 +1,6 @@
 import React from 'react';
 import './Button.css';
+import ArrowButton from './ArrowButton.jsx';
 
 const Button = ({ text = "Learn more about us", onClick }) => {
     return (
@@ -8,10 +9,7 @@ const Button = ({ text = "Learn more about us", onClick }) => {
                 <span className="button-text default">{text}</span>
                 <span className="button-text hover">{text}</span>
             </button>
-            <button className="arrow-button">
-                <span className="arrow-text default">→</span>
-                <span className="arrow-text hover">→</span>
-            </button>
+            <ArrowButton />
         </div>
     );
 };

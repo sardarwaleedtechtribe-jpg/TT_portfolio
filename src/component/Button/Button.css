@@ -73,7 +73,8 @@
     overflow: hidden;
 }
 
-.button-group:hover .arrow-button {
+.button-group:hover .arrow-button,
+.arrow-button:hover {
     background: rgba(26, 26, 28, 1);
 }
 
@@ -96,16 +97,19 @@
     opacity: 0;
 }
 
-.button-group:hover .arrow-text {
+.button-group:hover .arrow-text,
+.arrow-button:hover .arrow-text {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.button-group:hover .arrow-text.default {
+.button-group:hover .arrow-text.default,
+.arrow-button:hover .arrow-text.default {
     transform: translate(100%, -2px);
     opacity: 0;
 }
 
-.button-group:hover .arrow-text.hover {
+.button-group:hover .arrow-text.hover,
+.arrow-button:hover .arrow-text.hover {
     transform: translate(-50%, calc(-50% - 2px));
     opacity: 1;
 }
