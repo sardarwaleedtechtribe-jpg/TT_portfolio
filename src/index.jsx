@@ -17,6 +17,8 @@ root.render(
             near: 0.1,
             far: 200,
             position: [-6.8, -2.5, 0.0],
+          
+            
             rotation: [0, -1.5, 0]
         }}
     >

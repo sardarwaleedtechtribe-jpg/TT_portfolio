@@ -24,9 +24,7 @@
   transition: background 0.3s ease;
 
   position: relative;
-  /* Added to anchor the video preview */
   overflow: visible;
-  /* Ensure the video preview is not clipped */
 }
 
 
