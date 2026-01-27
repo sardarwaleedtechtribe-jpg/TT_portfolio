@@ -21,7 +21,6 @@ export default function Hero() {
 
     useFrame((state) => {
         const offset = scroll.offset
-        console.log("Scroll Offset:", offset)
         const multiplier = 1 - offset
 
         setIntensityMultiplier(multiplier)

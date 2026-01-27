@@ -1,38 +1,32 @@
 import Button from '../Button/Button.jsx';
 import './Services.css';
 
+const SERVICES = ['Brand Design', 'UX Design', 'Web Development', '3D Motion'];
+
 const Services = () => {
     return (
-        <section className="about-header">
-            <div className="about-meta">
-                <span className="dot" />
-                <span className="label">Service</span>
+        <section className="services-header" aria-labelledby="services-title">
+            <div className="services-meta">
+                <span className="services-dot" aria-hidden="true" />
+                <span className="services-label">Service</span>
             </div>
 
-            <hr className="divider" />
+            <hr className="services-divider" />
 
-            <div className="about-main">
-                <h1 className="title">Services</h1>
+            <div className="services-main">
+                <h1 id="services-title" className="title">Services</h1>
             </div>
 
             <div className="services-footer">
-                <hr className="line-loader" />
-                <div className="service-tag">
-                    <span className="dot" />
-                    <span className="label">Brand Design</span>
-                </div>
-                <div className="service-tag">
-                    <span className="dot" />
-                    <span className="label">UX Design</span>
-                </div>
-                <div className="service-tag">
-                    <span className="dot" />
-                    <span className="label">Web Development</span>
-                </div>
-                <div className="service-tag">
-                    <span className="dot" />
-                    <span className="label">3D Motion</span>
-                </div>
+                <hr className="services-line-loader" />
+                <ul className="services-tag-list">
+                    {SERVICES.map((service) => (
+                        <li key={service} className="service-tag">
+                            <span className="dot" aria-hidden="true" />
+                            <span className="label">{service}</span>
+                        </li>
+                    ))}
+                </ul>
             </div>
 
             <div className="services-right-content">
@@ -42,4 +36,4 @@ const Services = () => {
     );
 };
 
-export default Services;        
+export default Services;

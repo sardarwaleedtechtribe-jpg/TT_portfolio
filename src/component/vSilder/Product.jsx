@@ -38,6 +38,7 @@ export default function Product() {
     if (!stackRef.current) return;
 
     const scrollOffset = scroll.offset;
+    console.log("Scroll Offset:", scrollOffset);
     const isFixed = scrollOffset >= startOffset && scrollOffset <= endOffset;
 
     // Calculate compensation

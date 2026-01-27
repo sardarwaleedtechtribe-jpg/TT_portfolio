@@ -16,7 +16,7 @@ export default function HeroOverlay() {
                         <CaseList />
                     </div>
                 </div>
-                <div>
+                <div >
                     <Services />
                 </div>
             </div>
