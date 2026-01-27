@@ -1,28 +1,107 @@
-/* Services section uses the same base styles as About/Product for consistency */
-
-.services-list {
-    margin-top: 5rem;
-    padding: 0 2.5rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 3rem;
-}
-
-.service-item {
+.about-header {
+    height: 101vh;
+    width: 100vw;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    padding-top: 6.15rem;
+    padding-left: 4.4rem;
+    padding-right: 5rem;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-.service-item h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
+.about-header::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background-image: url("https://res.cloudinary.com/dhqjyigvv/image/upload/v1769445448/img__5_lkkc61.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(15px) brightness(0.35);
+    z-index: -1;
 }
 
-.service-item p {
+.services-footer {
+    position: absolute;
+    bottom: 5.5rem;
+    left: 4.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.service-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 1rem;
-    line-height: 1.6;
-    color: #444;
+    font-weight: 500;
+    color: #fff;
+}
+
+.service-tag .dot {
+    width: 7px;
+    height: 7px;
+    background: #fff;
+    border-radius: 0;
+}
+
+.about-header .title {
+    font-size: 45px;
     margin: 0;
+    color: #fff;
+}
+
+.about-main {
+    margin-top: 1rem;
+}
+
+.divider {
+    margin: 0.75rem 0 1rem 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.line-loader {
+    width: 3.5px;
+    height: 2px;
+    background: #fff;
+    transform: translateY(2rem);
+    border: none;
+    margin-left: -0.8rem;
+}
+
+.services-right-content {
+    position: absolute;
+    bottom: 4.5rem;
+    right: 5rem;
+}
+
+.services-right-content .about-button,
+.services-right-content .arrow-button {
+    background: #ffffff;
+    color: #000000;
+}
+
+.about-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+}
+
+.about-meta .dot {
+    width: 7px;
+    height: 7px;
+    background: #fff;
+}
+
+.about-meta .label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }

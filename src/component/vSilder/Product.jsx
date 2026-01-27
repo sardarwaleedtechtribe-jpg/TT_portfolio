@@ -13,7 +13,7 @@ export default function Product() {
 
   // The range where the video should stick to the top
   const startOffset = 0.386;
-  const endOffset = 0.492;
+  const endOffset = 0.472;
 
   const videos = [
     {
@@ -70,13 +70,13 @@ export default function Product() {
     const v2Start = startOffset;
     const v2End = startOffset + segmentLength;
     const v2Progress = Math.min(Math.max((scrollOffset - v2Start) / (v2End - v2Start), 0), 1);
-    const v2Top = 85 - (v2Progress * 74);
+    const v2Top = 85 - (v2Progress * 78);
 
     // Video 3
     const v3Start = v2End;
     const v3End = v2End + segmentLength;
     const v3Progress = Math.min(Math.max((scrollOffset - v3Start) / (v3End - v3Start), 0), 1);
-    const v3Top = 85 - (v3Progress * 63);
+    const v3Top = 85 - (v3Progress * 71);
 
     // Video 4 (Coverage Video)
     const v4Start = v3End;

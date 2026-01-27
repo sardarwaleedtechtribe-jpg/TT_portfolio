@@ -1,17 +1,13 @@
 import Light from "../component/3dText/light/light.jsx";
 import Text from "../component/3dText/text/text.jsx";
-import Product from "../component/vSilder/Product.jsx";
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
-import { useScroll, Scroll } from "@react-three/drei";
+import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import * as THREE from "three";
-import About from "../component/About/About.jsx";
+import HeroOverlay from "./HeroOverlay.jsx";
 import "./hero.css";
-import CaseList from "../component/CaseRow/CaseList.jsx";
-import Button from "../component/Button/Button.jsx";
-// import Services from "../component/Services/Services.jsx";
 
 export default function Hero() {
     const scroll = useScroll()
@@ -25,6 +21,7 @@ export default function Hero() {
 
     useFrame((state) => {
         const offset = scroll.offset
+        console.log("Scroll Offset:", offset)
         const multiplier = 1 - offset
 
         setIntensityMultiplier(multiplier)
@@ -52,16 +49,7 @@ export default function Hero() {
                 <planeGeometry args={[100, 100]} />
                 <meshBasicMaterial ref={floorRef} color="#565555" />
             </mesh>
-            <Scroll html>
-                <div style={{ position: 'absolute', top: '135vh', width: '100vw' }}>
-                    <About />
-                    <div style={{ marginTop: '-15vh' }}><Product /></div>
-                    <div className="case-row-container">
-                        <CaseList />
-                    </div>
-                    <Button text="See more production achievements" />
-                </div>
-            </Scroll>
+            <HeroOverlay />
         </>
     );
 }

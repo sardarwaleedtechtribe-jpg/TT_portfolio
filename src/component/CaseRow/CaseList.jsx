@@ -1,4 +1,6 @@
 import CaseRow from "./CaseRow";
+import Button from "../Button/Button.jsx";
+
 
 const cases = [
   {
@@ -13,21 +15,21 @@ const cases = [
     company: "Miroku Neurorehabilitation Clinic",
     tags: "UI / UX, Front-end / CMS Development, Website",
     year: "2023",
-    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096179/v3.mp4",
+    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096427/v3_flhapf.mp4",
   },
   {
     title: "IHI CORE.tech Branding Site",
     company: "IHI Corporation",
     tags: "Front-end / CMS Development, Website",
     year: "2022",
-    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096179/v2.mp4",
+    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1768346483/v1_2_online-video-cutter.com_v1ojdt.mp4",
   },
   {
     title: "anytimeLIVE! Branding",
     company: "Tohoku Pioneer Co., Ltd.",
     tags: "Branding, UI / UX, Front-end / CMS, Logo, Video, Graphics",
     year: "2023",
-    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096179/v1.mp4",
+    video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096178/v1_oyqnnx.mp4",
   },
 ];
 
@@ -37,6 +39,9 @@ export default function CaseList() {
       {cases.map((item, index) => (
         <CaseRow key={index} {...item} />
       ))}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8vh' }}>
+        <Button text="See more production achievements" />
+      </div>
     </div>
   );
 }
