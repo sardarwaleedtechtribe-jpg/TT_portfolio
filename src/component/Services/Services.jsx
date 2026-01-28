@@ -1,17 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import Button from '../Button/Button.jsx';
-import './Services.css';
 import ArrowButton from '../Button/ArrowButton.jsx';
+import { SERVICE_CARDS } from './servicesData.js';
+import './Services.css';
 
-const SERVICES = ['Brand Design', 'UX Design', 'Web Development', '3D Motion'];
+const SERVICES = ['Brand Strategy', 'UI/UX Design', 'Web Development', '3D Anime Motion'];
 
 const Services = () => {
     const scroll = useScroll();
     const sectionRef = useRef();
     const bgWrapperRef = useRef();
     const lineLoaderRef = useRef();
+    const cardScrollerRef = useRef();
+    const [activeCardIndex, setActiveCardIndex] = useState(0);
 
     // Sticky range
     const startOffset = 0.7209;
@@ -22,7 +25,7 @@ const Services = () => {
 
         const offset = scroll.offset;
         const totalScroll = (8 - 1) * window.innerHeight;
-        const sectionHeight = window.innerHeight;
+        const sectionHeight = sectionRef.current.offsetHeight;
 
         let compensation = 0;
         let progress = 0;
@@ -59,6 +62,18 @@ const Services = () => {
                 // Animate line-loader with scaleY from 0 to 1 (fills from top to bottom)
                 lineLoaderRef.current.style.transform = `translateY(7.6rem) scaleY(${progress})`;
             }
+
+            if (cardScrollerRef.current) {
+                // Scroll card content: move by (totalHeight - 100%)
+                // We have 4 cards, so we move by 300% of container height
+                const cardHeight = 365; // matches .services-center-box height
+                const gap = 10; // matches .services-box-scroller gap
+                const totalMove = (cardHeight + gap) * (SERVICE_CARDS.length - 1);
+                // Start at negative offset (showing the last item in DOM, which is Card 1)
+                // End at 0 (showing the first item in DOM, which is Card 4)
+                const cardMove = (progress - 1) * totalMove;
+                cardScrollerRef.current.style.transform = `translate3d(0, ${cardMove}px, 0)`;
+            }
         });
     });
 
@@ -89,20 +104,26 @@ const Services = () => {
             </div>
             {/* Center box */}
             <div className="services-center-box">
-                <div className="center-box-meta">
-                    <span className="center-box-dot" aria-hidden="true" />
-                    <span className="center-box-label">Branding</span>
-                </div>
+                <div ref={cardScrollerRef} className="services-box-scroller">
+                    {[...SERVICE_CARDS].reverse().map((card) => (
+                        <div key={card.id} className="services-box-content">
+                            <div className="center-box-meta">
+                                <span className="center-box-dot" aria-hidden="true" />
+                                <span className="center-box-label">{card.label}</span>
+                            </div>
 
-                <div className="center-box-title-wrapper">
-                    <h2 className="center-box-title">Brand Strategy</h2>
-                </div>
+                            <div className="center-box-title-wrapper">
+                                <h2 className="center-box-title" style={{ whiteSpace: 'pre-line' }}>{card.title}</h2>
+                            </div>
 
-                <p className="center-box-description">
-                    Clarify the brand's core values from target audience and market analysis. Based on the vision born from this, we build personalities, experiences, and stories.
-                </p>
-                <div className="center-box-arrow">
-                    <ArrowButton />
+                            <p className="center-box-description" style={{ whiteSpace: 'pre-line' }}>
+                                {card.description}
+                            </p>
+                            <div className="center-box-arrow">
+                                <ArrowButton />
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
             {/* left footer */}

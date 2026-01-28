@@ -1,7 +1,8 @@
 .case-row-container {
   background-color: rgb(230, 230, 230);
   padding-top: 5vh;
-  padding-bottom: 18vh;
+  margin-top: -2.2vh;
+  padding-bottom: 18vh; 
 }
 
 .case-row {
