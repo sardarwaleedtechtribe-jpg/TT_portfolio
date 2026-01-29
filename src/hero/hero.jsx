@@ -13,21 +13,21 @@ export default function Hero() {
     const scroll = useScroll()
     const ambientRef = useRef()
     const floorRef = useRef()
-    const [noiseOpacity, setNoiseOpacity] = useState(0.4)
+    const [noiseOpacity, setNoiseOpacity] = useState(0.94)
     const [intensityMultiplier, setIntensityMultiplier] = useState(1)
 
-    const baseColor = new THREE.Color("#565555")
+    const baseColor = new THREE.Color("#2a2a2a")  // Darker gray
     const targetColor = new THREE.Color("#ffffff")
 
     useFrame((state) => {
         const offset = scroll.offset
-        const multiplier = 1 - offset
+        const normalizedOffset = Math.min(offset / 0.125, 1);
+        const multiplier = 1 - normalizedOffset;
 
         setIntensityMultiplier(multiplier)
         setNoiseOpacity(0.4 * multiplier)
 
         if (ambientRef.current) ambientRef.current.intensity = 0.5 * multiplier
-
         const currentColor = baseColor.clone().lerp(targetColor, offset)
         state.scene.background = currentColor
 

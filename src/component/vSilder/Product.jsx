@@ -68,24 +68,23 @@ export default function Product() {
     const segmentLength = totalRange / 4;
 
     // Video 2
-    const v2Start = startOffset;
-    const v2End = startOffset + segmentLength;
-    const v2Progress = Math.min(Math.max((scrollOffset - v2Start) / (v2End - v2Start), 0), 1);
+    const v2Raw = Math.min(Math.max((scrollOffset - startOffset) / segmentLength, 0), 1);
+    const v2Progress = Math.pow(v2Raw, 2.2);
     const v2Top = 85 - (v2Progress * 78);
 
     // Video 3
-    const v3Start = v2End;
-    const v3End = v2End + segmentLength;
-    const v3Progress = Math.min(Math.max((scrollOffset - v3Start) / (v3End - v3Start), 0), 1);
-    const v3Top = 85 - (v3Progress * 71);
+    const v2End = startOffset + segmentLength;
+    const v3Raw = Math.min(Math.max((scrollOffset - v2End) / segmentLength, 0), 1);
+    const v3Progress = Math.pow(v3Raw, 2.2);
+    // TAILING: V3 top is locked to V2's bottom (v2Top + v2Height)
+    const v3Top = (v2Top + 78) - (v3Progress * 71);
 
     // Video 4 (Coverage Video)
-    const v4Start = v3End;
-    const v4End = v3End + segmentLength;
-    const v4Progress = Math.min(Math.max((scrollOffset - v4Start) / (v4End - v4Start), 0), 1);
-
-    const v4TopStart = 85;
-    const v4Top = v4TopStart - (v4Progress * 85);
+    const v3End = v2End + segmentLength;
+    const v4Raw = Math.min(Math.max((scrollOffset - v3End) / segmentLength, 0), 1);
+    const v4Progress = Math.pow(v4Raw, 2.2);
+    // TAILING: V4 top is locked to V3's bottom (v3Top + v3Height)
+    const v4Top = (v3Top + 71) - (v4Progress * 85);
 
     // Update container positions
     if (containerRefs.current[1]) {
@@ -93,11 +92,12 @@ export default function Product() {
     }
     if (containerRefs.current[2]) {
       containerRefs.current[2].style.top = `${v3Top}vh`;
-      containerRefs.current[2].style.visibility = scrollOffset > v2End ? 'visible' : 'hidden';
+      // Make visible once V2 starts moving so we see it tailing
+      containerRefs.current[2].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
     if (containerRefs.current[3]) {
       containerRefs.current[3].style.top = `${v4Top}vh`;
-      containerRefs.current[3].style.visibility = scrollOffset > v3End ? 'visible' : 'hidden';
+      containerRefs.current[3].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
   });
 

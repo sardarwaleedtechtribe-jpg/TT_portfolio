@@ -1,3 +1,7 @@
+.about-header {
+  margin-top: -7vh;
+}
+
 .product-videos-stack {
   position: relative;
   width: 100vw;
@@ -15,6 +19,8 @@
   position: absolute;
   top: 0;
   left: 0;
+  transition: top 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  /* Slower, smoother easing */
 }
 
 .product-video-container video {
@@ -32,13 +38,13 @@
 .product-video-container2 {
   z-index: 2;
   top: calc(62vh - 10vh);
-  height: 75vh;
+  height: 78vh;
 }
 
 .product-video-container3 {
   z-index: 3;
   top: calc(65vh - 20vh);
-  height: 65vh;
+  height: 71vh;
 }
 
 .product-video-container4 {

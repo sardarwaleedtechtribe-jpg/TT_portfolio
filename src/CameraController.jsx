@@ -22,7 +22,6 @@ const TRANSITION_THRESHOLD = 0.9
 export default function CameraController() {
     const scroll = useScroll()
 
-    // Leva controls for tuning the spiral and look-at
     const {
         radiusOffset,
         radiusMultiplier,
@@ -78,23 +77,33 @@ export default function CameraController() {
     useFrame((state) => {
         const { mouse, camera } = state
 
-        // Get raw scroll offset
-        const scrollOffset = scroll.offset
+        // 1. Remap Scroll Offset
+        // Divide by (4/12) so that at page 4 (offset 0.33), effectiveScroll is 1.0
+        // Math.min(..., 1) ensures it freezes at its final state after page 4
+        const ANIMATION_END = 2 / 8
+        const effectiveScroll = Math.min(scroll.offset / ANIMATION_END, 1)
 
-        // 1. Calculate Spiral Position
-        // Clamp the camera's internal offset so it finishes its move at 70% of the total scroll
-        const rawOffset = scrollOffset / 0.7
+        // 2. Calculate Spiral Position
+        // Use effectiveScroll instead of raw scroll.offset
+        const rawOffset = effectiveScroll / 0.7
         const offset = Math.min(rawOffset, 1)
-        const overscroll = Math.max(0, rawOffset - 1) // How much beyond 100%
+        const overscroll = Math.max(0, rawOffset - 1)
 
         // --- Calculate transition factor for smooth interpolation ---
-        // When scroll >= 0.9, transition factor goes from 0 to 1 over the remaining 0.1
-        const transitionFactor = scrollOffset >= TRANSITION_THRESHOLD 
-            ? Math.min((scrollOffset - TRANSITION_THRESHOLD) / (1 - TRANSITION_THRESHOLD), 1)
+        // Transitions now happen relative to the compressed effectiveScroll
+        const transitionFactor = effectiveScroll >= TRANSITION_THRESHOLD
+            ? Math.min((effectiveScroll - TRANSITION_THRESHOLD) / (1 - TRANSITION_THRESHOLD), 1)
             : 0
 
         // Calculate current target values (lerp between Leva values and transition targets)
-        const currentCamX = THREE.MathUtils.lerp(camX, TRANSITION_TARGETS.camX, transitionFactor)
+        // camX: Animate from 0 to -1.7 based on scroll
+        const scrollBasedCamX = 0 - (effectiveScroll * 1.7); // 0 at start, -1.7 at end
+        const currentCamX = THREE.MathUtils.lerp(scrollBasedCamX, TRANSITION_TARGETS.camX, transitionFactor)
+
+        console.log('effectiveScroll:', effectiveScroll.toFixed(3),
+            '| scrollBasedCamX:', scrollBasedCamX.toFixed(3),
+            '| currentCamX:', currentCamX.toFixed(3));
+
         const currentCamY = THREE.MathUtils.lerp(camY, TRANSITION_TARGETS.camY, transitionFactor)
         const currentCamZ = THREE.MathUtils.lerp(camZ, TRANSITION_TARGETS.camZ, transitionFactor)
         const currentLookAtX = THREE.MathUtils.lerp(lookAtX, TRANSITION_TARGETS.lookAtX, transitionFactor)
@@ -148,10 +157,12 @@ export default function CameraController() {
         // Use transitioned cam offset values
         const targetPosition = spiralPosition.clone()
             .add(new THREE.Vector3(
-                transitionedValues.current.camX, 
-                transitionedValues.current.camY, 
+                transitionedValues.current.camX,
+                transitionedValues.current.camY,
                 transitionedValues.current.camZ
             ))
+            // After page 4, move camera down to make content appear to scroll up
+            .add(new THREE.Vector3(0, -Math.max(0, scroll.offset - ANIMATION_END) * 100, 0))
             .add(rightAxis.multiplyScalar(mouse.x * 0.2))
 
         // Smoothly interpolate to the target position
@@ -159,9 +170,10 @@ export default function CameraController() {
 
         // --- Rotation Logic (Look At + Mouse Wiggle) ---
         // First look at the target point using transitioned lookAt values
+        const scrollYOffset = -Math.max(0, scroll.offset - ANIMATION_END) * 100
         lookAtPoint.set(
-            transitionedValues.current.lookAtX, 
-            transitionedValues.current.lookAtY, 
+            transitionedValues.current.lookAtX,
+            transitionedValues.current.lookAtY + scrollYOffset,
             transitionedValues.current.lookAtZ
         )
         camera.lookAt(lookAtPoint)
@@ -173,12 +185,12 @@ export default function CameraController() {
             camera.rotation.z += transitionedValues.current.rotationZ
         }
 
-        // Then apply manual rotation offsets
+        // // Then apply manual rotation offsets
         // camera.rotation.x += rotationX
         // camera.rotation.y += rotationY
         // camera.rotation.z += rotationZ
 
-        // Finally apply subtle mouse wiggle
+        // // Finally apply subtle mouse wiggle
         // camera.rotation.x += mouse.y * 0.025
         // camera.rotation.y += -mouse.x * 0.025
     })
