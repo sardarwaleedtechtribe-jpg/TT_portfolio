@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 
 import './Product.css';
 
@@ -104,16 +105,7 @@ export default function Product() {
 
   return (
     <section className="about-header">
-      <div className="about-meta">
-        <span className="dot" />
-        <span className="label">Works</span>
-      </div>
-
-      <hr className="divider" />
-
-      <div className="about-main">
-        <h1 className="title">Production Achievements</h1>
-      </div>
+      <SectionHeader label="Works" title="Production Achievements" theme="light" />
 
       <div ref={stackRef} className="product-videos-stack">
         {videos.map((video, index) => (

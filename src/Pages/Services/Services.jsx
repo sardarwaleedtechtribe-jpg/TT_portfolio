@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import Button from '../Button/Button.jsx';
-import ArrowButton from '../Button/ArrowButton.jsx';
+import Button from '../../component/Button/Button.jsx';
+import ArrowButton from '../../component/Button/ArrowButton.jsx';
+import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import { SERVICE_CARDS } from './servicesData.js';
 import './Services.css';
 
@@ -92,16 +93,7 @@ const Services = () => {
                 </div>
             </div>
 
-            <div className="services-meta">
-                <span className="services-dot" aria-hidden="true" />
-                <span className="services-label">Service</span>
-            </div>
-
-            <hr className="services-divider" />
-            {/* top right */}
-            <div className="services-main">
-                <h1 id="services-title" className="title">Services</h1>
-            </div>
+            <SectionHeader label="Service" title="Services" theme="dark" titleId="services-title" />
             {/* Center box */}
             <div className="services-center-box">
                 <div ref={cardScrollerRef} className="services-box-scroller">

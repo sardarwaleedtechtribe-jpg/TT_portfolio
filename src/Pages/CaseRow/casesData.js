@@ -1,8 +1,4 @@
-import CaseRow from "./CaseRow";
-import Button from "../Button/Button.jsx";
-
-
-const cases = [
+export const cases = [
   {
     title: "MEDIUM Branding Site",
     company: "Umedia Inc.",
@@ -32,16 +28,3 @@ const cases = [
     video: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096178/v1_oyqnnx.mp4",
   },
 ];
-
-export default function CaseList() {
-  return (
-    <div className="case-row-container">
-      {cases.map((item, index) => (
-        <CaseRow key={index} {...item} />
-      ))}
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8vh' }}>
-        <Button text="See more production achievements" />
-      </div>
-    </div>
-  );
-}

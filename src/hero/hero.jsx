@@ -1,11 +1,11 @@
-import Light from "../component/3dText/light/light.jsx";
-import Text from "../component/3dText/text/text.jsx";
+import * as THREE from "three";
 import { EffectComposer, Noise } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
-import * as THREE from "three";
+import Light from "../component/3dText/light/light.jsx";
+import Text from "../component/3dText/text/text.jsx";
 import HeroOverlay from "./HeroOverlay.jsx";
 import "./hero.css";
 
@@ -28,7 +28,10 @@ export default function Hero() {
         setNoiseOpacity(0.4 * multiplier)
 
         if (ambientRef.current) ambientRef.current.intensity = 0.5 * multiplier
-        const currentColor = baseColor.clone().lerp(targetColor, offset)
+
+        // Background color transitions to white at 0.15
+        const colorNormalizedOffset = Math.min(offset / 0.3, 1);
+        const currentColor = baseColor.clone().lerp(targetColor, colorNormalizedOffset)
         state.scene.background = currentColor
 
         if (floorRef.current) floorRef.current.color.copy(currentColor)
@@ -38,7 +41,9 @@ export default function Hero() {
     return (
         <>
             <EffectComposer>
-                <Noise opacity={noiseOpacity} blendFunction={BlendFunction.OVERLAY} />
+                <Noise opacity={noiseOpacity}
+                    blendFunction={BlendFunction.OVERLAY}
+                    color="white" />
             </EffectComposer>
             <ambientLight ref={ambientRef} intensity={0.5} />
             <Light intensityMultiplier={intensityMultiplier} />

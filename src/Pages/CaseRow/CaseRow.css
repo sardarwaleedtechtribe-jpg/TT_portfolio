@@ -15,7 +15,6 @@
   align-items: center;
 
   padding: 10px 65px;
-  /* margin: 8px 0; */
   box-sizing: border-box;
   margin-top: 0;
   border-bottom: 0.1px solid rgba(0, 0, 0, 0.41);
@@ -28,8 +27,6 @@
   overflow: visible;
 }
 
-
-/* LEFT */
 .case-left {
   display: flex;
   flex-direction: column;
@@ -82,7 +79,6 @@
   opacity: 1;
 }
 
-/* CENTER */
 .case-center {
   font-size: 13px;
   opacity: 0.85;
@@ -92,7 +88,6 @@
   align-items: center;
 }
 
-/* RIGHT */
 .case-right-most {
   display: flex;
   align-items: center;
@@ -126,7 +121,6 @@
 .arrow {
   font-size: 18px;
   position: absolute;
-  /* Remove transition from here so it doesn't animate on leave */
 }
 
 .arrow.default {
@@ -139,13 +133,11 @@
   opacity: 0;
 }
 
-/* HOVER */
 .case-row:hover {
   background: #eeebeb;
 }
 
 .case-row:hover .arrow {
-  /* Apply transition ONLY on hover, so it animates IN but snaps OUT */
   transition: all 0.94s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -159,7 +151,6 @@
   opacity: 1;
 }
 
-/* VIDEO PREVIEW */
 .video-preview {
   position: absolute;
   width: 400px;

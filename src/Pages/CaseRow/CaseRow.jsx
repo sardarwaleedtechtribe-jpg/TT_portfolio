@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import "./CaseRow.css";
-import Button from "../Button/Button.jsx";
+import Button from "../../component/Button/Button.jsx";
 
 export default function CaseRow({ title, company, tags, year, video }) {
   const [isHovered, setIsHovered] = useState(false);

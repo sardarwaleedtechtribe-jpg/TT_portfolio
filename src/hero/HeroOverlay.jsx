@@ -1,11 +1,13 @@
 import { Scroll, useScroll } from "@react-three/drei";
-import About from "../component/About/About.jsx";
-import Product from "../component/vSilder/Product.jsx";
-import CaseList from "../component/CaseRow/CaseList.jsx";
+import About from "../Pages/About/About.jsx";
+import Product from "../Pages/vSilder/Product.jsx";
+import CaseList from "../Pages/CaseRow/CaseList.jsx";
+import Services from "../Pages/Services/Services.jsx";
+import Strengths from "../Pages/Strengths/Strengths.jsx";
 import Button from "../component/Button/Button.jsx";
-import Services from "../component/Services/Services.jsx";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+
 
 export default function HeroOverlay() {
     const scroll = useScroll();
@@ -84,7 +86,7 @@ export default function HeroOverlay() {
                         <Services />
 
                         <div style={{ height: '400vh' }}>
-
+                            <Strengths />
                         </div>
                     </div>
 

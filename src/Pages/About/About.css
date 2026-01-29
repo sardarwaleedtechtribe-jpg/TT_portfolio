@@ -1,0 +1,25 @@
+.about-header {
+    padding: 3rem 2.5rem;
+    background: transparent;
+    color: #000;
+    width: 100vw;
+    height: 120vh;
+    box-sizing: border-box;
+}
+
+.about-description {
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30rem;
+    margin-left: auto;
+    gap: 2.5rem;
+}
+
+.about-description p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+}
