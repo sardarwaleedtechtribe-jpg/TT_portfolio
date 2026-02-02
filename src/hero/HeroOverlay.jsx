@@ -91,8 +91,8 @@ export default function HeroOverlay() {
                         </div>
                         <Services />
 
-                        <div style={{ height: '400vh' }}>
-                            <Strengths />
+                        <div style={{ height: '1000vh' }}>
+                            <Strengths />                        
                         </div>
                     </div>
 

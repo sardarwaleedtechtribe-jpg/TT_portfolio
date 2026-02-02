@@ -1,33 +1,41 @@
+:root {
+    --color-border: #d9d9d9;
+    --color-border-light: #eee;
+    --color-text-main: #111;
+    --color-text-dim: #444;
+    --color-bg-white: #fff;
+    --transition-standard: all 0.3s ease;
+}
+
+.Strengths-root {
+    background: var(--color-bg-white);
+    width: 100%;
+}
+
 .Strengths-header {
     padding: 3.5rem 4.5rem;
     background: transparent;
-    margin-top: 110vh;
+    /* Margin top preserved for your scrollytelling positioning */
+    margin-top: 110vh; 
     box-sizing: border-box;
-}
-
-.Strengths-header .title {
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    margin-bottom: 0;
 }
 
 .stats-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: 1px solid #d9d9d9;
-    background: #fff;
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg-white);
+    margin: 3rem auto;
     width: 90vw;
 }
 
 .stat-card {
-    min-height: 50vh;
+    min-height: 40vh; /* Reduced slightly for better balance */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 6rem;
-    border-right: 1px solid #d9d9d9;
+    padding: 2rem 6rem;
+    border-right: 1px solid var(--color-border);
 }
 
 .stat-card:last-child {
@@ -35,10 +43,10 @@
 }
 
 .stat-card h2 {
-    font-size: 7rem;
+    font-size: clamp(3rem, 7vw, 7rem); /* More responsive sizing */
     font-weight: 800;
     margin: 0;
-    color: #111;
+    color: var(--color-text-main);
 }
 
 .stat-card p {
@@ -46,5 +54,103 @@
     font-size: 0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #111;
+    color: var(--color-text-main);
+}
+
+.strengths-layout-container {
+    display: flex;
+    margin-top: 10rem;
+    padding: 4rem 4.5rem; /* Fixed typo: missing unit and adjusted spacing */
+    background: var(--color-bg-white);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.strengths-left-section {
+    flex: 1;
+}
+
+.detailed-strengths {
+    flex: 1;
+    background: var(--color-bg-white);
+}
+
+.strength-detail-item {
+    display: flex;
+    gap: 3rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--color-border-light);
+    padding-bottom: 26.5rem; 
+}
+
+.strength-detail-item:last-child {
+    border-bottom: none;
+    padding-bottom: 4rem;
+}
+
+.strength-index {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    white-space: nowrap;
+    margin-top: 0.5rem;
+}
+
+.strength-content {
+    flex: 1;
+}
+
+.strength-title {
+    font-size: clamp(1.5rem, 3vw, 30px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #000;
+}
+
+.strength-divider {
+    height: 1px;
+    background-color: #f0f0f0;
+    margin: 2.5rem 0;
+    width: 100%;
+}
+
+.strength-description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-weight: 400;
+    color: var(--color-text-dim);
+}
+
+/* --- Media Queries --- */
+
+@media (max-width: 1024px) {
+    .strengths-layout-container {
+        flex-direction: column;
+        padding: 0 2rem;
+    }
+    
+    .stat-card {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        min-height: auto;
+        padding: 3rem 2rem;
+    }
+
+    .strength-detail-item {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 3rem 0;
+    }
 }
