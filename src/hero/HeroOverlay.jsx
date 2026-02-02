@@ -5,6 +5,8 @@ import CaseList from "../Pages/CaseRow/CaseList.jsx";
 import Services from "../Pages/Services/Services.jsx";
 import Strengths from "../Pages/Strengths/Strengths.jsx";
 import Button from "../component/Button/Button.jsx";
+import Header from "../component/TopHeader/header.jsx";
+import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
@@ -73,13 +75,17 @@ export default function HeroOverlay() {
         }
     });
 
+    console.log("HeroOverlay Mounting");
+
     return (
         <Scroll html>
-            <div ref={wrapperRef} style={{ width: '100vw' }}>
-                <div ref={contentRef} style={{ position: 'absolute', top: '135vh', width: '100vw' }}>
+            <Header />
+            <BottomLeftText />
+            <div ref={wrapperRef} style={{ width: '100vw', minHeight: '100vh', overflow: 'visible' }}>
+                <div ref={contentRef} style={{ position: 'relative', top: '135vh', width: '100vw', overflow: 'visible' }}>
                     <About />
                     <Product />
-                    <div ref={caseListWrapperRef}>
+                    <div ref={caseListWrapperRef} style={{ overflow: 'visible' }}>
                         <div style={{ marginTop: '86.55vh' }}>
                             <CaseList />
                         </div>

@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom/client'
 import { Canvas } from '@react-three/fiber'
 import Experience from './Experience.jsx'
 import Navbar from './component/Navbar/Navbar.jsx'
-import BottomLeftText from './component/BottomLeftText/BottomLeftText.jsx'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
     <>
-        <BottomLeftText />
         <Navbar />
         <Canvas
             gl={{

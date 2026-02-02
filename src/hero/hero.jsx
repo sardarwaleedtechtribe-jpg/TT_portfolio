@@ -6,7 +6,6 @@ import { useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import Light from "../component/3dText/light/light.jsx";
 import Text from "../component/3dText/text/text.jsx";
-import HeroOverlay from "./HeroOverlay.jsx";
 import "./hero.css";
 
 export default function Hero() {
@@ -49,12 +48,10 @@ export default function Hero() {
             <Light intensityMultiplier={intensityMultiplier} />
             <Text />
 
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} scale={20} >
+            {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} scale={20} >
                 <planeGeometry args={[100, 100]} />
                 <meshBasicMaterial ref={floorRef} color="#565555" />
-            </mesh>
-            <HeroOverlay />
+            </mesh> */}
         </>
     );
 }
-
