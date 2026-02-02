@@ -13,10 +13,10 @@ export default function Hero() {
     const scroll = useScroll()
     const ambientRef = useRef()
     const floorRef = useRef()
-    const [noiseOpacity, setNoiseOpacity] = useState(0.94)
+    const [noiseOpacity, setNoiseOpacity] = useState(15.94)
     const [intensityMultiplier, setIntensityMultiplier] = useState(1)
 
-    const baseColor = new THREE.Color("#2a2a2a")  // Darker gray
+    const baseColor = new THREE.Color("#444444")  // Lighter gray than before
     const targetColor = new THREE.Color("#ffffff")
 
     useFrame((state) => {

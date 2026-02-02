@@ -4,10 +4,7 @@ import './Strengths.css';
 export default function Strengths() {
     return (
         <section className="Strengths-header">
-            <div>
-                <SectionHeader label="Strengths" title="Our Strengths" theme="light" />
-            </div>
+            <SectionHeader label="Strengths" title="Our Strengths" theme="light" />
         </section>
     );
-};
-
+}

@@ -71,32 +71,22 @@ export default function CameraController() {
     })
 
     // Initial polar coordinates derived from basePosition
-    const initialRadius = 6.8
+    const initialRadius = 6.15
     const initialAngle = Math.PI // Starting angle (since x=-6.8, z=0)
 
     useFrame((state) => {
         const { mouse, camera } = state
 
-        // 1. Remap Scroll Offset
-        // Divide by (4/12) so that at page 4 (offset 0.33), effectiveScroll is 1.0
-        // Math.min(..., 1) ensures it freezes at its final state after page 4
         const ANIMATION_END = 2 / 8
         const effectiveScroll = Math.min(scroll.offset / ANIMATION_END, 1)
-
-        // 2. Calculate Spiral Position
-        // Use effectiveScroll instead of raw scroll.offset
         const rawOffset = effectiveScroll / 0.7
         const offset = Math.min(rawOffset, 1)
         const overscroll = Math.max(0, rawOffset - 1)
 
-        // --- Calculate transition factor for smooth interpolation ---
-        // Transitions now happen relative to the compressed effectiveScroll
         const transitionFactor = effectiveScroll >= TRANSITION_THRESHOLD
             ? Math.min((effectiveScroll - TRANSITION_THRESHOLD) / (1 - TRANSITION_THRESHOLD), 1)
             : 0
 
-        // Calculate current target values (lerp between Leva values and transition targets)
-        // camX: Animate from 0 to -1.7 based on scroll
         const scrollBasedCamX = 0 - (effectiveScroll * 1.7); // 0 at start, -1.7 at end
         const currentCamX = THREE.MathUtils.lerp(scrollBasedCamX, TRANSITION_TARGETS.camX, transitionFactor)
 
@@ -126,14 +116,10 @@ export default function CameraController() {
         transitionedValues.current.rotationZ = THREE.MathUtils.lerp(transitionedValues.current.rotationZ, currentRotationZ, transitionLerpSpeed)
 
         // --- Spiral (Clockwise) ---
-        // Continue angle rotation during overscroll for smooth continuation
         const angle = initialAngle - offset * angleMultiplier - overscroll * 1.0
 
-        // Dynamic reduction: decreases by 10 units as we scroll
-        const currentRadiusOffset = radiusOffset - (offset * 10)
+        const currentRadiusOffset = radiusOffset - (offset * 0.01)
         const radius = initialRadius + currentRadiusOffset + (offset * radiusMultiplier)
-
-        // console.log("radiusMultiplier:", radiusMultiplier, "currentRadiusOffset:", currentRadiusOffset.toFixed(2))
 
         // Base spiral position
         let spiralX = Math.cos(angle) * radius
@@ -169,7 +155,6 @@ export default function CameraController() {
         camera.position.lerp(targetPosition, lerpSpeed)
 
         // --- Rotation Logic (Look At + Mouse Wiggle) ---
-        // First look at the target point using transitioned lookAt values
         const scrollYOffset = -Math.max(0, scroll.offset - ANIMATION_END) * 100
         lookAtPoint.set(
             transitionedValues.current.lookAtX,

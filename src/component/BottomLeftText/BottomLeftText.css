@@ -1,0 +1,16 @@
+.bottom-left-container {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 1002;
+    pointer-events: none;
+}
+
+.experience-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
