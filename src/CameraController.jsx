@@ -90,9 +90,9 @@ export default function CameraController() {
         const scrollBasedCamX = 0 - (effectiveScroll * 1.7); // 0 at start, -1.7 at end
         const currentCamX = THREE.MathUtils.lerp(scrollBasedCamX, TRANSITION_TARGETS.camX, transitionFactor)
 
-        console.log('effectiveScroll:', effectiveScroll.toFixed(3),
-            '| scrollBasedCamX:', scrollBasedCamX.toFixed(3),
-            '| currentCamX:', currentCamX.toFixed(3));
+        // console.log('effectiveScroll:', effectiveScroll.toFixed(3),
+        //     '| scrollBasedCamX:', scrollBasedCamX.toFixed(3),
+        //     '| currentCamX:', currentCamX.toFixed(3));
 
         const currentCamY = THREE.MathUtils.lerp(camY, TRANSITION_TARGETS.camY, transitionFactor)
         const currentCamZ = THREE.MathUtils.lerp(camZ, TRANSITION_TARGETS.camZ, transitionFactor)

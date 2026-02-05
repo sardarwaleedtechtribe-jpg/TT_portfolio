@@ -11,6 +11,8 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 
+import Flow from "../Pages/Flow/Flow.jsx";
+
 export default function HeroOverlay() {
     const scroll = useScroll();
     const wrapperRef = useRef();
@@ -86,14 +88,16 @@ export default function HeroOverlay() {
                     <About />
                     <Product />
                     <div ref={caseListWrapperRef} style={{ overflow: 'visible' }}>
-                        <div style={{ marginTop: '86.55vh' }}>
-                            <CaseList />
-                        </div>
+                        <div style={{ marginTop: '86.55vh' }}><CaseList /></div>
                         <Services />
 
-                        <div style={{ height: '1000vh' }}>
-                            <Strengths />                        
+                        <div style={{ position: 'relative', width: '100%' }}>
+                            <Strengths />
                         </div>
+                        <div style={{ position: 'relative', width: '100%' }}>
+                            <Flow />
+                        </div>
+
                     </div>
 
                 </div>

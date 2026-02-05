@@ -10,13 +10,15 @@
 .Strengths-root {
     background: var(--color-bg-white);
     width: 100%;
+    position: relative;
+    padding-top: 0.1px;
 }
 
 .Strengths-header {
     padding: 3.5rem 4.5rem;
     background: transparent;
     /* Margin top preserved for your scrollytelling positioning */
-    margin-top: 110vh; 
+    margin-top: 110vh;
     box-sizing: border-box;
 }
 
@@ -30,7 +32,8 @@
 }
 
 .stat-card {
-    min-height: 40vh; /* Reduced slightly for better balance */
+    min-height: 40vh;
+    /* Reduced slightly for better balance */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +46,8 @@
 }
 
 .stat-card h2 {
-    font-size: clamp(3rem, 7vw, 7rem); /* More responsive sizing */
+    font-size: clamp(3rem, 7vw, 7rem);
+    /* More responsive sizing */
     font-weight: 800;
     margin: 0;
     color: var(--color-text-main);
@@ -57,22 +61,75 @@
     color: var(--color-text-main);
 }
 
+.strengths-scroll-stage {
+    position: relative;
+    width: 100%;
+}
+
 .strengths-layout-container {
     display: flex;
-    margin-top: 10rem;
-    padding: 4rem 4.5rem; /* Fixed typo: missing unit and adjusted spacing */
+    position: relative;
+    height: 101vh;
+    /* margin-top: 10rem; */
+    padding: 4rem 4.5rem;
+    /* Fixed typo: missing unit and adjusted spacing */
     background: var(--color-bg-white);
     width: 100%;
     box-sizing: border-box;
+    will-change: transform;
 }
 
 .strengths-left-section {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.shape-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shape-wrapper {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
+    /* Scale up for background impact */
+}
+
+.shape-wrapper.active {
+    opacity: 1;
+    /* Fully black as requested */
+}
+
+/* Ensure shapes in this section are black */
+.strengths-left-section .sh-square {
+    background-color: #000 !important;
 }
 
 .detailed-strengths {
     flex: 1;
     background: var(--color-bg-white);
+    overflow: hidden;
+    position: relative;
+
+}
+
+.detailed-strengths-inner {
+    padding-top: 10rem;
+    will-change: transform;
 }
 
 .strength-detail-item {
@@ -80,7 +137,7 @@
     gap: 3rem;
     padding: 4rem 0;
     border-bottom: 1px solid var(--color-border-light);
-    padding-bottom: 26.5rem; 
+    padding-bottom: 26.5rem;
 }
 
 .strength-detail-item:last-child {
@@ -130,7 +187,7 @@
         flex-direction: column;
         padding: 0 2rem;
     }
-    
+
     .stat-card {
         padding: 2rem;
     }

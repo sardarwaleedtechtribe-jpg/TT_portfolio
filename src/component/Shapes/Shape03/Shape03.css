@@ -1,0 +1,310 @@
+/* Shape 03: Sequential Fading/Scaling Animation */
+
+/* --- Keyframes --- */
+
+/* Center Square Keyframe */
+@keyframes sequence-cc {
+
+    0%,
+    100%,
+    33.34% { transform: translate(-50%, -50%) scale(0); }
+
+    16.66% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Inner Corner Keyframes (Scale Inner -> Outer) */
+@keyframes sequence-tl {
+
+    0%,
+    33.33%,
+    66.67%,
+    100% { transform: scale(0); }
+
+    33.34% {
+        transform: scale(0);
+        transform-origin: bottom right;
+    }
+
+    50% {
+        transform: scale(1);
+        transform-origin: bottom right;
+        opacity: 1;
+    }
+
+    50.01% {
+        transform: scale(1);
+        transform-origin: top left;
+        opacity: 1;
+    }
+
+    66.66% {
+        transform: scale(0);
+        transform-origin: top left;    
+    }
+}
+
+@keyframes sequence-tr {
+
+    0%,
+    33.33%,
+    66.67%,
+    100% { transform: scale(0); }
+
+    33.34% {
+        transform: scale(0);
+        transform-origin: bottom left;
+    }
+
+    50% {
+        transform: scale(1);
+        transform-origin: bottom left;
+        opacity: 1;
+    }
+
+    50.01% {
+        transform: scale(1);
+        transform-origin: top right;
+        opacity: 1;
+    }
+
+    66.66% {
+        transform: scale(0);
+        transform-origin: top right; 
+    }
+}
+
+@keyframes sequence-bl {
+
+    0%,
+    33.33%,
+    66.67%,
+    100% { transform: scale(0); }
+
+    33.34% {
+        transform: scale(0);
+        transform-origin: top right; 
+    }
+
+    50% {
+        transform: scale(1);
+        transform-origin: top right;
+        opacity: 1;
+    }
+
+    50.01% {
+        transform: scale(1);
+        transform-origin: bottom left;
+        opacity: 1;
+    }
+
+    66.66% {
+        transform: scale(0);
+        transform-origin: bottom left;
+    }
+}
+
+@keyframes sequence-br {
+
+    0%,
+    33.33%,
+    66.67%,
+    100% { transform: scale(0); }
+
+    33.34% {
+        transform: scale(0);
+        transform-origin: top left;
+    }
+
+    50% {
+        transform: scale(1);
+        transform-origin: top left;
+        opacity: 1;
+    }
+
+    50.01% {
+        transform: scale(1);
+        transform-origin: bottom right;
+        opacity: 1;
+    }
+
+    66.66% {
+        transform: scale(0);
+        transform-origin: bottom right; 
+    }
+}
+
+/* Outer Corner Keyframes (Scale Inner -> Outer) */
+@keyframes sequence-otl {
+
+    0%,
+    66.66% { transform: scale(0); }
+
+    66.67% {
+        transform: scale(0);
+        transform-origin: bottom right; 
+    }
+
+    83.33% {
+        transform: scale(1);
+        transform-origin: bottom right;
+        opacity: 1;
+    }
+
+    83.34% {
+        transform: scale(1);
+        transform-origin: top left;
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        transform-origin: top left; 
+    }
+}
+
+@keyframes sequence-otr {
+
+    0%,
+    66.66% { transform: scale(0); }
+
+    66.67% {
+        transform: scale(0);
+        transform-origin: bottom left;
+    }
+
+    83.33% {
+        transform: scale(1);
+        transform-origin: bottom left;
+        opacity: 1;
+    }
+
+    83.34% {
+        transform: scale(1);
+        transform-origin: top right;
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        transform-origin: top right;
+    }
+}
+
+@keyframes sequence-obl {
+
+    0%,
+    66.66% { transform: scale(0); }
+
+    66.67% {
+        transform: scale(0);
+        transform-origin: top right;
+    }
+
+    83.33% {
+        transform: scale(1);
+        transform-origin: top right;
+        opacity: 1;
+    }
+
+    83.34% {
+        transform: scale(1);
+        transform-origin: bottom left;
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        transform-origin: bottom left;
+    }
+}
+
+@keyframes sequence-obr {
+
+    0%,
+    66.66% { transform: scale(0); }
+
+    66.67% {
+        transform: scale(0);
+        transform-origin: top left;       
+    }
+
+    83.33% {
+        transform: scale(1);
+        transform-origin: top left;
+        opacity: 1;
+    }
+
+    83.34% {
+        transform: scale(1);
+        transform-origin: bottom right;
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        transform-origin: bottom right;
+    }
+}
+
+/* --- Selectors --- */
+
+/* Phase 1: Center */
+.sh-03 .pos-cc {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);     
+    animation: sequence-cc 3s ease-in-out infinite;
+}
+
+/* Phase 2: Inner Corners */
+.sh-03 .pos-tl {
+    top: 30px;
+    left: 30px;
+    animation: sequence-tl 3s linear infinite;
+}
+
+.sh-03 .pos-tr {
+    top: 30px;
+    right: 30px;
+    animation: sequence-tr 3s linear infinite;
+}
+
+.sh-03 .pos-bl {
+    bottom: 30px;
+    left: 30px;
+    animation: sequence-bl 3s linear infinite;
+}
+
+.sh-03 .pos-br {
+    bottom: 30px;
+    right: 30px;
+    animation: sequence-br 3s linear infinite;
+}
+
+/* Phase 3: Outer Corners */
+.sh-03 .pos-otl {
+    top: -30px;
+    left: -30px;
+    animation: sequence-otl 3s linear infinite;
+}
+
+.sh-03 .pos-otr {
+    top: -30px;
+    right: -30px;
+    animation: sequence-otr 3s linear infinite;
+}
+
+.sh-03 .pos-obl {
+    bottom: -30px;
+    left: -30px;
+    animation: sequence-obl 3s linear infinite;
+}
+
+.sh-03 .pos-obr {
+    bottom: -30px;
+    right: -30px;
+    animation: sequence-obr 3s linear infinite;
+}

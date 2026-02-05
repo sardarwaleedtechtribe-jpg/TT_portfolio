@@ -1,0 +1,12 @@
+.Flow-root {
+    width: 100%;
+    background-color: var(--color-bg-white, #fff);
+    min-height: 100vh;
+    position: relative;
+    /* Ensure it takes up some space */
+}
+
+.Flow-header {
+    padding: 3.5rem 4.5rem;
+    box-sizing: border-box;
+}

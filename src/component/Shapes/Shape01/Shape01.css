@@ -1,0 +1,58 @@
+/* Clockwise Circular Animation for Shape 01 */
+@keyframes clockwise-loop {
+    0% {
+        top: 0;
+        left: 0;
+        animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    25% {
+        top: 0;
+        left: calc(100% - 45px);
+        animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    50% {
+        top: calc(100% - 45px);
+        left: calc(100% - 45px);
+        animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    75% {
+        top: calc(100% - 45px);
+        left: 0;
+        animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+
+.sh-container.sh-01 .sh-square {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    animation: clockwise-loop 4s linear infinite;
+    /* Reset other positioning properties explicitly */
+    right: auto;
+    bottom: auto;
+} 
+
+/* Offset start positions using negative delay */
+.sh-container.sh-01 .square-tl {
+    animation-delay: 0s;
+}
+
+.sh-container.sh-01 .square-tr {
+    animation-delay: -1s;
+}
+
+.sh-container.sh-01 .square-br {
+    animation-delay: -2s;
+}
+
+.sh-container.sh-01 .square-bl {
+    animation-delay: -3s;
+}
