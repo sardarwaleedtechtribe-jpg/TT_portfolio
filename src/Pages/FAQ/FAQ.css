@@ -50,14 +50,19 @@
 }
 
 .FAQ-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 300;
-    color: #999;
+    color: #000000;
+    display: inline-block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.FAQ-item:hover .FAQ-icon {
+    transform: rotate(90deg);
 }
 
 .FAQ-answer {
     padding: 0 4.5rem 2.5rem 11.5rem;
-    /* Aligns with question text */
     max-width: 800px;
 }
 

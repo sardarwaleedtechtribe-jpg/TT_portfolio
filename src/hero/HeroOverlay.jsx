@@ -4,6 +4,7 @@ import Product from "../Pages/vSilder/Product.jsx";
 import CaseList from "../Pages/CaseRow/CaseList.jsx";
 import Services from "../Pages/Services/Services.jsx";
 import Strengths from "../Pages/Strengths/Strengths.jsx";
+import Parthner from "../Pages/Parthner/Parthner.jsx";
 import Button from "../component/Button/Button.jsx";
 import Header from "../component/TopHeader/header.jsx";
 import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
@@ -99,6 +100,7 @@ export default function HeroOverlay() {
                         <Flow />
                         <News />
                         <FAQ />
+                        <Parthner />
                     </div>
 
 
