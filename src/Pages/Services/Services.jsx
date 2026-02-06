@@ -17,15 +17,15 @@ const Services = () => {
     const cardScrollerRef = useRef();
     const [activeCardIndex, setActiveCardIndex] = useState(0);
 
-    // Sticky range
-    const startOffset = 0.7209;
-    const endOffset = 0.85;
+    // Sticky range (Scaled for 14 pages)
+    const startOffset = 0.3875;
+    const endOffset = 0.4577;
 
     useFrame(() => {
         if (!sectionRef.current) return;
 
         const offset = scroll.offset;
-        const totalScroll = (8 - 1) * window.innerHeight;
+        const totalScroll = (scroll.pages - 1) * window.innerHeight;
         const sectionHeight = sectionRef.current.offsetHeight;
 
         let compensation = 0;

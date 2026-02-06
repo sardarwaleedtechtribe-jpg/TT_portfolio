@@ -2,11 +2,145 @@
     width: 100%;
     background-color: var(--color-bg-white, #fff);
     min-height: 100vh;
-    position: relative;
-    /* Ensure it takes up some space */
+    padding-bottom: 0;
+    margin-bottom: -5rem;
 }
 
 .Flow-header {
-    padding: 3.5rem 4.5rem;
-    box-sizing: border-box;
+    padding: 3.5rem 2.5rem;
+}
+
+.Flow-cards-container {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0;
+    padding-left: 4.5rem;
+    cursor: grab;
+    user-select: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.Flow-cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+.Flow-cards-container.active {
+    cursor: grabbing;
+}
+
+.Flow-card {
+    flex: 0 0 380px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3rem;
+
+
+}
+
+.Flow-card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 1.5rem 0;
+    /* Reduced from 3rem */
+}
+
+.Flow-card-top-line,
+.Flow-card-bottom-line {
+    width: 100%;
+    height: 1px;
+
+    background-color: #b0b0b0;
+}
+
+.Flow-card-top-line {
+    margin-bottom: 3.5rem;
+}
+
+.Flow-card-bottom-line {
+    margin-bottom: 60px;
+}
+
+.Flow-card-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0 1rem;
+}
+
+.Flow-card-id-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.Flow-card-square {
+    width: 5px;
+    height: 5px;
+    background-color: #000;
+}
+
+.Flow-card-id {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.Flow-card-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    color: #1a1a1a;
+}
+
+.Flow-card-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+    max-width: 300px;
+}
+
+.Flow-cards-container::after {
+    content: '';
+    flex: 0 0 4.5rem;
+}
+
+.Flow-navigation {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 4.5rem;
+    gap: 0;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.Flow-navigation .center-box-arrow .arrow-button {
+    padding: 0.5rem 0.5rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.9rem;
+}
+
+.Flow-navigation .center-box-arrow.prev .arrow-button,
+.Flow-navigation .center-box-arrow.next .arrow-button {
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.Flow-navigation .center-box-arrow {
+    margin-left: 10px;
+}
+
+.Flow-navigation .center-box-arrow.prev .arrow-button:hover:not(:disabled),
+.Flow-navigation .center-box-arrow.next .arrow-button:hover:not(:disabled) {
+    background-color: #1a1a1a;
 }

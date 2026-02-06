@@ -11,7 +11,7 @@ export const FLOW_DATA = [
     },
     {
         id: "03",
-        title: "Submission of proposal summary",
+        title: "Submission of proposal ",
         description: "Based on the contents of the hearing, we will provide an approximate schedule and estimate, and create a document that will serve as the outline of the proposal. We will make a decision on your order based on this."
     },
     {

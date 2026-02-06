@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
-
+import { PRODUCT_VIDEOS } from './productData.js';
 import './Product.css';
 
 export default function Product() {
@@ -12,38 +12,18 @@ export default function Product() {
   const containerRefs = useRef([]);
   const [videosLoaded, setVideosLoaded] = useState([false, false, false]);
 
-  // The range where the video should stick to the top
-  const startOffset = 0.386;
-  const endOffset = 0.472;
-
-  const videos = [
-    {
-      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096179/v4_nhezwg.mp4",
-      alt: "Product showcase video 1"
-    },
-    {
-      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096427/v3_flhapf.mp4",
-      alt: "Product showcase video 2"
-    },
-    {
-      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1768346483/v1_2_online-video-cutter.com_v1ojdt.mp4",
-      alt: "Product showcase video 3"
-    },
-    {
-      src: "https://res.cloudinary.com/dcm0qgsxn/video/upload/v1769096178/v1_oyqnnx.mp4",
-      alt: "Product showcase video 4"
-    }
-  ];
+  // The range where the video should stick to the top (Scaled for 14 pages)
+  const startOffset = 0.2048;
+  const endOffset = 0.2465;
 
   useFrame(() => {
     if (!stackRef.current) return;
 
     const scrollOffset = scroll.offset;
-    // console.log("Scroll Offset:", scrollOffset);
     const isFixed = scrollOffset >= startOffset && scrollOffset <= endOffset;
 
-    // Calculate compensation
-    const totalScroll = (8 - 1) * window.innerHeight;
+    // Calculate compensation using dynamic page count
+    const totalScroll = (scroll.pages - 1) * window.innerHeight;
     const currentPixels = scrollOffset * totalScroll;
     const startPixels = startOffset * totalScroll;
     const topOffset = window.innerHeight * 0.043;
@@ -65,7 +45,7 @@ export default function Product() {
     }
 
     // Rollover logic
-    const totalRange = endOffset - startOffset;
+    const totalRange = endOffset - startOffset; 
     const segmentLength = totalRange / 4;
 
     // Video 2
@@ -108,7 +88,7 @@ export default function Product() {
       <SectionHeader label="Works" title="Production Achievements" theme="light" />
 
       <div ref={stackRef} className="product-videos-stack">
-        {videos.map((video, index) => (
+        {PRODUCT_VIDEOS.map((video, index) => (
           <div
             key={index}
             ref={(el) => (containerRefs.current[index] = el)}

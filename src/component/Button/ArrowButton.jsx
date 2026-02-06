@@ -1,10 +1,15 @@
 import './Button.css';
 
-const ArrowButton = () => {
+const ArrowButton = ({ direction = 'right', disabled = false }) => {
+    const arrow = direction === 'left' ? '←' : '→';
+
     return (
-        <button className="arrow-button">
-            <span className="arrow-text default">→</span>
-            <span className="arrow-text hover">→</span>
+        <button
+            className={`arrow-button ${direction}`}
+            disabled={disabled}
+        >
+            <span className="arrow-text default">{arrow}</span>
+            <span className="arrow-text hover">{arrow}</span>
         </button>
     );
 };

@@ -17,8 +17,8 @@
 .Strengths-header {
     padding: 3.5rem 4.5rem;
     background: transparent;
-    /* Margin top preserved for your scrollytelling positioning */
-    margin-top: 110vh;
+    margin-top: 20vh;
+    /* Reduced from 110vh to sit closer to previous section */
     box-sizing: border-box;
 }
 
@@ -33,7 +33,6 @@
 
 .stat-card {
     min-height: 40vh;
-    /* Reduced slightly for better balance */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,7 +46,6 @@
 
 .stat-card h2 {
     font-size: clamp(3rem, 7vw, 7rem);
-    /* More responsive sizing */
     font-weight: 800;
     margin: 0;
     color: var(--color-text-main);
@@ -70,9 +68,7 @@
     display: flex;
     position: relative;
     height: 101vh;
-    /* margin-top: 10rem; */
-    padding: 4rem 4.5rem;
-    /* Fixed typo: missing unit and adjusted spacing */
+    padding: 0 4.5rem 4rem;
     background: var(--color-bg-white);
     width: 100%;
     box-sizing: border-box;
@@ -105,16 +101,13 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    transform: scale(1.5);
-    /* Scale up for background impact */
+    transform: scale(1.15);
 }
 
 .shape-wrapper.active {
     opacity: 1;
-    /* Fully black as requested */
 }
 
-/* Ensure shapes in this section are black */
 .strengths-left-section .sh-square {
     background-color: #000 !important;
 }
@@ -124,17 +117,18 @@
     background: var(--color-bg-white);
     overflow: hidden;
     position: relative;
-
+    height: 100vh;
 }
 
 .detailed-strengths-inner {
-    padding-top: 10rem;
+    margin-top: 0;
+    padding-top: 20rem;
     will-change: transform;
 }
 
 .strength-detail-item {
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
     padding: 4rem 0;
     border-bottom: 1px solid var(--color-border-light);
     padding-bottom: 26.5rem;
@@ -146,30 +140,31 @@
 }
 
 .strength-index {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--color-text-main);
     white-space: nowrap;
-    margin-top: 0.5rem;
+    margin-top: 2.5px;
 }
 
 .strength-content {
     flex: 1;
+
 }
 
 .strength-title {
     font-size: clamp(1.5rem, 3vw, 30px);
     font-weight: 900;
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.1em;
     margin: 0;
     color: #000;
 }
 
 .strength-divider {
-    height: 1px;
-    background-color: #f0f0f0;
-    margin: 2.5rem 0;
+    height: 0.25px;
+    background-color: rgb(176, 175, 175);
+    margin: 2rem 0;
     width: 100%;
 }
 

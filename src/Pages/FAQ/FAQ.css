@@ -1,0 +1,81 @@
+.FAQ-root {
+    width: 100%;
+    background-color: var(--color-bg-white, #fff);
+    padding-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.FAQ-header {
+    padding: 1rem 2.5rem 3.5rem;
+}
+
+.FAQ-list {
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+}
+
+.FAQ-item {
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.FAQ-item:hover {
+    background-color: #fcfcfc;
+}
+
+.FAQ-question-row {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 5.5rem;
+    gap: 4rem;
+}
+
+.FAQ-number {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #000;
+    min-width: 3rem;
+    letter-spacing: 0.05em;
+}
+
+.FAQ-question {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    letter-spacing: 0.02em;
+}
+
+.FAQ-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #999;
+}
+
+.FAQ-answer {
+    padding: 0 4.5rem 2.5rem 11.5rem;
+    /* Aligns with question text */
+    max-width: 800px;
+}
+
+.FAQ-answer p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #666;
+    margin: 0;
+}
+
+.FAQ-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 4.5rem;
+    margin-top: 4rem;
+}
+
+/* Animations if needed */
+.FAQ-item.open .FAQ-icon {
+    color: #000;
+}

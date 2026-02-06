@@ -1,5 +1,5 @@
 .case-row-container {
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(255, 255, 255);
   padding-top: 5vh;
   margin-top: -2.2vh;
   padding-bottom: 18vh; 
@@ -134,7 +134,7 @@
 }
 
 .case-row:hover {
-  background: #eeebeb;
+  background: #ffffff;
 }
 
 .case-row:hover .arrow {

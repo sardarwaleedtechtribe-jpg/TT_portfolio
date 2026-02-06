@@ -12,11 +12,9 @@
     background: rgb(0, 0, 0);
     color: #fff;
     border: none;
-    border-radius: 0rem;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
@@ -28,6 +26,7 @@
 .button-text {
     display: inline-block;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
 }
 
 .button-text.default {
@@ -56,14 +55,12 @@
 
 .arrow-button {
     padding: 0.5rem 1.2rem;
-    background: rgb(0, 0, 0);
+    background: #000;
     color: #fff;
     border: none;
-    border-radius: 0rem;
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     height: 3.2rem;
     min-width: 3.4rem;
     display: flex;
@@ -74,14 +71,21 @@
 }
 
 .button-group:hover .arrow-button,
-.arrow-button:hover {
+.arrow-button:hover:not(:disabled) {
     background: rgba(26, 26, 28, 1);
+}
+
+.arrow-button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 .arrow-text {
     display: inline-block;
     font-weight: 900;
     -webkit-text-stroke: 0.5px currentColor;
+    will-change: transform, opacity;
 }
 
 .arrow-text.default {
@@ -97,7 +101,9 @@
     opacity: 0;
 }
 
-.button-group:hover .arrow-text,
+
+
+/* .button-group:hover .arrow-text,
 .arrow-button:hover .arrow-text {
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -110,6 +116,41 @@
 
 .button-group:hover .arrow-text.hover,
 .arrow-button:hover .arrow-text.hover {
-    transform: translate(-50%, calc(-50% - 2px));
+    transform: translate(-50%, -50%);
     opacity: 1;
+} */
+
+
+@keyframes arrowOut {
+    from {
+        transform: translate(0, -2px);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(100%, -2px);
+        opacity: 0;
+    }
+}
+
+@keyframes arrowIn {
+    from {
+        transform: translate(calc(-50% - 100%), calc(-50% - 2px));
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.button-group:hover .arrow-text.default,
+.arrow-button:hover .arrow-text.default {
+    animation: arrowOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.button-group:hover .arrow-text.hover,
+.arrow-button:hover .arrow-text.hover {
+    animation: arrowIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

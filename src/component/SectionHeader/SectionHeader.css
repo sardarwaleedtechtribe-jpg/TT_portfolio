@@ -1,11 +1,14 @@
 /* Reusable Section Header Styles */
+.section-header-container {
+    margin-left: 3rem;
+}
 
 /* Light Theme (Product/About) */
 .about-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 11px;
     font-weight: 500;
 }
 
@@ -13,7 +16,7 @@
     width: 6px;
     height: 6px;
     background: #000;
-    border-radius: 50%;
+    border-radius: 0;
 }
 
 .divider {
@@ -37,7 +40,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
 }
@@ -65,7 +68,7 @@
 }
 
 .services-main .title {
-    font-size: 45px;
+    font-size: 46px;
     font-weight: 800;
     letter-spacing: -0.02em;
     margin: 0;
@@ -73,8 +76,34 @@
 
 /* Common Title Styles */
 .title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: 46px;
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-top: -3rem;
+    transition: all 0.3s ease;
+}
+
+/* Small Size Modifier */
+.section-header-container.small .about-meta,
+.section-header-container.small .services-meta {
+    font-size: 11px;
+}
+
+.section-header-container.small .divider,
+.section-header-container.small .services-divider {
+    margin: 0.5rem 0 1rem;
+}
+
+.section-header-container.small .about-main,
+.section-header-container.small .services-main {
+    margin-top: 2rem;
+}
+
+.section-header-container.small .title {
+    font-size: 32px;
+    margin-top: -1.5rem;
+}
+
+.section-header-container.small .services-main .title {
+    font-size: 32px;
 }

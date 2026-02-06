@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import './Strengths.css';
@@ -6,6 +6,71 @@ import { STATS_DATA, DETAILED_STRENGTHS } from './strengthsData.js';
 import { Shape01, Shape02, Shape03, Shape04, Shape05 } from '../../component/Shapes/Core/Shapes.jsx';
 
 const SHAPES = [Shape01, Shape02, Shape03, Shape04, Shape05];
+
+const StatCounter = ({ value, label }) => {
+    const [count, setCount] = useState(0);
+    const [hasAnimated, setHasAnimated] = useState(false);
+    const elementRef = useRef(null);
+
+    useEffect(() => {
+        const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+
+        console.log(`Setting up observer for ${label}`);
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                console.log(`Intersection for ${label}:`, entry.isIntersecting);
+                if (entry.isIntersecting && !hasAnimated) {
+                    console.log(`Starting animation for ${label}`);
+                    startAnimation();
+                }
+            },
+            {
+                threshold: 0.1, // Trigger as soon as 10% is visible
+                rootMargin: '0px 0px -50px 0px' // Offset slightly to ensure it's "well" in view
+            }
+        );
+
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [value, hasAnimated]);
+
+    const startAnimation = () => {
+        setHasAnimated(true);
+
+        const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+        const duration = 1000; // 1 second
+        const frameDuration = 1000 / 60;
+        const totalFrames = Math.round(duration / frameDuration);
+        let frame = 0;
+
+        const timer = setInterval(() => {
+            frame++;
+            const progress = frame / totalFrames;
+            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentCount = Math.floor(easeProgress * numericValue);
+
+            setCount(currentCount);
+
+            if (frame === totalFrames) {
+                clearInterval(timer);
+                setCount(numericValue);
+            }
+        }, frameDuration);
+    };
+
+    const suffix = value.replace(/[0-9]/g, '');
+
+    return (
+        <div className="stat-card" ref={elementRef} role="listitem">
+            <h2>{count}{suffix}</h2>
+            <p>{label}</p>
+        </div>
+    );
+};
 
 export default function Strengths() {
     const stageRef = useRef();
@@ -20,12 +85,10 @@ export default function Strengths() {
 
         const rect = containerRef.current.getBoundingClientRect();
 
-        // Check if the top of the div is at or above the top of the viewport
         if (rect.top <= 1 && !hasReachedTopRef.current) {
             console.log("%c >>> Strengths section has reached the TOP <<<", "color: #fff; background: #ff0000; font-weight: bold; padding: 4px;");
             hasReachedTopRef.current = true;
         } else if (rect.top > 10) {
-            // Reset with a bit of buffer to avoid flickering
             hasReachedTopRef.current = false;
         }
 
@@ -54,7 +117,6 @@ export default function Strengths() {
 
         detailsInnerRef.current.style.transform = `translate3d(0, ${translateY}px, 0)`;
 
-        // Calculate and update the active shape index (0 to 4)
         const totalItems = DETAILED_STRENGTHS.length;
         const currentActive = Math.min(totalItems - 1, Math.max(0, Math.round(progress * (totalItems - 1))));
 
@@ -70,15 +132,13 @@ export default function Strengths() {
                     label="Strengths"
                     title="Our Strengths"
                     theme="light"
+                    size="small"
                 />
             </div>
 
             <div className="stats-container" role="list">
                 {STATS_DATA.map((item, index) => (
-                    <div className="stat-card" key={index} role="listitem">
-                        <h2>{item.value}</h2>
-                        <p>{item.label}</p>
-                    </div>
+                    <StatCounter key={index} value={item.value} label={item.label} />
                 ))}
             </div>
 

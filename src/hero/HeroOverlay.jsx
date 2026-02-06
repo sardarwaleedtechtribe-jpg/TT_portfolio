@@ -12,6 +12,8 @@ import { useFrame } from "@react-three/fiber";
 
 
 import Flow from "../Pages/Flow/Flow.jsx";
+import News from "../Pages/News/News.jsx";
+import FAQ from "../Pages/FAQ/FAQ.jsx";
 
 export default function HeroOverlay() {
     const scroll = useScroll();
@@ -23,10 +25,11 @@ export default function HeroOverlay() {
         if (!wrapperRef.current || !contentRef.current || !caseListWrapperRef.current) return;
 
         const scrollOffset = scroll.offset;
+        console.log("Scroll Offset:", scrollOffset.toFixed(4));
 
         // --- Product Animation Math (Sync with Product.jsx) ---
-        const startOffset = 0.386;
-        const endOffset = 0.472;
+        const startOffset = 0.2078;
+        const endOffset = 0.2541;
         const totalScroll = (scroll.pages - 1) * window.innerHeight;
         const currentPixels = scrollOffset * totalScroll;
         const startPixels = startOffset * totalScroll;
@@ -77,12 +80,12 @@ export default function HeroOverlay() {
         }
     });
 
-    console.log("HeroOverlay Mounting");
+    // console.log("HeroOverlay Mounting");
 
     return (
         <Scroll html>
             <Header />
-            <BottomLeftText />
+            {/* <BottomLeftText /> */}
             <div ref={wrapperRef} style={{ width: '100vw', minHeight: '100vh', overflow: 'visible' }}>
                 <div ref={contentRef} style={{ position: 'relative', top: '135vh', width: '100vw', overflow: 'visible' }}>
                     <About />
@@ -90,15 +93,14 @@ export default function HeroOverlay() {
                     <div ref={caseListWrapperRef} style={{ overflow: 'visible' }}>
                         <div style={{ marginTop: '86.55vh' }}><CaseList /></div>
                         <Services />
-
-                        <div style={{ position: 'relative', width: '100%' }}>
-                            <Strengths />
-                        </div>
-                        <div style={{ position: 'relative', width: '100%' }}>
-                            <Flow />
-                        </div>
-
                     </div>
+                    <div style={{ marginTop: '60vh', height: 'auto' }}>
+                        <Strengths />
+                        <Flow />
+                        <News />
+                        <FAQ />
+                    </div>
+
 
                 </div>
             </div>

@@ -77,7 +77,7 @@ export default function CameraController() {
     useFrame((state) => {
         const { mouse, camera } = state
 
-        const ANIMATION_END = 2 / 8
+        const ANIMATION_END = 2 / 14
         const effectiveScroll = Math.min(scroll.offset / ANIMATION_END, 1)
         const rawOffset = effectiveScroll / 0.7
         const offset = Math.min(rawOffset, 1)
@@ -89,10 +89,6 @@ export default function CameraController() {
 
         const scrollBasedCamX = 0 - (effectiveScroll * 1.7); // 0 at start, -1.7 at end
         const currentCamX = THREE.MathUtils.lerp(scrollBasedCamX, TRANSITION_TARGETS.camX, transitionFactor)
-
-        // console.log('effectiveScroll:', effectiveScroll.toFixed(3),
-        //     '| scrollBasedCamX:', scrollBasedCamX.toFixed(3),
-        //     '| currentCamX:', currentCamX.toFixed(3));
 
         const currentCamY = THREE.MathUtils.lerp(camY, TRANSITION_TARGETS.camY, transitionFactor)
         const currentCamZ = THREE.MathUtils.lerp(camZ, TRANSITION_TARGETS.camZ, transitionFactor)
