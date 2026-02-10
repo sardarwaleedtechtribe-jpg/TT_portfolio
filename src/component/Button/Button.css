@@ -1,4 +1,12 @@
-/* Button group and animation styles */
+:root {
+    --btn-bg-primary: #000;
+    --btn-bg-hover: rgba(26, 26, 28, 1);
+    --btn-color: #fff;
+    --btn-height: 52px;
+    --btn-transition: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --arrow-offset: 0px;
+}
+
 .button-group {
     display: flex;
     gap: 0.1rem;
@@ -9,24 +17,27 @@
 
 .about-button {
     padding: 1rem 2rem;
-    background: rgb(0, 0, 0);
-    color: #fff;
+    background: var(--btn-bg-primary);
+    color: var(--btn-color);
     border: none;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    height: var(--btn-height);
 }
 
 .button-group:hover .about-button {
-    background: rgba(26, 26, 28, 1);
+    background: var(--btn-bg-hover);
 }
 
+/* ============================
+   Button Text Animation
+   ============================ */
 .button-text {
     display: inline-block;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 1;
+    transition: all var(--btn-transition);
 }
 
 .button-text.default {
@@ -53,16 +64,31 @@
     opacity: 1;
 }
 
+.arrow-button-container {
+    width: var(--btn-height);
+    height: var(--btn-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--btn-bg-primary);
+}
+
+.button-group:hover .arrow-button-container,
+.arrow-button-container:hover {
+    background: var(--btn-bg-hover);
+}
+
 .arrow-button {
-    padding: 0.5rem 1.2rem;
-    background: #000;
-    color: #fff;
+    padding: 0;
+    background: transparent;
+    color: var(--btn-color);
     border: none;
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
-    height: 3.2rem;
-    min-width: 3.4rem;
+    width: auto;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +98,7 @@
 
 .button-group:hover .arrow-button,
 .arrow-button:hover:not(:disabled) {
-    background: rgba(26, 26, 28, 1);
+    background: transparent;
 }
 
 .arrow-button:disabled {
@@ -81,6 +107,9 @@
     pointer-events: none;
 }
 
+/* ============================
+   Arrow Text Animation
+   ============================ */
 .arrow-text {
     display: inline-block;
     font-weight: 900;
@@ -89,7 +118,7 @@
 }
 
 .arrow-text.default {
-    transform: translate(0, -2px);
+    transform: translate(0, var(--arrow-offset));
     opacity: 1;
 }
 
@@ -97,45 +126,28 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(calc(-50% - 100%), calc(-50% - 2px));
+    transform: translate(calc(-50% - 100%), calc(-50% + var(--arrow-offset)));
     opacity: 0;
 }
 
-
-
-/* .button-group:hover .arrow-text,
-.arrow-button:hover .arrow-text {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.button-group:hover .arrow-text.default,
-.arrow-button:hover .arrow-text.default {
-    transform: translate(100%, -2px);
-    opacity: 0;
-}
-
-.button-group:hover .arrow-text.hover,
-.arrow-button:hover .arrow-text.hover {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-} */
-
-
+/* ============================
+   Keyframe Animations
+   ============================ */
 @keyframes arrowOut {
     from {
-        transform: translate(0, -2px);
+        transform: translate(0, var(--arrow-offset));
         opacity: 1;
     }
 
     to {
-        transform: translate(100%, -2px);
+        transform: translate(100%, var(--arrow-offset));
         opacity: 0;
     }
 }
 
 @keyframes arrowIn {
     from {
-        transform: translate(calc(-50% - 100%), calc(-50% - 2px));
+        transform: translate(calc(-50% - 100%), calc(-50% + var(--arrow-offset)));
         opacity: 0;
     }
 
@@ -147,10 +159,10 @@
 
 .button-group:hover .arrow-text.default,
 .arrow-button:hover .arrow-text.default {
-    animation: arrowOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: arrowOut var(--btn-transition) forwards;
 }
 
 .button-group:hover .arrow-text.hover,
 .arrow-button:hover .arrow-text.hover {
-    animation: arrowIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: arrowIn var(--btn-transition) 0.35s forwards;
 }

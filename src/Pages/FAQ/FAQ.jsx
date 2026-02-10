@@ -30,7 +30,7 @@ export default function FAQ() {
                         onClick={() => toggleAccordion(index)}
                     >
                         <div className="FAQ-question-row">
-                            <span className="FAQ-number">{item.id}</span>
+                            <span className="FAQ-number">Q{item.id}</span>
                             <h3 className="FAQ-question">{item.question}</h3>
                             <span className="FAQ-icon">{openIndex === index ? '−' : '+'}</span>
                         </div>
@@ -44,7 +44,7 @@ export default function FAQ() {
             </div>
 
             <div className="FAQ-footer">
-                <Button text="See frequently asked questions" />
+                <Button text="View FAQ" />
             </div>
         </section>
     );

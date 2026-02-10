@@ -57,28 +57,25 @@ export default function Product() {
     const v2End = startOffset + segmentLength;
     const v3Raw = Math.min(Math.max((scrollOffset - v2End) / segmentLength, 0), 1);
     const v3Progress = Math.pow(v3Raw, 2.2);
-    // TAILING: V3 top is locked to V2's bottom (v2Top + v2Height)
     const v3Top = (v2Top + 78) - (v3Progress * 71);
 
     // Video 4 (Coverage Video)
     const v3End = v2End + segmentLength;
     const v4Raw = Math.min(Math.max((scrollOffset - v3End) / segmentLength, 0), 1);
     const v4Progress = Math.pow(v4Raw, 2.2);
-    // TAILING: V4 top is locked to V3's bottom (v3Top + v3Height)
     const v4Top = (v3Top + 71) - (v4Progress * 85);
 
     // Update container positions
     if (containerRefs.current[1]) {
-      containerRefs.current[1].style.top = `${v2Top}vh`;
+        containerRefs.current[1].style.top = `${v2Top}vh`;
     }
     if (containerRefs.current[2]) {
-      containerRefs.current[2].style.top = `${v3Top}vh`;
-      // Make visible once V2 starts moving so we see it tailing
-      containerRefs.current[2].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
+        containerRefs.current[2].style.top = `${v3Top}vh`;
+        containerRefs.current[2].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
     if (containerRefs.current[3]) {
-      containerRefs.current[3].style.top = `${v4Top}vh`;
-      containerRefs.current[3].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
+        containerRefs.current[3].style.top = `${v4Top}vh`;
+        containerRefs.current[3].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
   });
 
@@ -123,7 +120,7 @@ export default function Product() {
         ))}
       </div>
 
-      <div style={{ height: '1000px' }} />
+      {/* <div style={{ height: '1000px' }} /> */}
     </section>
   );
 }

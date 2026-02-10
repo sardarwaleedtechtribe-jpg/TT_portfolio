@@ -23,3 +23,8 @@
     color: #333;
     margin: 0;
 }
+
+.about-header .about-button,
+.about-header .arrow-button {
+    height: 52px;
+}

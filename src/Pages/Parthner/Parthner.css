@@ -139,40 +139,40 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 3.5rem;
+    height: 46px;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
 .arrow-prev {
-    width: 3.5rem;
+    width: 46px;
     background-color: #1a1a1a;
     color: #fff;
     font-size: 1.2rem;
 }
 
 .arrow-next {
-    width: 3.5rem;
+    width: 46px;
     background-color: #1a1a1a;
     color: #fff;
     font-size: 1.2rem;
 }
 
 .motion-toggle {
-    padding: 0 2rem;
+    padding: 0 1rem;
     background-color: #1a1a1a;
     color: #fff;
     font-size: 0.85rem;
     text-transform: capitalize;
     gap: 0.8rem;
-    /* width: 130px; */
+    /* width: 95px; */
     flex-shrink: 0;
 }
 
 .pause-icon {
     background-color: #fff;
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1rem;
+    height: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,7 +183,7 @@
     width: 90%;
     height: 90%;
     object-fit: contain;
-    transform: translate(0.5px, 0.5px);
+    transform: translate(0.25px, -0.5px);
 }
 
 .slider-btn:hover:not(:disabled) {

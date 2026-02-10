@@ -22,9 +22,27 @@ export default function Flow() {
     };
 
     useEffect(() => {
-        updateScrollButtons();
+        // Multiple checks to ensure proper initialization
+        const checkScrollState = () => {
+            updateScrollButtons();
+        };
+
+        // Immediate check
+        checkScrollState();
+
+        // Check after short delay (for initial render)
+        const timer1 = setTimeout(checkScrollState, 100);
+
+        // Check after longer delay (for images/fonts loading)
+        const timer2 = setTimeout(checkScrollState, 500);
+
         window.addEventListener('resize', updateScrollButtons);
-        return () => window.remove('resize', updateScrollButtons);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            window.removeEventListener('resize', updateScrollButtons);
+        };
     }, []);
 
     const handleMouseDown = (e) => {

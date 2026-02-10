@@ -1,0 +1,106 @@
+.logo-block {
+    pointer-events: auto;
+    position: relative;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-content {
+    position: relative;
+    z-index: 2;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1px;
+    margin-bottom: 2px;
+}
+
+.text-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-design,
+.text-studio {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+}
+
+.text-design {
+    margin-bottom: 4px;
+}
+
+.text-studio {
+    margin-top: 4px;
+}
+
+.logo-mark-wrapper {
+    flex-shrink: 0;
+}
+
+.header-logo-svg {
+    height: 58px;
+    width: auto;
+    display: block;
+}
+
+.logo-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Theme Support */
+
+/* Light Theme (Default, usually for dark backgrounds) */
+.logo-block.light .text-design,
+.logo-block.light .text-studio,
+.logo-main-row.light .text-design,
+.logo-main-row.light .text-studio {
+    color: #f0f0f0;
+}
+
+.logo-block.light .tagline {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.logo-block.light .header-logo-svg,
+.logo-main-row.light .header-logo-svg {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Dark Theme (For light backgrounds) */
+.logo-block.dark .text-design,
+.logo-block.dark .text-studio,
+.logo-main-row.dark .text-design,
+.logo-main-row.dark .text-studio {
+    color: #000000;
+}
+
+.logo-block.dark .tagline {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.logo-block.dark .header-logo-svg,
+.logo-main-row.dark .header-logo-svg {
+    filter: brightness(0);
+}

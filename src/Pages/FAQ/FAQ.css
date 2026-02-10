@@ -1,5 +1,6 @@
 .FAQ-root {
     width: 100%;
+    height: 71vh;
     background-color: var(--color-bg-white, #fff);
     padding-bottom: 8rem;
     display: flex;
@@ -28,7 +29,7 @@
 .FAQ-question-row {
     display: flex;
     align-items: center;
-    padding: 2.5rem 5.5rem;
+    padding: 1.5rem 5.5rem;
     gap: 4rem;
 }
 
@@ -62,7 +63,7 @@
 }
 
 .FAQ-answer {
-    padding: 0 4.5rem 2.5rem 11.5rem;
+    padding: 0 4.5rem 1.5rem 11.5rem;
     max-width: 800px;
 }
 

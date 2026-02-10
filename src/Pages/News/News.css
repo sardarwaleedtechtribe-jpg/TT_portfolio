@@ -140,14 +140,14 @@
 .news-cta-group .about-button {
     font-size: 0.9rem;
     padding: 0.8rem 1.8rem;
-    height: 3.2rem;
+    height: 52px;
     display: flex;
     align-items: center;
 }
 
 .news-cta-group .arrow-button {
-    height: 3.2rem;
-    min-width: 2.8rem;
+    height: 52px;
+    min-width: 52px;
     padding: 0.5rem;
     font-size: 1rem;
 }

@@ -5,6 +5,7 @@ import CaseList from "../Pages/CaseRow/CaseList.jsx";
 import Services from "../Pages/Services/Services.jsx";
 import Strengths from "../Pages/Strengths/Strengths.jsx";
 import Parthner from "../Pages/Parthner/Parthner.jsx";
+import Footer from "../Pages/Footer/Footer.jsx";
 import Button from "../component/Button/Button.jsx";
 import Header from "../component/TopHeader/header.jsx";
 import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
@@ -101,6 +102,7 @@ export default function HeroOverlay() {
                         <News />
                         <FAQ />
                         <Parthner />
+                        <Footer />
                     </div>
 
 
