@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import { SERVICE_CARDS } from './parthner.js';
 import './Parthner.css';
@@ -6,19 +6,44 @@ import './Parthner.css';
 export default function Parthner() {
     const [isPlaying, setIsPlaying] = useState(true);
     const [activeIndex, setActiveIndex] = useState(0);
+    const [progress, setProgress] = useState(0);
 
     const currentTestimonial = SERVICE_CARDS[activeIndex];
     const totalSliders = SERVICE_CARDS.length;
 
+    // Automatic loader effect
+    useEffect(() => {
+        let timer;
+        if (isPlaying) {
+            timer = setInterval(() => {
+                setProgress((prev) => {
+                    if (prev >= 100) {
+                        // Move to next testimonial and reset progress
+                        setActiveIndex((idx) => (idx + 1) % totalSliders);
+                        return 0;
+                    }
+                    return prev + 1;
+                });
+            }, 50); // 50ms * 100 = 5 seconds per testimonial
+        }
+        return () => clearInterval(timer);
+    }, [isPlaying, totalSliders]);
+
     const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % totalSliders);
+        if (activeIndex < totalSliders - 1) {
+            setActiveIndex((prev) => prev + 1);
+            setProgress(0); // Reset progress when manually navigating
+        }
     };
 
     const handlePrev = () => {
-        setActiveIndex((prev) => (prev - 1 + totalSliders) % totalSliders);
+        if (activeIndex > 0) {
+            setActiveIndex((prev) => prev - 1);
+            setProgress(0); // Reset progress when manually navigating
+        }
     };
 
-    const progressWidth = ((activeIndex + 1) / totalSliders) * 100;
+    const progressWidth = progress;
 
     return (
         <section className="Parthner-root">
@@ -67,8 +92,8 @@ export default function Parthner() {
                             className="slider-btn arrow-prev"
                             aria-label="Previous"
                             onClick={handlePrev}
-                        >
-                            ←
+                            disabled={activeIndex === 0}
+                        > ←
                         </button>
                         <button
                             className="slider-btn motion-toggle"
@@ -84,8 +109,8 @@ export default function Parthner() {
                             className="slider-btn arrow-next"
                             aria-label="Next"
                             onClick={handleNext}
-                        >
-                            →
+                            disabled={activeIndex === totalSliders - 1}
+                        > →
                         </button>
                     </div>
                 </div>

@@ -91,16 +91,16 @@
 .slider-progress-wrapper {
     display: flex;
     align-items: center;
-    flex: 1;
+    flex: 0 0 auto;
     gap: 3rem;
 }
 
 .progress-bar-track {
-    flex: 1;
+    width: 700px;
     height: 1px;
     background-color: #e0e0e0;
     position: relative;
-    max-width: 700px;
+    flex-shrink: 0;
 }
 
 .progress-bar-fill {
@@ -116,6 +116,9 @@
     font-weight: 500;
     letter-spacing: 0.05em;
     color: #333;
+    width: 70px;
+    flex-shrink: 0;
+    text-align: left;
 }
 
 .progress-number .separator {
@@ -127,6 +130,7 @@
     display: flex;
     gap: 0.5rem;
     padding-left: 2rem;
+    flex-shrink: 0;
 }
 
 .slider-btn {
@@ -142,7 +146,7 @@
 
 .arrow-prev {
     width: 3.5rem;
-    background-color: #d0d0d0;
+    background-color: #1a1a1a;
     color: #fff;
     font-size: 1.2rem;
 }
@@ -161,6 +165,8 @@
     font-size: 0.85rem;
     text-transform: capitalize;
     gap: 0.8rem;
+    /* width: 130px; */
+    flex-shrink: 0;
 }
 
 .pause-icon {
@@ -180,6 +186,13 @@
     transform: translate(0.5px, 0.5px);
 }
 
-.slider-btn:hover {
+.slider-btn:hover:not(:disabled) {
     filter: brightness(1.1);
+}
+
+.slider-btn:disabled {
+    background-color: #e6e6e6;
+    color: #b0b0b0;
+    cursor: default;
+    filter: none;
 }
