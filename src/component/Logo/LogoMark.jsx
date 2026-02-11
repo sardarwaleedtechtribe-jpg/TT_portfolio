@@ -1,9 +1,10 @@
 // src/component/Logo/LogoMark.jsx
 import './Logo.css';
 
-const LogoMark = ({ theme = 'light' }) => {
+const LogoMark = ({ theme = 'light', animate = null }) => {
+    const animationClass = animate !== null ? (animate ? 'animate-start' : 'animate-init') : '';
     return (
-        <div className={`logo-main-row ${theme}`}>
+        <div className={`logo-main-row ${theme} ${animationClass}`}>
             <div className="text-group">
                 <span className="text-design">TECH</span>
                 <span className="text-studio">TRIBE</span>

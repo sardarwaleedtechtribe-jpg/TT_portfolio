@@ -104,3 +104,37 @@
 .logo-main-row.dark .header-logo-svg {
     filter: brightness(0);
 }
+
+/* Scroll Animation Triggered from Footer */
+.logo-main-row.animate-init .text-design,
+.logo-main-row.animate-init .text-studio,
+.logo-main-row.animate-init .header-logo-svg {
+    opacity: 0;
+    transform: translateY(60px);
+    clip-path: inset(100% 0 0 0);
+}
+
+.logo-main-row.animate-start .text-design,
+.logo-main-row.animate-start .text-studio,
+.logo-main-row.animate-start .header-logo-svg {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0);
+    transition:
+        opacity 0.2s ease-out,
+        transform 1.8s cubic-bezier(0.19, 1, 0.22, 1),
+        clip-path 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Staggered Delays for "Incrementing" Effect */
+.logo-main-row.animate-start .text-design {
+    transition-delay: 0s;
+}
+
+.logo-main-row.animate-start .text-studio {
+    transition-delay: 0.15s;
+}
+
+.logo-main-row.animate-start .header-logo-svg {
+    transition-delay: 0.3s;
+}

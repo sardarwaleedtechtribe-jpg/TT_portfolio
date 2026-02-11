@@ -67,7 +67,7 @@ const Services = () => {
             if (cardScrollerRef.current) {
                 // Scroll card content: move by (totalHeight - 100%)
                 // We have 4 cards, so we move by 300% of container height
-                const cardHeight = 365; // matches .services-center-box height
+                const cardHeight = 440; // matches .services-center-box height
                 const gap = 10; // matches .services-box-scroller gap
                 const totalMove = (cardHeight + gap) * (SERVICE_CARDS.length - 1);
                 // Start at negative offset (showing the last item in DOM, which is Card 1)

@@ -80,7 +80,6 @@ export default function Flow() {
         } else {
             container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
-        // updateScrollButtons will be called by the scroll listener
     };
 
     return (

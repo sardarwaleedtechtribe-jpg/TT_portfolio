@@ -3,7 +3,7 @@
     --btn-bg-hover: rgba(26, 26, 28, 1);
     --btn-color: #fff;
     --btn-height: 52px;
-    --btn-transition: 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --btn-transition: 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     --arrow-offset: 0px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .about-button {
-    padding: 1rem 2rem;
+    padding: 0rem 2rem;
     background: var(--btn-bg-primary);
     color: var(--btn-color);
     border: none;
@@ -26,6 +26,26 @@
     position: relative;
     overflow: hidden;
     height: var(--btn-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: blue;
+}
+
+.btn-Forall {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
 .button-group:hover .about-button {
@@ -87,13 +107,18 @@
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
-    width: auto;
-    height: auto;
+    width: 40%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    line-height: 0;
+}
+
+.arrow-button svg {
+    display: block;
 }
 
 .button-group:hover .arrow-button,

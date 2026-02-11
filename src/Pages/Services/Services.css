@@ -144,8 +144,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
-    height: 360px;
+    width: 315px;
+    height: 440px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -188,8 +188,8 @@
 }
 
 .center-box-dot {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     background: #000;
     border-radius: 0;
 }
@@ -209,7 +209,7 @@
 }
 
 .center-box-description {
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.2;
     color: #333;
     margin: 0;

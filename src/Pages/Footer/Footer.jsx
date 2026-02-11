@@ -1,9 +1,36 @@
 import ArrowButton from '../../component/Button/ArrowButton.jsx';
 import { FOOTER_DATA } from './footerData.js';
 import { MdArrowUpward } from 'react-icons/md';
+import LogoMark from '../../component/Logo/LogoMark.jsx';
 import './Footer.css';
 
+// ... imports
+import { useEffect, useRef, useState } from 'react';
+
 export default function Footer() {
+    const [logoVisible, setLogoVisible] = useState(false);
+    const logoRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        setLogoVisible(true);
+                    }, 100);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (logoRef.current) {
+            observer.observe(logoRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <footer className="footer-root">
             <div className="footer-container">
@@ -23,7 +50,6 @@ export default function Footer() {
 
             <div className="footer-bottom-section">
                 <div className="footer-bottom-content">
-                    {/* Left Column: Address and Socials */}
                     <div className="footer-left-col">
                         <div className="footer-address-info">
                             <p className="postal-code">990-2462</p>
@@ -49,7 +75,6 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Right Column: Navigation */}
                     <div className="footer-right-col">
                         <nav className="footer-navigation">
                             <a href="#" className="nav-link">Home</a>
@@ -78,6 +103,9 @@ export default function Footer() {
                             </div>
                         </button>
                     </div>
+                </div>
+                <div className="footer-big-logo-container" ref={logoRef}>
+                    <LogoMark theme="dark" animate={logoVisible} />
                 </div>
             </div>
 
