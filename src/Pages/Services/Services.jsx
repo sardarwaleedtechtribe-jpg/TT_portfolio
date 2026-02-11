@@ -19,7 +19,7 @@ const Services = () => {
 
     // Sticky range (Scaled for 14 pages)
     const startOffset = 0.3875;
-    const endOffset = 0.4577;
+    const endOffset = 0.4450;//0.4577
 
     useFrame(() => {
         if (!sectionRef.current) return;
@@ -55,23 +55,17 @@ const Services = () => {
                 sectionRef.current.style.transform = `translate3d(0, ${compensation}px, 0)`;
             }
             if (bgWrapperRef.current) {
-                // Move by 300% of section height to reveal 3 more images after the first one
                 const parallaxMove = progress * (sectionHeight * 3);
                 bgWrapperRef.current.style.transform = `translate3d(0, -${parallaxMove}px, 0)`;
             }
             if (lineLoaderRef.current) {
-                // Animate line-loader with scaleY from 0 to 1 (fills from top to bottom)
                 lineLoaderRef.current.style.transform = `translateY(7.6rem) scaleY(${progress})`;
             }
 
             if (cardScrollerRef.current) {
-                // Scroll card content: move by (totalHeight - 100%)
-                // We have 4 cards, so we move by 300% of container height
                 const cardHeight = 440; // matches .services-center-box height
                 const gap = 10; // matches .services-box-scroller gap
                 const totalMove = (cardHeight + gap) * (SERVICE_CARDS.length - 1);
-                // Start at negative offset (showing the last item in DOM, which is Card 1)
-                // End at 0 (showing the first item in DOM, which is Card 4)
                 const cardMove = (progress - 1) * totalMove;
                 cardScrollerRef.current.style.transform = `translate3d(0, ${cardMove}px, 0)`;
             }

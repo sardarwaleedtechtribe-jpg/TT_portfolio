@@ -29,7 +29,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: blue;
 }
 
 .btn-Forall {
@@ -39,10 +38,11 @@
     font: inherit;
     cursor: pointer;
     padding: 0;
+    margin-top: 0.1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35%;
+    height: 27%;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -70,13 +70,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, calc(-50% + 100%));
-    opacity: 0;
+    opacity: 1;
     white-space: nowrap;
 }
 
 .button-group:hover .button-text.default {
     transform: translateY(-100%);
-    opacity: 0;
+    opacity: 1;
 }
 
 .button-group:hover .button-text.hover {
@@ -190,4 +190,43 @@
 .button-group:hover .arrow-text.hover,
 .arrow-button:hover .arrow-text.hover {
     animation: arrowIn var(--btn-transition) 0.35s forwards;
+}
+
+/* ============================
+   Navigation Prev Button - Reversed Animation
+   ============================ */
+.center-box-arrow.prev .arrow-text.hover {
+    transform: translate(calc(-50% + 100%), calc(-50% + var(--arrow-offset)));
+}
+
+@keyframes arrowOutReverse {
+    from {
+        transform: translate(0, var(--arrow-offset));
+        opacity: 1;
+    }
+
+    to {
+        transform: translate(-100%, var(--arrow-offset));
+        opacity: 0;
+    }
+}
+
+@keyframes arrowInReverse {
+    from {
+        transform: translate(calc(-50% + 100%), calc(-50% + var(--arrow-offset)));
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+.center-box-arrow.prev .arrow-button:hover .arrow-text.default {
+    animation: arrowOutReverse var(--btn-transition) forwards;
+}
+
+.center-box-arrow.prev .arrow-button:hover .arrow-text.hover {
+    animation: arrowInReverse var(--btn-transition) 0.35s forwards;
 }

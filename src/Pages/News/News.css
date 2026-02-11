@@ -74,7 +74,7 @@
 }
 
 .secondary-article-row:hover {
-    background-color: #fafafa;
+    background-color: hsl(0, 0%, 92%);
 }
 
 .secondary-article-image-container {
@@ -82,6 +82,7 @@
     aspect-ratio: 1.5;
     overflow: hidden;
     background-color: #eee;
+    margin-left: 0.5rem;
 }
 
 .secondary-article-image {
@@ -132,24 +133,7 @@
 }
 
 .news-cta-group {
-    margin-top: 0;
-    margin-bottom: 2rem;
-    align-self: center;
-}
-
-.news-cta-group .about-button {
-    font-size: 0.9rem;
-    padding: 0.8rem 1.8rem;
-    height: 52px;
-    display: flex;
-    align-items: center;
-}
-
-.news-cta-group .arrow-button {
-    height: 52px;
-    min-width: 52px;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding-bottom: 2rem;
 }
 
 .News-categories {
@@ -297,7 +281,9 @@
 .category-arrow {
     font-size: 1.2rem;
     color: #000;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .category-arrow.default {
@@ -312,18 +298,18 @@
     opacity: 0;
 }
 
-.category-arrow-wrapper:hover .category-arrow,
+.news-category-item:hover .category-arrow,
 .News-categories.active .category-arrow {
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.category-arrow-wrapper:hover .category-arrow.default,
+.news-category-item:hover .category-arrow.default,
 .News-categories.active .category-arrow.default {
     transform: translateX(150%);
     opacity: 0;
 }
 
-.category-arrow-wrapper:hover .category-arrow.hover,
+.news-category-item:hover .category-arrow.hover,
 .News-categories.active .category-arrow.hover {
     transform: translateX(0);
     opacity: 1;

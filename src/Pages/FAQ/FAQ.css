@@ -23,7 +23,7 @@
 }
 
 .FAQ-item:hover {
-    background-color: #fcfcfc;
+    background-color: hsl(0, 0%, 92%);
 }
 
 .FAQ-question-row {

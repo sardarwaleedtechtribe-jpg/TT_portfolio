@@ -18,7 +18,6 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .testimonial-layout {
@@ -28,6 +27,8 @@
     gap: 14rem;
     margin-top: 1rem;
     margin-left: 1.75rem;
+    min-height: 250px;
+    /* Lock height to prevent vertical jitter */
 }
 
 .testimonial-quote {
@@ -80,18 +81,21 @@
 
 /* Controls */
 .Parthner-controls {
+    --btn-height: 35.8px;
     margin-top: auto;
     margin-bottom: 11.2rem;
-    padding-left: 2.2rem;
-    display: flex;
+    padding-left: 2.8rem;
+    display: grid;
+    grid-template-columns: 818px auto;
+    column-gap: 6rem;
     align-items: center;
-    justify-content: space-between;
+    width: fit-content;
 }
 
 .slider-progress-wrapper {
     display: flex;
     align-items: center;
-    flex: 0 0 auto;
+    flex: 0 0 818px;
     gap: 3rem;
 }
 
@@ -106,9 +110,11 @@
 .progress-bar-fill {
     position: absolute;
     left: 0;
-    top: -0.5px;
-    height: 2px;
+    top: 0;
+    height: 100%;
     background-color: #333;
+    transform-origin: left;
+    transition: transform 0.001s linear;
 }
 
 .progress-number {
@@ -117,8 +123,9 @@
     letter-spacing: 0.05em;
     color: #333;
     width: 70px;
-    flex-shrink: 0;
+    flex: 0 0 70px;
     text-align: left;
+    font-variant-numeric: tabular-nums;
 }
 
 .progress-number .separator {
@@ -129,8 +136,7 @@
 .slider-action-buttons {
     display: flex;
     gap: 0.5rem;
-    padding-left: 2rem;
-    flex-shrink: 0;
+    flex: 0 0 auto;
 }
 
 .slider-btn {
@@ -139,60 +145,92 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 46px;
+    height: 35.8px;
     font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.arrow-prev {
-    width: 46px;
-    background-color: #1a1a1a;
-    color: #fff;
-    font-size: 1.2rem;
-}
-
-.arrow-next {
-    width: 46px;
-    background-color: #1a1a1a;
-    color: #fff;
-    font-size: 1.2rem;
+    transition: background 0.3s ease, filter 0.3s ease;
+    text-rendering: optimizeLegibility;
+    white-space: nowrap;
 }
 
 .motion-toggle {
-    padding: 0 1rem;
-    background-color: #1a1a1a;
+    width: 80px;
+    height: 36px;
+    padding: 0 0.5rem;
+    background: #000000;
     color: #fff;
     font-size: 0.85rem;
     text-transform: capitalize;
-    gap: 0.8rem;
-    /* width: 95px; */
+    line-height: 1;
+    /* Normalize baseline */
+    gap: 0.35rem;
     flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .pause-icon {
     background-color: #fff;
-    width: 1rem;
-    height: 1rem;
+    width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .pause-icon img {
-    width: 90%;
-    height: 90%;
+    width: 85%;
+    height: 85%;
     object-fit: contain;
-    transform: translate(0.25px, -0.5px);
+    display: block;
+    pointer-events: none;
 }
 
 .slider-btn:hover:not(:disabled) {
     filter: brightness(1.1);
 }
 
+.center-box-arrow {
+    width: 35.8px;
+    height: 35.8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Disabled state for arrow buttons */
+.center-box-arrow.disabled {
+    background-color: #f5f5f5;
+    cursor: default;
+    pointer-events: none;
+}
+
+.center-box-arrow.disabled .arrow-button-container {
+    background-color: #656565 !important;
+}
+
+.center-box-arrow.disabled .arrow-button {
+    color: #ffffff !important;
+}
+
+.center-box-arrow.disabled:hover,
+.center-box-arrow.disabled:hover .arrow-button-container {
+    background-color: #ffffff !important;
+    filter: none;
+}
+
 .slider-btn:disabled {
-    background-color: #e6e6e6;
-    color: #b0b0b0;
+    background-color: #f5f5f5;
+    color: #ffffff;
     cursor: default;
     filter: none;
+    pointer-events: none;
+}
+
+.slider-btn:disabled:hover {
+    filter: none;
+    background-color: #f5f5f5;
 }

@@ -14,12 +14,7 @@ export default function FAQ() {
     return (
         <section className="FAQ-root">
             <div className="FAQ-header">
-                <SectionHeader
-                    label="FAQ"
-                    title="Frequently Asked Questions"
-                    theme="light"
-                    size="small"
-                />
+                <SectionHeader label="FAQ" title="Frequently Asked Questions" theme="light" size="small" />
             </div>
 
             <div className="FAQ-list">

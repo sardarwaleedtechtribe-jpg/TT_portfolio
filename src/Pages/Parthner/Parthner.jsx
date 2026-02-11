@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
+import ArrowButton from '../../component/Button/ArrowButton.jsx';
 import { SERVICE_CARDS } from './parthner.js';
 import './Parthner.css';
 
@@ -88,30 +89,16 @@ export default function Parthner() {
                     </div>
 
                     <div className="slider-action-buttons">
-                        <button
-                            className="slider-btn arrow-prev"
-                            aria-label="Previous"
-                            onClick={handlePrev}
-                            disabled={activeIndex === 0}
-                        > ←
+                        <div className={`center-box-arrow prev ${activeIndex === 0 ? 'disabled' : ''}`} onClick={handlePrev}>
+                            <ArrowButton direction="left" disabled={activeIndex === 0} />
+                        </div>
+                        <button className="slider-btn motion-toggle"
+                            onClick={() => setIsPlaying(!isPlaying)}>Motion
+                            <span className="pause-icon"><img src={isPlaying ? "/icons/pause.svg" : "/icons/play.svg"} alt={isPlaying ? "pause" : "play"} /></span>
                         </button>
-                        <button
-                            className="slider-btn motion-toggle"
-                            onClick={() => setIsPlaying(!isPlaying)}
-                        >
-                            Motion
-                            <span className="pause-icon">
-                                <img src={isPlaying ? "/icons/pause.svg" : "/icons/play.svg"}
-                                    alt={isPlaying ? "pause" : "play"} />
-                            </span>
-                        </button>
-                        <button
-                            className="slider-btn arrow-next"
-                            aria-label="Next"
-                            onClick={handleNext}
-                            disabled={activeIndex === totalSliders - 1}
-                        > →
-                        </button>
+                        <div className={`center-box-arrow next ${activeIndex === totalSliders - 1 ? 'disabled' : ''}`} onClick={handleNext}>
+                            <ArrowButton direction="right" disabled={activeIndex === totalSliders - 1} />
+                        </div>
                     </div>
                 </div>
             </div>

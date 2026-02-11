@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { MdArrowForward } from 'react-icons/md';
+import Button from '../../component/Button/Button.jsx';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import ArrowButton from '../../component/Button/ArrowButton.jsx';
 import './News.css';
@@ -15,13 +17,14 @@ export default function News() {
     useFrame(() => {
         if (!sectionRef.current || !stickyRef.current || !climbingRef.current) return;
 
+        const STICKY_THRESHOLD = 130; // Distance from top in pixels where it should stick
         const rect = sectionRef.current.getBoundingClientRect();
         const stickyOffsetTop = stickyRef.current.offsetTop;
         const windowHeight = window.innerHeight;
         const stickyRelativeTop = rect.top + stickyOffsetTop;
 
-        if (stickyRelativeTop <= 0) {
-            const scrollDistance = -stickyRelativeTop;
+        if (stickyRelativeTop <= STICKY_THRESHOLD) {
+            const scrollDistance = STICKY_THRESHOLD - stickyRelativeTop;
             const stickyDuration = windowHeight * 0.6;
 
             const compensation = Math.min(scrollDistance, stickyDuration);
@@ -29,17 +32,9 @@ export default function News() {
 
             const progress = Math.min(scrollDistance / stickyDuration, 1);
             climbingRef.current.style.transform = `translate3d(0, -${progress * 50}%, 0)`;
-
-            // Move left panel down "a bit" as content climbs
-            if (leftPanelRef.current) {
-                leftPanelRef.current.style.transform = `translate3d(0, ${progress * 75}px, 10rem)`;
-            }
         } else {
             stickyRef.current.style.transform = `translate3d(0, 0, 0)`;
             climbingRef.current.style.transform = `translate3d(0, 0, 0)`;
-            if (leftPanelRef.current) {
-                leftPanelRef.current.style.transform = `translate3d(0, 0, 0)`;
-            }
         }
     });
 
@@ -53,11 +48,7 @@ export default function News() {
 
                     <div className="News-left-panel" ref={leftPanelRef}>
                         <div className="button-group news-cta-group">
-                            <button className="about-button">
-                                <span className="button-text default">See the list of announcements</span>
-                                <span className="button-text hover">See the list of announcements</span>
-                            </button>
-                            <ArrowButton direction="right" />
+                            <Button text="See the list of announcements" />
                         </div>
 
                         <div className="News-categories">
@@ -68,8 +59,8 @@ export default function News() {
                                         <span className="category-text hover">{item.title}</span>
                                     </div>
                                     <div className="category-arrow-wrapper">
-                                        <span className="category-arrow default">→</span>
-                                        <span className="category-arrow hover">→</span>
+                                        <span className="category-arrow default"><MdArrowForward size={20} /></span>
+                                        <span className="category-arrow hover"><MdArrowForward size={20} /></span>
                                     </div>
                                 </div>
                             ))}

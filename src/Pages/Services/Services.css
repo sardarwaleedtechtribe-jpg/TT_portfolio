@@ -195,12 +195,12 @@
 }
 
 .center-box-title-wrapper {
-    margin-bottom: 2rem;
-    padding-top: 35px;
+    margin-bottom: 1.5rem;
+    padding-top: 65px;
 }
 
 .center-box-title {
-    font-size: clamp(16px, 4vw, 18px);
+    font-size: clamp(16px, 4vw, 20px);
     font-weight: 800;
     letter-spacing: -0.02em;
     color: #000;
@@ -214,7 +214,7 @@
     color: #333;
     margin: 0;
     padding-bottom: 1.5rem;
-    word-spacing: 1em;
+    word-spacing: 1.35em;
 }
 
 .center-box-arrow {
@@ -233,4 +233,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.center-box-arrow .arrow-button-container {
+    width: 36px;
+    height: 36px;
 }

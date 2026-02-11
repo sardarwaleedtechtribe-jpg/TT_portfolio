@@ -10,7 +10,9 @@ const ArrowButton = ({ direction = 'right', disabled = false, isActive = false }
                 className={`arrow-button ${direction} ${isActive ? 'active' : ''}`}
                 disabled={disabled}
             >
-                <span className="arrow-text default"><ArrowIcon size={20} /></span>
+                <span className="arrow-text default">
+                    <ArrowIcon size={20} />
+                </span>
                 <span className="arrow-text hover"><ArrowIcon size={20} /></span>
             </button>
         </div>
