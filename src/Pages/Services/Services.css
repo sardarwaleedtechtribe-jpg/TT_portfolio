@@ -242,6 +242,18 @@
 
 /* --- Responsive Adjustments --- */
 
+/* Large Laptops & Monitors under 1370px */
+@media (max-width: 1370px) {
+    .services-header {
+        padding: 4rem 2rem;
+    }
+
+    .services-right-content {
+        right: 3rem;
+        bottom: 4rem;
+    }
+}
+
 /* Tablets & Small Laptops */
 @media (max-width: 1024px) {
     .services-right-content {

@@ -17,15 +17,32 @@ const Services = () => {
     const cardScrollerRef = useRef();
     const [activeCardIndex, setActiveCardIndex] = useState(0);
 
-    // Sticky range (Scaled for 14 pages)
-    const startOffset = 0.3990; // Adjusted for +15vh drop (15/1300 approx 0.0115)
-    const endOffset = 0.4565; // Adjusted for +15vh drop
+    const absoluteTopRef = useRef(null);
 
     useFrame(() => {
         if (!sectionRef.current) return;
 
         const offset = scroll.offset;
         const totalScroll = (scroll.pages - 1) * window.innerHeight;
+
+        // --- Robust Static Position Detection ---
+        if (absoluteTopRef.current === null && totalScroll > 0) {
+            let top = 0;
+            let el = sectionRef.current;
+
+            // Walk up the DOM tree to get the true absolute top position
+            while (el) {
+                top += el.offsetTop;
+                el = el.offsetParent;
+                // Stop if we hit the R3F scroll wrapper to avoid extra distance
+                if (el && el.parentElement?.classList.contains('scroll-controls')) break;
+            }
+            absoluteTopRef.current = top;
+        }
+
+        const startOffset = absoluteTopRef.current ? (absoluteTopRef.current / totalScroll) : 0.3990;
+        const scrollRange = 0.0575;
+        const endOffset = startOffset + scrollRange;
         const sectionHeight = sectionRef.current.offsetHeight;
 
         let compensation = 0;

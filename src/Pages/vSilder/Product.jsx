@@ -12,18 +12,45 @@ export default function Product() {
   const containerRefs = useRef([]);
   const [videosLoaded, setVideosLoaded] = useState([false, false, false]);
 
-  // The range where the video should stick to the top (Scaled for 14 pages)
-  const startOffset = 0.2163;
-  const endOffset = 0.2550;
+  const sectionRef = useRef(null);
+  const absoluteTopRef = useRef(null);
 
   useFrame(() => {
-    if (!stackRef.current) return;
+    if (!sectionRef.current || !stackRef.current) return;
 
     const scrollOffset = scroll.offset;
+    const totalScroll = (scroll.pages - 1) * window.innerHeight;
+
+    // --- Robust Dynamic Offset Detection ---
+    if (absoluteTopRef.current === null && totalScroll > 0) {
+      let top = 0;
+      let el = sectionRef.current;
+
+      // Accumulate offsets until we hit the relative root
+      while (el && !el.classList.contains('scroll-content')) {
+        top += el.offsetTop;
+        const parent = el.offsetParent;
+        if (!parent) break;
+
+        // If we hit a parent with absolute/relative top offset (like the 150vh content wrapper)
+        if (parent.style.top && parent.style.top.includes('vh')) {
+          const vhValue = parseFloat(parent.style.top);
+          top += (window.innerHeight * vhValue) / 100;
+          break; // Usually the root of the scrollable content
+        }
+        el = parent;
+      }
+      absoluteTopRef.current = top;
+    }
+
+    // Fallback to original working value if detection pending
+    const startOffset = absoluteTopRef.current ? (absoluteTopRef.current / totalScroll) : 0.2163;
+    const scrollRange = 0.0387;
+    const endOffset = startOffset + scrollRange;
+    // ------------------------------------------
     const isFixed = scrollOffset >= startOffset && scrollOffset <= endOffset;
 
     // Calculate compensation using dynamic page count
-    const totalScroll = (scroll.pages - 1) * window.innerHeight;
     const currentPixels = scrollOffset * totalScroll;
     const startPixels = startOffset * totalScroll;
     const topOffset = window.innerHeight * 0.043;
@@ -81,7 +108,7 @@ export default function Product() {
 
 
   return (
-    <section className="about-header">
+    <section ref={sectionRef} className="about-header">
       <SectionHeader label="Works" title="Production Achievements" theme="light" />
 
       <div ref={stackRef} className="product-videos-stack">

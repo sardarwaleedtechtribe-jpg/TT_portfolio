@@ -87,7 +87,7 @@ export default function CameraController() {
         const zoomOut = 0.1
         const effectiveScroll = Math.min(scroll.offset / ANIMATION_END, 1)
 
-        console.log("Scroll Offset: ", scroll.offset)
+        // console.log("Scroll Offset: ", scroll.offset)
         // 1. Calculate Initial Zoom Back Progress
         let zoomBackOffset = 0
         let motionProgress = 0
@@ -145,7 +145,7 @@ export default function CameraController() {
         const heightBoost = Math.max(0, scroll.offset - 0.15) * 1000 // Increasing gradually
         const activeHeightMultiplier = heightMultiplier + heightBoost
 
-        console.log("Scroll:", scroll.offset.toFixed(4), "Height Mult:", activeHeightMultiplier.toFixed(2))
+        // console.log("Scroll:", scroll.offset.toFixed(4), "Height Mult:", activeHeightMultiplier.toFixed(2))
 
         // Base spiral position
         spiralPositionRef.current.set(
