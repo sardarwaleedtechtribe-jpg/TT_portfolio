@@ -20,7 +20,7 @@ export default function Hero() {
 
     useFrame((state) => {
         const offset = scroll.offset
-        const normalizedOffset = Math.min(offset / 0.125, 1);
+        const normalizedOffset = Math.min(offset / 0.08, 1);
         const multiplier = 1 - normalizedOffset;
 
         setIntensityMultiplier(multiplier)
@@ -47,11 +47,6 @@ export default function Hero() {
             <ambientLight ref={ambientRef} intensity={0.5} />
             <Light intensityMultiplier={intensityMultiplier} />
             <Text />
-
-            {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -3, 0]} scale={20} >
-                <planeGeometry args={[100, 100]} />
-                <meshBasicMaterial ref={floorRef} color="#565555" />
-            </mesh> */}
         </>
     );
 }

@@ -18,8 +18,8 @@ const Services = () => {
     const [activeCardIndex, setActiveCardIndex] = useState(0);
 
     // Sticky range (Scaled for 14 pages)
-    const startOffset = 0.3875;
-    const endOffset = 0.4450;//0.4577
+    const startOffset = 0.3990; // Adjusted for +15vh drop (15/1300 approx 0.0115)
+    const endOffset = 0.4565; // Adjusted for +15vh drop
 
     useFrame(() => {
         if (!sectionRef.current) return;
@@ -62,8 +62,11 @@ const Services = () => {
                 lineLoaderRef.current.style.transform = `translateY(7.6rem) scaleY(${progress})`;
             }
 
-            if (cardScrollerRef.current) {
-                const cardHeight = 440; // matches .services-center-box height
+            if (cardScrollerRef.current && sectionRef.current) {
+                // Get the actual height of the container (defined in CSS)
+                const centerBox = sectionRef.current.querySelector('.services-center-box');
+                const cardHeight = centerBox ? centerBox.offsetHeight : 440;
+
                 const gap = 10; // matches .services-box-scroller gap
                 const totalMove = (cardHeight + gap) * (SERVICE_CARDS.length - 1);
                 const cardMove = (progress - 1) * totalMove;

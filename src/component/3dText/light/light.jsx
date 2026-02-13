@@ -12,15 +12,12 @@ export default function Light({ intensityMultiplier = 1 }) {
   const rectLight2 = useRef();
 
   // Static values to replace useControls
-  const position1 = [1.3, 5.1, -2.72];
+  const position1 = [3.3, 5.1, -2.72];
   const rotation1 = [-1.5, 0.4, 0];
-  const scale1 = [500, 50, 50];
-  const position2 = [-6.3, 0.6, 3];
-  const scale2 = [500, 50, 50];
+  const scale1 = [50, 50, 50];
 
   return (
     <>
-      {/* RectAreaLight 1 */}
       <rectAreaLight
         ref={rectLight1}
         width={10}

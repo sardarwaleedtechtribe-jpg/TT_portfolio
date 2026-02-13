@@ -12,18 +12,8 @@ export default function Text() {
 
   useFrame(() => {
     const offset = scroll.offset;
-
-    // Text should reach 0.002 at offset 0.254
-    // Formula: scaleY = 1 - (offset / 0.254) * 0.998
-    // At offset 0: scaleY = 1
-    // At offset 0.254: scaleY = 0.002
-    const normalizedOffset = Math.min(offset / 0.254, 1); // Clamp to max 1
+    const normalizedOffset = Math.min(offset / 0.15, 1);
     const scaleY = 1 - normalizedOffset * 0.998;
-
-    // Logo Z scale: 6 to 0.6 at offset 0.254
-    // Formula: logoScaleZ = 6 - (offset / 0.254) * 5.4
-    // At offset 0: logoScaleZ = 6
-    // At offset 0.254: logoScaleZ = 0.6
     const logoScaleZ = 6 - normalizedOffset * 5.4;
 
     if (techRef.current) techRef.current.scale.z = scaleY;

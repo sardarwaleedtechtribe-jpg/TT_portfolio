@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     padding: 6rem 1.5rem 6rem;
-    margin: -15px 0 0 0;
+    margin-top: calc(20px + 15vh);
     box-sizing: border-box;
     overflow: hidden;
     color: #fff;
@@ -238,4 +238,95 @@
 .center-box-arrow .arrow-button-container {
     width: 36px;
     height: 36px;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+    .services-right-content {
+        right: 3rem;
+        bottom: 3.5rem;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .services-header {
+        padding: 4rem 1.5rem 3rem;
+        margin-top: 5vh;
+        /* Less top margin on mobile */
+    }
+
+    .services-center-box {
+        width: 290px;
+        height: 420px;
+    }
+
+    .services-right-content {
+        right: 1.5rem;
+        bottom: 2rem;
+    }
+
+    .services-footer {
+        width: 100%;
+    }
+
+    .services-line-loader {
+        margin-left: 0;
+        height: 4rem;
+        transform: translateY(5rem) scaleY(0);
+    }
+
+    .services-tag-list {
+        gap: 0.6rem;
+    }
+
+    .service-tag {
+        font-size: 0.85rem;
+    }
+
+    .center-box-title-wrapper {
+        padding-top: 40px;
+        margin-bottom: 1rem;
+    }
+
+    .center-box-title {
+        font-size: 1.15rem;
+    }
+
+    .center-box-description {
+        font-size: 12px;
+        word-spacing: 0.2em;
+        /* Normal word spacing for mobile readability */
+        line-height: 1.4;
+    }
+
+    .services-right-content .about-button {
+        padding: 0 1.5rem;
+        font-size: 10px;
+        height: 44px;
+    }
+}
+
+/* Very Small Devices */
+@media (max-width: 480px) {
+    .services-center-box {
+        width: 88%;
+        height: 400px;
+    }
+
+    .services-tag-list {
+        display: none;
+        /* Simplify UI on tiny screens */
+    }
+
+    .services-right-content {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+    }
 }

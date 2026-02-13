@@ -5,17 +5,15 @@ import CaseList from "../Pages/CaseRow/CaseList.jsx";
 import Services from "../Pages/Services/Services.jsx";
 import Strengths from "../Pages/Strengths/Strengths.jsx";
 import Parthner from "../Pages/Parthner/Parthner.jsx";
-import Footer from "../Pages/Footer/Footer.jsx";
-import Button from "../component/Button/Button.jsx";
-import Header from "../component/TopHeader/header.jsx";
-import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
-
-
 import Flow from "../Pages/Flow/Flow.jsx";
 import News from "../Pages/News/News.jsx";
 import FAQ from "../Pages/FAQ/FAQ.jsx";
+import Footer from "../Pages/Footer/Footer.jsx";
+import Header from "../component/TopHeader/header.jsx";
+// import Button from "../component/Button/Button.jsx";
+// import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 
 export default function HeroOverlay() {
     const scroll = useScroll();
@@ -27,11 +25,10 @@ export default function HeroOverlay() {
         if (!wrapperRef.current || !contentRef.current || !caseListWrapperRef.current) return;
 
         const scrollOffset = scroll.offset;
-        console.log("Scroll Offset:", scrollOffset.toFixed(4));
 
         // --- Product Animation Math (Sync with Product.jsx) ---
-        const startOffset = 0.2078;
-        const endOffset = 0.2541;
+        const startOffset = 0.2163; // Adjusted for +15vh (15/1300)
+        const endOffset = 0.2580; // Adjusted for +15vh
         const totalScroll = (scroll.pages - 1) * window.innerHeight;
         const currentPixels = scrollOffset * totalScroll;
         const startPixels = startOffset * totalScroll;
@@ -62,7 +59,6 @@ export default function HeroOverlay() {
         // Calculate CaseList anchor point (locked to Video 4's bottom)
         const v4Height = 90; // Video 4 height in vh
         const currentCaseListTopPx = compensation + (v4Top + v4Height) * (window.innerHeight / 100);
-        // Initial anchor (where CaseList would be without tailing)
         const initialCaseListTopPx = topOffset + (85 + v4Height) * (window.innerHeight / 100);
         const tailingTranslation = currentCaseListTopPx - initialCaseListTopPx;
 
@@ -70,7 +66,7 @@ export default function HeroOverlay() {
 
         // --- Original Scroll Accelerator ---
         const scrollDist = scroll.pages * window.innerHeight;
-        const contentHeight = contentRef.current.offsetHeight + (window.innerHeight * 1.35);
+        const contentHeight = contentRef.current.offsetHeight + (window.innerHeight * 1.5);
 
         if (contentHeight > scrollDist) {
             const deficit = contentHeight - scrollDist;
@@ -82,21 +78,18 @@ export default function HeroOverlay() {
         }
     });
 
-    // console.log("HeroOverlay Mounting");
-
     return (
         <Scroll html>
             <Header />
-            {/* <BottomLeftText /> */}
             <div ref={wrapperRef} style={{ width: '100vw', minHeight: '100vh', overflow: 'visible' }}>
-                <div ref={contentRef} style={{ position: 'relative', top: '135vh', width: '100vw', overflow: 'visible' }}>
+                <div ref={contentRef} style={{ position: 'relative', top: '150vh', width: '100vw', overflow: 'visible' }}>
                     <About />
                     <Product />
                     <div ref={caseListWrapperRef} style={{ overflow: 'visible' }}>
-                        <div style={{ marginTop: '86.55vh' }}><CaseList /></div>
+                        <CaseList />
                         <Services />
                     </div>
-                    <div style={{ marginTop: '60vh', height: 'auto' }}>
+                    <div style={{ marginTop: '44vh', height: 'auto' }}>
                         <Strengths />
                         <Flow />
                         <News />

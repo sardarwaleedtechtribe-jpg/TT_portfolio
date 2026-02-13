@@ -1,11 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, Canvas } from '@react-three/fiber';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import './Strengths.css';
 import { STATS_DATA, DETAILED_STRENGTHS } from './strengthsData.js';
-import { Shape01, Shape02, Shape03, Shape04, Shape05 } from '../../component/Shapes/Core/Shapes.jsx';
-
-const SHAPES = [Shape01, Shape02, Shape03, Shape04, Shape05];
+import { Shape01R3F, Shape02R3F, Shape03R3F, Shape04R3F, Shape05R3F } from '../../component/Shapes/R3F/index.js';
 
 const StatCounter = ({ value, label }) => {
     const [count, setCount] = useState(0);
@@ -15,18 +13,14 @@ const StatCounter = ({ value, label }) => {
     useEffect(() => {
         const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
 
-        console.log(`Setting up observer for ${label}`);
-
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log(`Intersection for ${label}:`, entry.isIntersecting);
                 if (entry.isIntersecting && !hasAnimated) {
-                    console.log(`Starting animation for ${label}`);
                     startAnimation();
                 }
             },
             {
-                threshold: 0.1, // Trigger as soon as 10% is visible
+                threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px' // Offset slightly to ensure it's "well" in view
             }
         );
@@ -78,19 +72,20 @@ export default function Strengths() {
     const detailsViewportRef = useRef();
     const detailsInnerRef = useRef();
     const [activeIndex, setActiveIndex] = useState(0);
+    const [prevIndex, setPrevIndex] = useState(0);
+    const [transitionProgress, setTransitionProgress] = useState(1);
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const hasReachedTopRef = useRef(false);
+    const transitionStartRef = useRef(0);
+    const TRANSITION_DURATION = 800; // 0.8 seconds
 
-    useFrame(() => {
+    useFrame((state, delta) => {
         if (!containerRef.current || !stageRef.current || !detailsViewportRef.current || !detailsInnerRef.current) return;
 
         const rect = containerRef.current.getBoundingClientRect();
 
-        if (rect.top <= 1 && !hasReachedTopRef.current) {
-            console.log("%c >>> Strengths section has reached the TOP <<<", "color: #fff; background: #ff0000; font-weight: bold; padding: 4px;");
-            hasReachedTopRef.current = true;
-        } else if (rect.top > 10) {
-            hasReachedTopRef.current = false;
-        }
+        if (rect.top <= 1 && !hasReachedTopRef.current) { hasReachedTopRef.current = true; }
+        else if (rect.top > 10) { hasReachedTopRef.current = false; }
 
         const viewportHeight = detailsViewportRef.current.clientHeight;
         const innerHeight = detailsInnerRef.current.scrollHeight;
@@ -120,8 +115,27 @@ export default function Strengths() {
         const totalItems = DETAILED_STRENGTHS.length;
         const currentActive = Math.min(totalItems - 1, Math.max(0, Math.round(progress * (totalItems - 1))));
 
+        // Handle transition logic
         if (currentActive !== activeIndex) {
+            setPrevIndex(activeIndex);
             setActiveIndex(currentActive);
+            setIsTransitioning(true);
+            transitionStartRef.current = state.clock.elapsedTime;
+        }
+
+        // Update transition progress
+        if (isTransitioning) {
+            const elapsed = state.clock.elapsedTime - transitionStartRef.current;
+            const progress = Math.min(1, elapsed / (TRANSITION_DURATION / 1000));
+
+            // Ease-out cubic function for smooth transition
+            const easedProgress = progress === 1 ? 1 : 1 - Math.pow(1 - progress, 3);
+            setTransitionProgress(easedProgress);
+
+            if (progress >= 1) {
+                setIsTransitioning(false);
+                setTransitionProgress(1);
+            }
         }
     });
 
@@ -146,14 +160,31 @@ export default function Strengths() {
                 <div ref={containerRef} className="strengths-layout-container">
                     <aside className="strengths-left-section" aria-hidden="true">
                         <div className="shape-container">
-                            {SHAPES.map((Shape, index) => (
-                                <div
-                                    key={index}
-                                    className={`shape-wrapper ${index === activeIndex ? 'active' : ''}`}
-                                >
-                                    <Shape />
-                                </div>
-                            ))}
+                            <Canvas
+                                camera={{ position: [0, 0, 8], fov: 50 }}
+                                style={{ width: '100%', height: '100%' }}
+                            >
+                                <ambientLight intensity={0.5} />
+                                <directionalLight position={[5, 5, 5]} intensity={1} />
+
+                                {/* Previous shape fading out */}
+                                <group visible={isTransitioning}>
+                                    <Shape01R3F isActive={prevIndex === 0} opacity={1 - transitionProgress} />
+                                    <Shape02R3F isActive={prevIndex === 1} opacity={1 - transitionProgress} />
+                                    <Shape03R3F isActive={prevIndex === 2} opacity={1 - transitionProgress} />
+                                    <Shape04R3F isActive={prevIndex === 3} opacity={1 - transitionProgress} />
+                                    <Shape05R3F isActive={prevIndex === 4} opacity={1 - transitionProgress} />
+                                </group>
+
+                                {/* Current shape fading in */}
+                                <group visible={true}>
+                                    <Shape01R3F isActive={activeIndex === 0} opacity={isTransitioning ? transitionProgress : 1} />
+                                    <Shape02R3F isActive={activeIndex === 1} opacity={isTransitioning ? transitionProgress : 1} />
+                                    <Shape03R3F isActive={activeIndex === 2} opacity={isTransitioning ? transitionProgress : 1} />
+                                    <Shape04R3F isActive={activeIndex === 3} opacity={isTransitioning ? transitionProgress : 1} />
+                                    <Shape05R3F isActive={activeIndex === 4} opacity={isTransitioning ? transitionProgress : 1} />
+                                </group>
+                            </Canvas>
                         </div>
                     </aside>
 

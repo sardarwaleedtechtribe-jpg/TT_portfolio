@@ -13,8 +13,8 @@ export default function Product() {
   const [videosLoaded, setVideosLoaded] = useState([false, false, false]);
 
   // The range where the video should stick to the top (Scaled for 14 pages)
-  const startOffset = 0.2048;
-  const endOffset = 0.2465;
+  const startOffset = 0.2163;
+  const endOffset = 0.2550;
 
   useFrame(() => {
     if (!stackRef.current) return;
@@ -45,7 +45,7 @@ export default function Product() {
     }
 
     // Rollover logic
-    const totalRange = endOffset - startOffset; 
+    const totalRange = endOffset - startOffset;
     const segmentLength = totalRange / 4;
 
     // Video 2
@@ -67,15 +67,15 @@ export default function Product() {
 
     // Update container positions
     if (containerRefs.current[1]) {
-        containerRefs.current[1].style.top = `${v2Top}vh`;
+      containerRefs.current[1].style.top = `${v2Top}vh`;
     }
     if (containerRefs.current[2]) {
-        containerRefs.current[2].style.top = `${v3Top}vh`;
-        containerRefs.current[2].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
+      containerRefs.current[2].style.top = `${v3Top}vh`;
+      containerRefs.current[2].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
     if (containerRefs.current[3]) {
-        containerRefs.current[3].style.top = `${v4Top}vh`;
-        containerRefs.current[3].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
+      containerRefs.current[3].style.top = `${v4Top}vh`;
+      containerRefs.current[3].style.visibility = scrollOffset >= startOffset ? 'visible' : 'hidden';
     }
   });
 
