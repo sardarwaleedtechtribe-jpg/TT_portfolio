@@ -29,7 +29,7 @@ export default function Hero() {
         if (ambientRef.current) ambientRef.current.intensity = 0.5 * multiplier
 
         // Background color transitions to white at 0.15
-        const colorNormalizedOffset = Math.min(offset / 0.3, 1);
+        const colorNormalizedOffset = Math.min(offset / 0.125, 1);
         const currentColor = baseColor.clone().lerp(targetColor, colorNormalizedOffset)
         state.scene.background = currentColor
 

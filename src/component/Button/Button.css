@@ -4,86 +4,85 @@
     --btn-color: #fff;
     --btn-height: 52px;
     --btn-transition: 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-    --arrow-offset: 0px;
+    --btn-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --arrow-slide-dist: 100%;
 }
 
+/* ============================
+   Base Button Group
+   ============================ */
 .button-group {
     display: flex;
-    gap: 0.1rem;
+    gap: 1px;
     align-items: center;
     margin-top: 2rem;
     cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+    text-align: left;
 }
 
+.button-group:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* ============================
+   Main Text Button Component
+   ============================ */
 .about-button {
-    padding: 0rem 2rem;
+    padding: 0 2rem;
     background: var(--btn-bg-primary);
     color: var(--btn-color);
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
     height: var(--btn-height);
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.btn-Forall {
-    background: none;
-    border: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    padding: 0;
-    margin-top: 0.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 27%;
-    width: 100%;
     position: relative;
     overflow: hidden;
+    transition: background var(--btn-transition);
 }
 
 .button-group:hover .about-button {
     background: var(--btn-bg-hover);
 }
 
-/* ============================
-   Button Text Animation
-   ============================ */
-.button-text {
-    display: inline-block;
-    transition: all var(--btn-transition);
+.button-content-wrapper {
+    height: 1.2em;
+    /* Height of one line of text */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.button-text.default {
-    transform: translateY(0);
-    opacity: 1;
+.button-text {
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform var(--btn-transition), opacity var(--btn-transition);
+    white-space: nowrap;
 }
 
 .button-text.hover {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, calc(-50% + 100%));
-    opacity: 1;
-    white-space: nowrap;
+    top: 0;
+    transform: translateY(100%);
 }
 
 .button-group:hover .button-text.default {
     transform: translateY(-100%);
-    opacity: 1;
 }
 
 .button-group:hover .button-text.hover {
-    transform: translate(-50%, -50%);
-    opacity: 1;
+    transform: translateY(0);
 }
 
+/* ============================
+   Arrow Button Component
+   ============================ */
 .arrow-button-container {
     width: var(--btn-height);
     height: var(--btn-height);
@@ -92,21 +91,15 @@
     justify-content: center;
     overflow: hidden;
     background: var(--btn-bg-primary);
+    transition: background var(--btn-transition);
 }
 
 .button-group:hover .arrow-button-container,
-.arrow-button-container:hover {
+.arrow-button-standalone:hover {
     background: var(--btn-bg-hover);
 }
 
-.arrow-button {
-    padding: 0;
-    background: transparent;
-    color: var(--btn-color);
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
+.arrow-wrapper {
     width: 40%;
     height: 100%;
     display: flex;
@@ -114,119 +107,96 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    line-height: 0;
 }
 
-.arrow-button svg {
-    display: block;
-}
-
-.button-group:hover .arrow-button,
-.arrow-button:hover:not(:disabled) {
-    background: transparent;
-}
-
-.arrow-button:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-/* ============================
-   Arrow Text Animation
-   ============================ */
-.arrow-text {
+.arrow-icon {
     display: inline-block;
-    font-weight: 900;
-    -webkit-text-stroke: 0.5px currentColor;
     will-change: transform, opacity;
+    transition: color var(--btn-transition);
+    color: var(--btn-color);
 }
 
-.arrow-text.default {
-    transform: translate(0, var(--arrow-offset));
-    opacity: 1;
+.arrow-icon.default {
+    transform: translate(0, 0);
 }
 
-.arrow-text.hover {
+.arrow-icon.hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(calc(-50% - 100%), calc(-50% + var(--arrow-offset)));
+    /* Start position based on direction */
+    transform: translate(calc(-50% - var(--arrow-slide-dist)), -50%);
     opacity: 0;
 }
 
-/* ============================
-   Keyframe Animations
-   ============================ */
+/* --- Animations --- */
 @keyframes arrowOut {
-    from {
-        transform: translate(0, var(--arrow-offset));
-        opacity: 1;
-    }
-
     to {
-        transform: translate(100%, var(--arrow-offset));
+        transform: translate(var(--arrow-slide-dist), 0);
         opacity: 0;
     }
 }
 
 @keyframes arrowIn {
-    from {
-        transform: translate(calc(-50% - 100%), calc(-50% + var(--arrow-offset)));
-        opacity: 0;
-    }
-
     to {
         transform: translate(-50%, -50%);
         opacity: 1;
     }
 }
 
-.button-group:hover .arrow-text.default,
-.arrow-button:hover .arrow-text.default {
-    animation: arrowOut var(--btn-transition) forwards;
-}
-
-.button-group:hover .arrow-text.hover,
-.arrow-button:hover .arrow-text.hover {
-    animation: arrowIn var(--btn-transition) 0.35s forwards;
-}
-
-/* ============================
-   Navigation Prev Button - Reversed Animation
-   ============================ */
-.center-box-arrow.prev .arrow-text.hover {
-    transform: translate(calc(-50% + 100%), calc(-50% + var(--arrow-offset)));
-}
-
 @keyframes arrowOutReverse {
-    from {
-        transform: translate(0, var(--arrow-offset));
-        opacity: 1;
-    }
-
     to {
-        transform: translate(-100%, var(--arrow-offset));
+        transform: translate(calc(var(--arrow-slide-dist) * -1), 0);
         opacity: 0;
     }
 }
 
 @keyframes arrowInReverse {
-    from {
-        transform: translate(calc(-50% + 100%), calc(-50% + var(--arrow-offset)));
-        opacity: 0;
-    }
-
     to {
         transform: translate(-50%, -50%);
         opacity: 1;
     }
 }
 
-.center-box-arrow.prev .arrow-button:hover .arrow-text.default {
+/* Trigger animations on hover */
+.button-group:hover .arrow-icon.default,
+.arrow-button-container:hover .arrow-icon.default,
+.center-box-arrow:hover .arrow-icon.default,
+.arrow-button-standalone:hover .arrow-icon.default {
+    animation: arrowOut var(--btn-transition) forwards;
+}
+
+.button-group:hover .arrow-icon.hover,
+.arrow-button-container:hover .arrow-icon.hover,
+.center-box-arrow:hover .arrow-icon.hover,
+.arrow-button-standalone:hover .arrow-icon.hover {
+    animation: arrowIn var(--btn-transition) 0.3s forwards;
+}
+
+/* --- Direction Handling --- */
+.arrow-wrapper.left .arrow-icon.hover {
+    transform: translate(calc(-50% + var(--arrow-slide-dist)), -50%);
+}
+
+.arrow-wrapper.left:hover .arrow-icon.default,
+.button-group:hover .arrow-wrapper.left .arrow-icon.default {
     animation: arrowOutReverse var(--btn-transition) forwards;
 }
 
-.center-box-arrow.prev .arrow-button:hover .arrow-text.hover {
-    animation: arrowInReverse var(--btn-transition) 0.35s forwards;
+.arrow-wrapper.left:hover .arrow-icon.hover,
+.button-group:hover .arrow-wrapper.left .arrow-icon.hover {
+    animation: arrowInReverse var(--btn-transition) 0.3s forwards;
+}
+
+/* ============================
+   Context Specific Overrides (Optional Utilities)
+   ============================ */
+.center-box-arrow {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.center-box-arrow.disabled {
+    opacity: 0.3;
+    pointer-events: none;
 }
