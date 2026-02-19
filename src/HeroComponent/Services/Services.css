@@ -122,21 +122,10 @@
     right: 5rem;
 }
 
-.services-right-content .about-button,
-.services-right-content .arrow-button-container {
-    background: #ffffff;
-    color: #000000;
-    font-size: 12px;
-    height: 52px;
-}
-
-.services-right-content .arrow-button {
-    color: #000000;
-}
-
-.services-right-content .button-group:hover .about-button,
-.services-right-content .button-group:hover .arrow-button-container {
-    background: #f0f0f0;
+/* Specific sizing for the footer button */
+.services-explore-btn {
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .services-center-box {
@@ -225,19 +214,10 @@
     justify-content: center;
 }
 
-.center-box-arrow .arrow-button {
-    padding: 0;
-    min-width: 2.24rem;
-    height: 2.24rem;
-    font-size: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.center-box-arrow .arrow-button-container {
-    width: 36px;
-    height: 36px;
+/* Specific sizing for card arrows */
+.services-card-arrow {
+    width: 36px !important;
+    height: 36px !important;
 }
 
 /* --- Responsive Adjustments --- */

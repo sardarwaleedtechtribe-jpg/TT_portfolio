@@ -126,7 +126,7 @@ const Services = () => {
                                 {card.description}
                             </p>
                             <div className="center-box-arrow">
-                                <ArrowButton />
+                                <ArrowButton className="btn-dark services-card-arrow" />
                             </div>
                         </div>
                     ))}
@@ -146,7 +146,10 @@ const Services = () => {
             </div>
             {/* right footerButton */}
             <div className="services-right-content">
-                <Button text="Explore our services" />
+                <Button
+                    text="Explore our services"
+                    className="btn-light services-explore-btn"
+                />
             </div>
         </section>
     );

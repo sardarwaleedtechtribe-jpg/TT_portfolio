@@ -23,11 +23,11 @@ const Header = ({ theme = 'light' }) => {
     };
 
     const buttonOverrides = `
-        !mt-0 !w-[185px] !h-[38px]
-        [&_.about-button]:!h-full [&_.about-button]:!flex-1 [&_.about-button]:!p-0 
+        !mt-0 !w-[210px] [--btn-height:40px]
+        [&_.about-button]:!h-[var(--btn-height)] [&_.about-button]:!flex-1 [&_.about-button]:!p-0 
         [&_.about-button]:!flex [&_.about-button]:!items-center [&_.about-button]:!justify-center
-        [&_.button-text]:!text-[11px] 
-        [&_.arrow-button-container]:!h-full [&_.arrow-button-container]:!min-w-[37px] [&_.arrow-button-container]:!p-0
+        [&_.button-text]:!text-[11px] [&_.button-text]:!font-light
+        [&_.arrow-button-container]:!h-[var(--btn-height)] [&_.arrow-button-container]:!min-w-[37px] [&_.arrow-button-container]:!p-0
         ${mode === 'dark'
             ? "[&_.about-button]:!bg-black [&_.about-button]:!text-white [&_.button-group:hover_.about-button]:!bg-[#1a1a1a] [&_.button-text]:!text-white"
             : "[&_.about-button]:!bg-white [&_.about-button]:!text-black [&_.button-group:hover_.about-button]:!bg-[#f0f0f0] [&_.button-text]:!text-black"
