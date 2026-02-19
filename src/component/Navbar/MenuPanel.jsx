@@ -32,7 +32,7 @@ import { TOP_CARDS, MENU_ITEMS } from './MenuData';
 const MenuPanel = ({ isOpen, handleNavigation }) => {
     return (
         <div className={`
-            relative mb-[6px] w-[725px] max-w-[97vw] h-[80vh]
+            relative mb-[6px] w-[780px] max-w-[97vw] h-[80vh]
             bg-[rgb(10,10,10)] rounded-[2px] shadow-[0_10px_40px_rgba(0,0,0,0.8)]
             border border-white/10 overflow-y-auto overflow-x-hidden
             [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]

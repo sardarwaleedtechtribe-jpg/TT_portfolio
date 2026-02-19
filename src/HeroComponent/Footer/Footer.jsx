@@ -105,7 +105,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="footer-big-logo-container" ref={logoRef}>
-                    <LogoMark theme="dark" animate={logoVisible} />
+                    <LogoMark theme="dark" animate={logoVisible} variant="large" />
                 </div>
             </div>
 
