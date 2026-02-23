@@ -9,7 +9,7 @@ const Header = ({ theme = 'light' }) => {
     // Layout configuration
     const headerStyles = `absolute top-0 left-0 w-full z-[1001] p-[20px_30px] pointer-events-none flex justify-between items-start box-border`;
 
-    // Tagline styles
+    // Tagline styles 
     const taglineStyles = `font-['Inter'] text-[9px] font-medium tracking-[0.1em] uppercase ${isDarkUi ? 'text-black/60' : 'text-white/60'}`;
 
     // Mode Toggle styles
@@ -38,7 +38,7 @@ const Header = ({ theme = 'light' }) => {
         <header className={`${headerStyles} ${isDarkUi ? 'dark-ui' : ''}`}>
             {/* Logo Block */}
             <div className="pointer-events-auto relative w-fit flex flex-col">
-                <div className="relative z-[2] p-[16px_20px] flex flex-col">
+                <div className="relative z-[2] p-[16px_0px] flex flex-col">
                     <LogoMark theme={mode} />
                     <div className="flex items-center mt-[6px]">
                         <span className={taglineStyles}>Digital Creative Studio</span>

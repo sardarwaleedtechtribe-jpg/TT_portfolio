@@ -1,9 +1,7 @@
-import Hero from "./hero/hero.jsx";
 import CameraController from "./CameraController.jsx";
+import Hero from "./hero/hero.jsx";
 import HeroOverlay from "./hero/HeroOverlay.jsx";
 import { ScrollControls } from "@react-three/drei";
-import Strengths from "./HeroComponent/Strengths/Strengths.jsx";
-import Flow from "./HeroComponent/Flow/Flow.jsx";
 
 export default function Experience() {
     return (

@@ -1,10 +1,10 @@
 import { Center, useScroll } from "@react-three/drei";
-import { Text3D } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import LogoModel from "../model/LogoModel";
+import TextItem from "./TextItem";
 
-export default function Text() {
+export default function Text({ pure = false }) {
   const scroll = useScroll();
   const techRef = useRef();
   const tribeRef = useRef();
@@ -24,49 +24,19 @@ export default function Text() {
   return (
     <Center position={[0, -2.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
       <group>
-        <Text3D
+        <TextItem
           ref={techRef}
-          font="/fonts/helvetiker_bold.typeface.json"
-          size={1.6}
-          height={0.5}
-          curveSegments={12}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          letterSpacing={0.3}
+          text="TECH"
           position={[0.15, 0, 0]}
-        >
-          TECH
-          <meshPhysicalMaterial
-            color="black"
-            metalness={0.8}
-            roughness={0.5}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </Text3D>
-        <Text3D
+          pure={pure}
+        />
+        <TextItem
           ref={tribeRef}
-          font="/fonts/helvetiker_bold.typeface.json"
-          size={1.6}
-          height={0.5}
-          curveSegments={12}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          letterSpacing={0.3}
+          text="TRIBE"
           position={[0, -2.0, 0]}
-        >
-          TRIBE
-          <meshPhysicalMaterial
-            color="black"
-            metalness={0.8}
-            roughness={0.5}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </Text3D>
-        <LogoModel ref={logoRef} position={[9, -0.25, 0.26]} scale={[3.5, 3.8, 6]} />
+          pure={pure}
+        />
+        <LogoModel ref={logoRef} position={[9, -0.25, 0.26]} scale={[3.5, 3.8, 6]} pure={pure} />
       </group>
     </Center>
   );

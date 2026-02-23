@@ -2,13 +2,13 @@ import { useGLTF, Center } from "@react-three/drei";
 import { useMemo, forwardRef } from "react";
 import * as THREE from "three";
 
-const LogoModel = forwardRef((props, ref) => {
+const LogoModel = forwardRef(({ pure = false, ...props }, ref) => {
   const { scene } = useGLTF("/logo/t.glb");
 
   useMemo(() => {
     scene.traverse((child) => {
       if (child.isMesh) {
-        child.material = new THREE.MeshPhysicalMaterial({
+        child.material = pure ? new THREE.MeshBasicMaterial({ color: "black" }) : new THREE.MeshPhysicalMaterial({
           color: "black",
           metalness: 0.8,
           roughness: 0.5,
@@ -17,7 +17,7 @@ const LogoModel = forwardRef((props, ref) => {
         });
       }
     });
-  }, [scene]);
+  }, [scene, pure]);
 
   return (
     <group ref={ref} {...props}>

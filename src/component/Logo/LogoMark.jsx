@@ -24,7 +24,7 @@ const LogoMark = ({ theme = 'light', animate = null, variant = 'default' }) => {
                 <span className={`${textBase} ${isLarge ? 'mt-[1vw]' : 'mt-1'} ${getAnimationState('delay-[0.15s]')}`}>TRIBE</span>
             </div>
             <div className="flex-shrink-0">
-                <img src="/logo/t.svg" alt="T Logo"
+                <img src="/icons/T.svg" alt="T Logo"
                     className={`${isLarge ? 'h-[clamp(200px,52vw,650px)]' : 'h-[58px]'} w-auto block ${isDark ? 'brightness-0' : 'drop-shadow-[0_0_10px_rgba(0,0,0,0.5)]'} ${getAnimationState('delay-[0.3s]')}`}
                 />
             </div>

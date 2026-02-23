@@ -59,7 +59,7 @@ const Navbar = () => {
 
             <div className="relative flex items-center">
                 <nav className={`
-                    w-[710px] h-[53px] bg-[rgb(20,20,20)] rounded-[3px] flex items-center justify-between px-1 box-border shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all duration-300 pointer-events-auto relative
+                    w-[835px] h-[53px] bg-[rgb(20,20,20)] rounded-[3px] flex items-center justify-between px-1 box-border shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all duration-300 pointer-events-auto relative
                     before:content-[''] before:absolute before:inset-[2px] before:border before:border-white/20 before:rounded-[2px] before:transition-opacity before:duration-300 before:pointer-events-none
                     ${isOpen ? 'before:opacity-100' : 'before:opacity-0'}
                 `}>
@@ -70,7 +70,7 @@ const Navbar = () => {
                                     <Link
                                         to={link.path}
                                         onClick={(e) => handleNavigation(e, link.path)}
-                                        className="text-white no-underline font-['Inter'] text-[12.5px] font-medium tracking-[-1px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap border border-white/20 px-[17.8px] h-[42px] flex items-center justify-center rounded-[2px] leading-none hover:bg-white/10 hover:border-white/40"
+                                        className="text-white no-underline font-['Inter'] text-[12.5px] font-medium tracking-[1.25px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap border border-white/20 px-[17.8px] h-[42px] flex items-center justify-center rounded-[2px] leading-none hover:bg-white/10 hover:border-white/40"
                                     >
                                         <span className="h-[1.25em] relative overflow-hidden flex items-center justify-center px-[5px]">
                                             <span className="block transition-transform duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[150%] will-change-transform">{link.name}</span>

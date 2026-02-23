@@ -8,7 +8,7 @@ import Light from "../component/3dText/light/light.jsx";
 import Text from "../component/3dText/text/text.jsx";
 import "./hero.css";
 
-export default function Hero() {
+export default function Hero({ pure = false, ...props }) {
     const scroll = useScroll()
     const ambientRef = useRef()
     const floorRef = useRef()
@@ -19,6 +19,10 @@ export default function Hero() {
     const targetColor = new THREE.Color("#ffffff")
 
     useFrame((state) => {
+        if (pure) {
+            state.scene.background = targetColor
+            return
+        }
         const offset = scroll.offset
         const normalizedOffset = Math.min(offset / 0.08, 1);
         const multiplier = 1 - normalizedOffset;
@@ -38,15 +42,17 @@ export default function Hero() {
     })
 
     return (
-        <>
-            <EffectComposer>
-                <Noise opacity={noiseOpacity}
-                    blendFunction={BlendFunction.OVERLAY}
-                    color="white" />
-            </EffectComposer>
-            <ambientLight ref={ambientRef} intensity={0.5} />
-            <Light intensityMultiplier={intensityMultiplier} />
-            <Text />
-        </>
+        <group {...props}>
+            {!pure && (
+                <EffectComposer>
+                    <Noise opacity={noiseOpacity}
+                        blendFunction={BlendFunction.OVERLAY}
+                        color="white" />
+                </EffectComposer>
+            )}
+            {!pure && <ambientLight ref={ambientRef} intensity={0.5} />}
+            {!pure && <Light intensityMultiplier={intensityMultiplier} />}
+            <Text pure={pure} />
+        </group>
     );
 }
