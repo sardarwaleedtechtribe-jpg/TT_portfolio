@@ -10,7 +10,7 @@ const Header = ({ theme = 'light' }) => {
     const headerStyles = `absolute top-0 left-0 w-full z-[1001] p-[20px_30px] pointer-events-none flex justify-between items-start box-border`;
 
     // Tagline styles 
-    const taglineStyles = `font-['Inter'] text-[9px] font-medium tracking-[0.1em] uppercase ${isDarkUi ? 'text-black/60' : 'text-white/60'}`;
+    const taglineStyles = `font-['Inter'] text-[7px] font-medium tracking-[0.1em] uppercase ${isDarkUi ? 'text-black/60' : 'text-white/60'}`;
 
     // Mode Toggle styles
     const toggleContainer = `flex bg-black/40 p-[2px] rounded-[2px] items-stretch gap-[1px] pointer-events-auto border border-white`;
@@ -21,7 +21,7 @@ const Header = ({ theme = 'light' }) => {
             ? "bg-[#111111] text-white border-[1.5px] border-white z-10 shadow-lg"
             : "bg-[#eeeeee] text-black underline underline-offset-[3px] decoration-[1.5px]";
     };
-
+ 
     const buttonOverrides = `
         !mt-0 !w-[210px] [--btn-height:40px]
         [&_.about-button]:!h-[var(--btn-height)] [&_.about-button]:!flex-1 [&_.about-button]:!p-0 
@@ -38,7 +38,7 @@ const Header = ({ theme = 'light' }) => {
         <header className={`${headerStyles} ${isDarkUi ? 'dark-ui' : ''}`}>
             {/* Logo Block */}
             <div className="pointer-events-auto relative w-fit flex flex-col">
-                <div className="relative z-[2] p-[16px_0px] flex flex-col">
+                <div className="relative z-2 p-[16px_0px] flex flex-col">
                     <LogoMark theme={mode} />
                     <div className="flex items-center mt-[6px]">
                         <span className={taglineStyles}>Digital Creative Studio</span>
