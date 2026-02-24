@@ -30,7 +30,7 @@ const Button = ({ text = "Learn more about us", onClick, showArrow = true, class
                     {/* Default Text */}
                     <span className={`
                         block font-semibold text-base whitespace-nowrap leading-none button-text
-                        ${!disabled ? 'group-hover:transition-all group-hover:duration-[750ms] group-hover:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[150%] group-hover:opacity-0' : ''}
+                        ${!disabled ? 'group-hover:transition-all group-hover:duration-750 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[150%] group-hover:opacity-0' : ''}
                     `.replace(/\s+/g, ' ').trim()}>
                         {text}
                     </span>
@@ -38,7 +38,7 @@ const Button = ({ text = "Learn more about us", onClick, showArrow = true, class
                     <span className={`
                         absolute top-0 block font-semibold text-base whitespace-nowrap leading-none button-text
                         translate-y-[150%] opacity-0
-                        ${!disabled ? 'group-hover:transition-all group-hover:duration-[750ms] group-hover:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:opacity-100' : ''}
+                        ${!disabled ? 'group-hover:transition-all group-hover:duration-750 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:opacity-100' : ''}
                     `.replace(/\s+/g, ' ').trim()}>
                         {text}
                     </span>

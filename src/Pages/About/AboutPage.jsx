@@ -1,6 +1,17 @@
 import PageHeader from "../../component/PageHeader/PageHeader.jsx";
 import Footer from "../../HeroComponent/Footer/Footer.jsx";
 import ArrowButton from "../../component/Button/ArrowButton.jsx";
+import SectionHeader from "../../component/SectionHeader/SectionHeader.jsx";
+import RecommendedLink from "../../component/Button/RecommendedLink.jsx";
+
+const recommendedLinks = [
+    { label: "Our Strengths", to: "/strengths" },
+    { label: "Services", to: "/services" },
+    { label: "Production Achievements", to: "/achievements" },
+    { label: "Corporate Philosophy", to: "/philosophy" },
+    { label: "Company Information", to: "/company" },
+    { label: "Members", to: "/members" }
+];
 
 const sections = [
     { label: "Concept", title: "Corporate Philosophy" },
@@ -15,7 +26,7 @@ export default function AboutPage() {
             <PageHeader label="About us" title="About Us" theme="light" currentPage="About Us" />
 
             <main className="max-w-[1900px] mx-auto mt-16 px-6 pb-14 flex justify-end">
-                <div className="w-full max-w-[1000px] text-[20px] leading-normal tracking-normal text-[#141414]
+                <div className="w-full max-w-[1000px] text-[20px] leading-[1.5] tracking-normal text-[#141414]
                  font-medium opacity-80">
                     <p className="mb-8 font-normal [word-spacing:0.2em]">
                         Now that digital has been integrated into everyday life,
@@ -27,12 +38,12 @@ export default function AboutPage() {
                 </div>
             </main>
 
-            <section className="max-w-[1070px] mx-auto px-6 pb-40 w-full">
+            <section className="max-w-[1080px] mx-auto px-6 pb-40 w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-14">
                     {sections.map((section, index) => (
                         <div
                             key={index}
-                            className="bg-white p-10 border border-[#e5e5e5] flex flex-col justify-between min-h-[240px] md:min-h-[295px] group transition-all duration-500 hover:bg-[#fafafa] cursor-pointer"
+                            className="bg-white p-10 border border-[#e5e5e5] flex flex-col justify-between min-h-[240px] md:min-h-[258px] group transition-all duration-500 hover:bg-[#fafafa] cursor-pointer"
                         >
                             <div>
                                 <div className="flex items-center gap-2 mb-6">
@@ -48,6 +59,18 @@ export default function AboutPage() {
                             <div className="flex justify-end">
                                 <ArrowButton className="w-[30px] h-[30px]" />
                             </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            <section className="max-w-[1900px] pb-35">
+                <SectionHeader label="Recommend" title="Learn more about TECH TRIBE" theme="light" titleSize="text-[21px]" />
+
+                <div className="flex flex-wrap gap-2 mt-12 mx-12">
+                    {recommendedLinks.map((link, index) => (
+                        <div key={index} className="flex-1 min-w-[140px] max-w-[200px]">
+                            <RecommendedLink label={link.label} to={link.to} />
                         </div>
                     ))}
                 </div>

@@ -32,18 +32,18 @@ import { TOP_CARDS, MENU_ITEMS } from './MenuData';
 const MenuPanel = ({ isOpen, handleNavigation }) => {
     return (
         <div className={`
-            relative mb-[6px] w-[600px] sm:w-[690px] md:w-[745px] lg:w-[770px] xl:w-[830px] 2xl:w-[928px] max-w-[97vw] h-[80vh]
+            relative mb-[5px] w-[395px] h-[58vh] md:h-[78vh] md:w-[622px] lg:w-[635px] xl:w-[655px] 2xl:w-[715px] max-w-[97vw] 
             bg-[rgb(10,10,10)] rounded-[2px] shadow-[0_10px_40px_rgba(0,0,0,0.8)]
             border border-white/10 overflow-y-auto overflow-x-hidden
             [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
             pointer-events-auto
             transition-all duration-500 cubic-bezier-[0.4,0,0.2,1]
-            ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-[20px] invisible'}
+            ${isOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-[16px] invisible'}
         `.replace(/\s+/g, ' ').trim()}>
 
-            <div className="px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 py-5 xl:py-6 text-white font-['Inter',sans-serif]">
+            <div className="px-4 md:px-7 lg:px-10 xl:px-14 2xl:px-22 py-3 xl:py-4 text-white font-['Inter',sans-serif]">
                 {/* Top Cards Section */}
-                <div className="flex gap-3 mb-[30px]">
+                <div className="flex gap-3 mb-[20px]">
                     {TOP_CARDS.map(card => (
                         <Link
                             key={card.id}
@@ -56,7 +56,7 @@ const MenuPanel = ({ isOpen, handleNavigation }) => {
                                     <span className="inline-block w-[2.5px] h-[2.5px] bg-white"></span>
                                     {card.label}
                                 </div>
-                                <div className="text-[12px] sm:text-[13px] lg:text-[14px] xl:text-[15px] font-bold tracking-[0.5px]">
+                                <div className="text-[10px] sm:text-[10.5px] lg:text-[11px] xl:text-[12px] font-bold tracking-[0.5px]">
                                     {card.title}
                                 </div>
                             </div>
@@ -77,7 +77,7 @@ const MenuPanel = ({ isOpen, handleNavigation }) => {
                                     <Link
                                         to={item.path}
                                         className={`
-                                            text-[15px] sm:text-[16px] lg:text-[17px] xl:text-[18px] 2xl:text-[20px] font-bold tracking-[0.5px] cursor-pointer no-underline text-white relative
+                                            text-[12px] sm:text-[13px] lg:text-[13.5px] xl:text-[14.5px] 2xl:text-[16px] font-bold tracking-[0.5px] cursor-pointer no-underline text-white relative
                                             ${item.underline || item.active ? 'after:content-[""] after:absolute after:left-0 after:bottom-[-2px] after:w-full after:h-[2px] after:bg-white after:origin-left after:transition-transform after:duration-400 after:cubic-bezier-[0.16,1,0.3,1] hover:after:scale-x-0 hover:after:origin-right' : ''}
                                         `.replace(/\s+/g, ' ').trim()}
                                         onClick={(e) => handleNavigation(e, item.path)}
