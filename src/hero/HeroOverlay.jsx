@@ -89,7 +89,7 @@ export default function HeroOverlay() {
                         <CaseList />
                         <Services />
                     </div>
-                    <div style={{ marginTop: '44vh', height: 'auto' }}>
+                    <div style={{ marginTop: '50vh', height: 'auto' }}>
                         <Strengths />
                         <Flow />
                         <News />

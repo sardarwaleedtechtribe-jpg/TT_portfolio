@@ -7,8 +7,8 @@ export const FLOW_DATA = [
     {
         id: "02",
         title: "Hearing",
-        description: "We will conduct a hearing based on the information entered from the inquiry form. Please write down the hearing sheet in advance and dig deeper based on the contents."
-    },
+        description:  "We will conduct a hearing based on the information entered from the inquiry form. Please write down the hearing sheet in advance and dig deeper based on the contents."
+       },
     {
         id: "03",
         title: "Submission of proposal ",

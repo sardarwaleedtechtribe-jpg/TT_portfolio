@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import SectionHeader from '../../component/SectionHeader/SectionHeader.jsx';
 import ArrowButton from '../../component/Button/ArrowButton.jsx';
 import { FLOW_DATA } from './flowData.js';
-import './Flow.css';
 
 export default function Flow() {
     const scrollContainerRef = useRef(null);
@@ -22,18 +21,14 @@ export default function Flow() {
     };
 
     useEffect(() => {
-        // Multiple checks to ensure proper initialization
         const checkScrollState = () => {
             updateScrollButtons();
         };
 
-        // Immediate check
         checkScrollState();
 
-        // Check after short delay (for initial render)
         const timer1 = setTimeout(checkScrollState, 100);
 
-        // Check after longer delay (for images/fonts loading)
         const timer2 = setTimeout(checkScrollState, 500);
 
         window.addEventListener('resize', updateScrollButtons);
@@ -74,22 +69,33 @@ export default function Flow() {
 
     const scroll = (direction) => {
         const container = scrollContainerRef.current;
-        const scrollAmount = 380; // approximate card width
+        const cardWidth = 500; // Matches the hardcoded item width
+        const currentScroll = container.scrollLeft;
+
+        // Calculate the next/previous card boundary
+        let targetScroll;
         if (direction === 'left') {
-            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            // Find the closest card boundary to the left
+            targetScroll = Math.max(0, Math.ceil((currentScroll - cardWidth) / cardWidth) * cardWidth);
         } else {
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            // Find the closest card boundary to the right
+            targetScroll = Math.min(
+                container.scrollWidth - container.clientWidth,
+                Math.floor((currentScroll + cardWidth) / cardWidth) * cardWidth
+            );
         }
+
+        container.scrollTo({ left: targetScroll, behavior: 'smooth' });
     };
 
     return (
-        <section className="Flow-root">
-            <div className="Flow-header">
+        <section className="w-full bg-white min-h-screen pb-0 mb-[-5rem]">
+            <div className="px-4 sm:px-6 lg:px-10 py-14">
                 <SectionHeader label="Flow" title="Request flow" theme="light" />
             </div>
 
             <div
-                className="Flow-cards-container"
+                className="flex overflow-x-auto overflow-y-hidden gap-0 pl-2 cursor-grab select-none [&::-webkit-scrollbar]:hidden"
                 ref={scrollContainerRef}
                 onMouseDown={handleMouseDown}
                 onMouseLeave={handleMouseLeave}
@@ -98,32 +104,33 @@ export default function Flow() {
                 onScroll={updateScrollButtons}
             >
                 {FLOW_DATA.map((item) => (
-                    <div key={item.id} className="Flow-card">
-                        <div className="Flow-card-inner">
-                            <div className="Flow-card-top-line"></div>
-                            <div className="Flow-card-content">
-                                <div className="Flow-card-id-wrapper">
-                                    <div className="Flow-card-square"></div>
-                                    <span className="Flow-card-id">{item.id}</span>
+                    <div key={item.id} className="shrink-0 w-[500px] h-[450px] flex items-center justify-center px-12">
+                        <div className="w-full h-full flex flex-col relative py-6">
+                            <div className="w-full h-px bg-[#b0b0b0] mb-14"></div>
+                            <div className="flex-2 flex flex-col justify-start px-10">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-[5px] h-[5px] bg-black"></div>
+                                    <span className="text-[0.9rem] font-bold tracking-[0.05em]">{item.id}</span>
                                 </div>
-                                <h3 className="Flow-card-title">{item.title}</h3>
-                                <p className="Flow-card-description">{item.description}</p>
+                                <h3 className="text-[1.25rem] font-medium mb-6 leading-[1.1] text-[#1a1a1a]">{item.title}</h3>
+                                <p className="text-13px leading-[1.6] text-[#444] max-w-[350px] tracking-[0.05em]">{item.description}</p>
                             </div>
-                            <div className="Flow-card-bottom-line"></div>
+                            <div className="w-full h-px bg-[#b0b0b0] mb-3"></div>
                         </div>
                     </div>
                 ))}
+                {/* <div className="shrink-0 w-18"></div> */}
             </div>
 
-            <div className="Flow-navigation">
+            <div className="flex justify-end pr-18 gap-0 mt-3 relative z-10">
                 <div
-                    className={`center-box-arrow prev ${!canScrollLeft ? 'disabled' : ''}`}
+                    className={`ml-2.5 ${!canScrollLeft ? 'disabled' : ''}`}
                     onClick={() => canScrollLeft && scroll('left')}
                 >
                     <ArrowButton direction="left" disabled={!canScrollLeft} />
                 </div>
                 <div
-                    className={`center-box-arrow next ${!canScrollRight ? 'disabled' : ''}`}
+                    className={`ml-2.5 ${!canScrollRight ? 'disabled' : ''}`}
                     onClick={() => canScrollRight && scroll('right')}
                 >
                     <ArrowButton direction="right" disabled={!canScrollRight} />

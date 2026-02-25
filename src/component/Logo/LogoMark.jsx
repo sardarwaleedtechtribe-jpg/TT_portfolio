@@ -18,10 +18,10 @@ const LogoMark = ({ theme = 'light', animate = null, variant = 'default', textHe
     const textBase = `font-['Inter'] font-extrabold ${isLarge ? 'text-[clamp(100px,25vw,300px)]' : 'text-[26px]'} leading-[0.85] tracking-[-0.02em] ${isDark ? 'text-black' : 'text-[#f0f0f0]'}`;
 
     return (
-        <div className={`flex items-center justify-start ${isLarge ? 'gap-[1vw] mb-[2vw]' : 'gap-px mb-[1.5px]'}`}>
-            <div className="flex flex-col justify-center">
+        <div className={`flex items-center w-full ${isLarge ? 'justify-center ' : 'justify-start'}`}>
+            <div className="flex flex-col justify-center shrink-0">
                 {[
-                    { src: '/logo/TECH.svg', alt: 'TECH', delay: 'delay-0', mb: 'mb-[10px]' },
+                    { src: '/logo/TECH.svg', alt: 'TECH', delay: 'delay-0', mb: 'mb-[1vh]' },
                     { src: '/logo/TRIBE.svg', alt: 'TRIBE', delay: 'delay-150', mb: '' }
                 ].map((logo, index) => (
                     <img
