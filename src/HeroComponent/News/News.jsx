@@ -109,16 +109,16 @@ function CategoryItem({ title }) {
             <div className="relative overflow-hidden flex flex-col">
                 <span
                     className={`text-[0.9rem] font-medium text-black tracking-[0.05em] inline-block
-                                transition-[transform,opacity] duration-400 ${EASE_SMOOTH}
                                 translate-y-0 opacity-100
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
                                 group-hover:-translate-y-full group-hover:opacity-0`}
                 >
                     {title}
                 </span>
                 <span
                     className={`absolute top-0 left-0 text-[0.9rem] font-medium text-black tracking-[0.05em] inline-block
-                                transition-[transform,opacity] duration-400 ${EASE_SMOOTH}
                                 translate-y-full opacity-0
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
                                 group-hover:translate-y-0 group-hover:opacity-100`}
                 >
                     {title}
@@ -128,16 +128,16 @@ function CategoryItem({ title }) {
             <div className="relative overflow-hidden flex items-center w-16 h-[1.35rem] justify-end">
                 <span
                     className={`text-black flex items-center justify-center
-                                transition-[transform,opacity] duration-1000 ${EASE_SMOOTH}
                                 translate-x-0 opacity-100
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
                                 group-hover:translate-x-[150%] group-hover:opacity-0`}
                 >
                     <MdArrowForward size={20} />
                 </span>
                 <span
                     className={`absolute right-0 text-black flex items-center justify-center
-                                transition-[transform,opacity] duration-1000 ${EASE_SMOOTH}
                                 -translate-x-[150%] opacity-0
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
                                 group-hover:translate-x-0 group-hover:opacity-100`}
                 >
                     <MdArrowForward size={20} />
