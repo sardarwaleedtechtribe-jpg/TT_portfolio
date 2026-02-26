@@ -87,7 +87,7 @@ export default function CameraController() {
         const zoomOut = 0.1
         const effectiveScroll = Math.min(scroll.offset / ANIMATION_END, 1)
 
-        console.log("Scroll Offset: ", scroll.offset)
+        // console.log("Scroll Offset: ", scroll.offset)
         // 1. Calculate Initial Zoom Back Progress
         let zoomBackOffset = 0
         let motionProgress = 0

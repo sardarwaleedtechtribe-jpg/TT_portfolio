@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className=" max-w-[1600px] mx-auto mt-10 sm:mt-12 lg:mt-16 px-4 sm:px-6 lg:px-10 font-sans box-border">
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-0 lg:justify-between items-start mb-10 sm:mb-12 lg:mb-16 w-full max-w-[1542px] mx-auto">
+        <div className="flex flex-col-reverse gap-10 lg:flex-row lg:gap-0 lg:justify-between items-start mb-10 sm:mb-12 lg:mb-16 w-full max-w-[1542px] mx-auto">
           <div className="flex flex-row flex-wrap gap-8 sm:gap-10 lg:flex-col lg:gap-6 lg:w-[200px]">
             <div className="text-[11px] leading-relaxed text-[#444]">
               <p className="m-0">990-2462</p>

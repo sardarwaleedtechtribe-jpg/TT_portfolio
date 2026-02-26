@@ -41,7 +41,7 @@ export default function CaseRow({ title, company, tags, year, video }) {
       </div>
 
       <div className={`video-preview ${isHovered ? "visible" : ""}`}>
-        <video ref={videoRef} src={video} loop muted playsInline />
+        <video ref={videoRef} src={video} loop muted playsInline crossOrigin="anonymous" preload="auto" />
       </div>
     </div>
   );

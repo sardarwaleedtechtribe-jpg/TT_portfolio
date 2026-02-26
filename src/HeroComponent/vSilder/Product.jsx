@@ -129,6 +129,8 @@ export default function Product() {
               loop
               muted
               playsInline
+              crossOrigin="anonymous"
+              preload="auto"
               aria-label={video.alt}
               onMouseEnter={(e) => {
                 e.currentTarget.play().catch(() => { });
