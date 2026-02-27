@@ -104,27 +104,44 @@ function SecondaryRow({ article, thumbnailBasis = '90px', mobileSize = false }) 
 /** Desktop: animated category row with slide-up text and slide-in arrow */
 function CategoryItem({ title }) {
     return (
-        <div className="group flex justify-between items-center py-[0.7rem] px-4 border-b border-[#e0e0e0] first:border-t cursor-pointer transition-all duration-300 ease-in-out hover:bg-neutral-50">
-            {/* Animated label - Rolling effect */}
-            <div className="relative h-6 overflow-hidden">
-                <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1/2">
-                    <span className="h-6 flex items-center text-[0.9rem] font-medium text-black tracking-[0.05em] uppercase">
-                        {title}
-                    </span>
-                    <span className="h-6 flex items-center text-[0.9rem] font-medium text-black tracking-[0.05em] uppercase">
-                        {title}
-                    </span>
-                </div>
+        <div className="group flex justify-between items-center py-[0.6rem] px-[0.95rem] border-b border-[#e0e0e0] first:border-t cursor-pointer transition-all duration-300 ease-in-out">
+            {/* Animated label */}
+            <div className="relative overflow-hidden flex flex-col">
+                <span
+                    className={`text-[0.9rem] font-medium text-black tracking-[0.05em] inline-block
+                                translate-y-0 opacity-100
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                                group-hover:-translate-y-full group-hover:opacity-0`}
+                >
+                    {title}
+                </span>
+                <span
+                    className={`absolute top-0 left-0 text-[0.9rem] font-medium text-black tracking-[0.05em] inline-block
+                                translate-y-full opacity-0
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                                group-hover:translate-y-0 group-hover:opacity-100`}
+                >
+                    {title}
+                </span>
             </div>
-
-            {/* Animated arrow - Swift slide effect */}
-            <div className="relative overflow-hidden w-5 h-5">
-                <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-full">
-                    <MdArrowForward size={20} className="text-black" />
-                </div>
-                <div className="absolute top-0 left-0 -translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0">
-                    <MdArrowForward size={20} className="text-black" />
-                </div>
+            {/* Animated arrow */}
+            <div className="relative overflow-hidden flex items-center w-16 h-[1.35rem] justify-end">
+                <span
+                    className={`text-black flex items-center justify-center
+                                translate-x-0 opacity-100
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                                group-hover:translate-x-[150%] group-hover:opacity-0`}
+                >
+                    <MdArrowForward size={20} />
+                </span>
+                <span
+                    className={`absolute right-0 text-black flex items-center justify-center
+                                -translate-x-[150%] opacity-0
+                                group-hover:transition-all group-hover:duration-300 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                                group-hover:translate-x-0 group-hover:opacity-100`}
+                >
+                    <MdArrowForward size={20} />
+                </span>
             </div>
         </div>
     );

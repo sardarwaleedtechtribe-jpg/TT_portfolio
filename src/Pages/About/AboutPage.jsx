@@ -2,16 +2,7 @@ import PageHeader from "../../component/PageHeader/PageHeader.jsx";
 import Footer from "../../HeroComponent/Footer/Footer.jsx";
 import ArrowButton from "../../component/Button/ArrowButton.jsx";
 import SectionHeader from "../../component/SectionHeader/SectionHeader.jsx";
-import RecommendedLink from "../../component/Button/RecommendedLink.jsx";
-
-const recommendedLinks = [
-    { label: "Our Strengths", to: "/strengths" },
-    { label: "Services", to: "/services" },
-    { label: "Production Achievements", to: "/achievements" },
-    { label: "Corporate Philosophy", to: "/philosophy" },
-    { label: "Company Information", to: "/company" },
-    { label: "Members", to: "/members" }
-];
+import RecommendedLink, { RECOMMENDED_LINKS } from "../../component/Button/RecommendedLink.jsx";
 
 const sections = [
     { label: "Concept", title: "Corporate Philosophy" },
@@ -65,13 +56,11 @@ export default function AboutPage() {
             </section>
 
             <section className="max-w-[1900px] pb-35">
-                <SectionHeader label="Recommend" title="Learn more about TECH TRIBE" theme="light" titleSize="text-[21px]" />
+                <SectionHeader label="Recommend" title="Learn more about TECH TRIBE" theme="light" size="small" />
 
                 <div className="flex flex-wrap gap-2 mt-12 mx-12">
-                    {recommendedLinks.map((link, index) => (
-                        <div key={index} className="flex-1 min-w-[140px] max-w-[200px]">
-                            <RecommendedLink label={link.label} to={link.to} />
-                        </div>
+                    {RECOMMENDED_LINKS.map((link, index) => (
+                        <RecommendedLink key={index} label={link.label} to={link.to} />
                     ))}
                 </div>
             </section>

@@ -1,6 +1,6 @@
 import ArrowButton from "../../component/Button/ArrowButton.jsx";
 import { FOOTER_DATA } from "./footerData.js";
-import { MdArrowUpward } from "react-icons/md";
+import { MdArrowUpward, MdArrowForward } from "react-icons/md";
 import LogoMark from "../../component/Logo/LogoMark.jsx";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -139,9 +139,7 @@ export default function Footer() {
                                                text-[13px] sm:text-[14px] font-medium text-black no-underline"
                 >
                   <span>{label}</span>
-                  <span className="text-[18px] font-light leading-none select-none">
-                    +
-                  </span>
+                  <MdArrowForward size={18} className="opacity-60" />
                 </a>
               ))}
             </nav>
@@ -171,14 +169,14 @@ export default function Footer() {
                 <MdArrowUpward
                   size={18}
                   className="absolute
-                                               group-hover:transition-transform group-hover:duration-600 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
-                                               group-hover:-translate-y-full"
+                    group-hover:transition-transform group-hover:duration-600 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                    group-hover:-translate-y-full"
                 />
                 <MdArrowUpward
                   size={18}
                   className="absolute translate-y-full
-                                               group-hover:transition-transform group-hover:duration-600 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
-                                               group-hover:translate-y-0"
+                    group-hover:transition-transform group-hover:duration-600 group-hover:ease-[cubic-bezier(0.16,1,0.3,1)]
+                    group-hover:translate-y-0"
                 />
               </div>
             </button>

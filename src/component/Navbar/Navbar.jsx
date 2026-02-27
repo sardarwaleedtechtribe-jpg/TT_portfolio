@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MenuPanel from './MenuPanel';
+import { useTransition } from '../TransitionContext';
 
 const Navbar = () => {
-    const navigate = useNavigate();
+    const { isTransitioning, transitionTo } = useTransition();
     const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
-    const [isTransitioning, setIsTransitioning] = useState(false);
+
     const navLinks = [
         { name: 'Home', hoverName: 'HOME', path: '/' },
         { name: 'About us', hoverName: 'ABOUT', path: '/about' },
@@ -28,18 +29,8 @@ const Navbar = () => {
 
     const handleNavigation = (e, path) => {
         e.preventDefault();
-        if (location.pathname === path) {
-            closeMenu();
-            return;
-        }
         closeMenu();
-        setIsTransitioning(true);
-        setTimeout(() => {
-            navigate(path);
-            setTimeout(() => {
-                setIsTransitioning(false);
-            }, 800);
-        }, 800);
+        transitionTo(path);
     };
 
     return (
@@ -52,8 +43,6 @@ const Navbar = () => {
                     }
                 `}
             </style>
-
-            <div className={`fixed top-0 bottom-0 left-1/2 w-screen h-[150vh] bg-black z-9999 pointer-events-none transition-transform duration-800 ease-[cubic-bezier(0.65,0,0.35,1)] ${isTransitioning ? '-translate-x-1/2 -translate-y-[33%]' : '-translate-x-1/2 translate-y-full'}`} />
 
             <MenuPanel isOpen={isOpen} handleNavigation={handleNavigation} />
 

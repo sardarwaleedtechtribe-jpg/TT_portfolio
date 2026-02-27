@@ -9,7 +9,6 @@ import Flow from "../HeroComponent/Flow/Flow.jsx";
 import News from "../HeroComponent/News/News.jsx";
 import FAQ from "../HeroComponent/FAQ/FAQ.jsx";
 import Footer from "../HeroComponent/Footer/Footer.jsx";
-import Header from "../component/TopHeader/header.jsx";
 // import Button from "../component/Button/Button.jsx";
 // import BottomLeftText from "../component/BottomLeftText/BottomLeftText.jsx";
 import { useRef } from "react";
@@ -80,7 +79,6 @@ export default function HeroOverlay() {
 
     return (
         <Scroll html>
-            <Header />
             <div ref={wrapperRef} style={{ width: '100vw', minHeight: '100vh', overflow: 'visible' }}>
                 <div ref={contentRef} style={{ position: 'relative', top: '150vh', width: '100vw', overflow: 'visible' }}>
                     <About />

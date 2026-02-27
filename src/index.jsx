@@ -12,6 +12,8 @@ import StrengtsPage from './Pages/Strengts/StrengtsPage.jsx'
 import NewsPage from './Pages/News/NewsPage.jsx'
 import RecruitPage from './Pages/Recruit/RecruitPage.jsx'
 import ContactPage from './Pages/Contact/ContactPage.jsx'
+import { TransitionProvider } from './component/TransitionContext.jsx'
+import Header from './component/TopHeader/header.jsx'
 
 const ScrollToTop = () => {
     const { pathname } = useLocation();
@@ -21,36 +23,47 @@ const ScrollToTop = () => {
     return null;
 };
 
+const App = () => {
+    const location = useLocation();
+    const isHome = location.pathname === '/';
+    return (
+        <>
+            <ScrollToTop />
+            <Header theme={isHome ? 'light' : 'dark'} />
+            <Navbar />
+            <Routes>
+                <Route path="/" element={
+                    <Canvas
+                        gl={{ antialias: true }}
+                        camera={{
+                            fov: 45,
+                            near: 0.1,
+                            far: 200,
+                            position: [-6.8, -2.5, 0.0],
+                            rotation: [0, -1.5, 0]
+                        }}
+                    >
+                        <Experience />
+                    </Canvas>
+                } />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/work" element={<WorkPage />} />
+                <Route path="/strengths" element={<StrengtsPage />} />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/recruit" element={<RecruitPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+        </>
+    );
+};
+
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
 root.render(
     <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
-            <Route path="/" element={
-                <Canvas
-                    gl={{
-                        // antialias: true,
-                    }}
-                    camera={{
-                        fov: 45,
-                        near: 0.1,
-                        far: 200,
-                        position: [-6.8, -2.5, 0.0],
-                        rotation: [0, -1.5, 0]
-                    }}
-                >
-                    <Experience />
-                </Canvas>
-            } />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/strengths" element={<StrengtsPage />} />
-            <Route path="/news" element={<NewsPage />} />
-            <Route path="/recruit" element={<RecruitPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-        </Routes>
+        <TransitionProvider>
+            <App />
+        </TransitionProvider>
     </BrowserRouter>
 )
